@@ -1,0 +1,94 @@
+/* LandingPage.css */
+
+/* Entire landing page content styling */
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('assets/fonts/nunitosans.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.landing-page {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden; /* Remove scrollbar */
+    position: relative;
+    padding: 0px; 
+  }
+  
+  /* Background video */
+  .background-video {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.9;
+  }
+  
+  .content {
+    text-align: center;
+    z-index: 1;
+    max-width: 1200px; 
+    padding: 10px; 
+  }
+  
+  
+  .top-icon {
+    height: 80px; 
+    width: 80px; 
+    margin: -10px 0; 
+  }
+  
+  .title {
+    margin: 10px 0; 
+  }
+  
+  .welcome-to {
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+    font-size: 36px; 
+    color: #fff;
+  }
+  
+  .flip-the-page {
+    font-family: 'Borel', serif;
+    font-weight: 600;
+    font-size: 36px; 
+    color: #fef8e8;
+  }
+  
+  .description {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px; 
+    color: #fef8e8;
+    margin: -20px 200px; 
+    line-height: 1.5; 
+  }
+  
+  
+  .ebooks-image {
+    width: 95%; 
+    max-width: 4000px; 
+    height: auto;
+    margin: 10px 0; 
+  }
+  
+
+  .get-started-button {
+    background-color: #7f265b;
+    color: #fef8e8;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 800;
+    font-size: 16px; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin: -5px 0; 
+    width: 250px;
+  }
