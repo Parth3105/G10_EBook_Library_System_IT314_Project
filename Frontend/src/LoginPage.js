@@ -4,7 +4,7 @@ import fliplogo from './images/logo.svg'
 import bgimg from './images/bgimage1.png'
 
 
-function App() {
+function LoginPage() {
   return (
     <div className="login-page">
       <div className="left-section">
