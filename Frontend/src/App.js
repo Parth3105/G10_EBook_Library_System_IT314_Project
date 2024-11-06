@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import SelectionPage from './SelectionPage';
+import EmailVerification from './EmailVerification';
 
 const App = () => {
   return (
