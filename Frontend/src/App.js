@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LandingPage from './LandingPage';
+import SelectionPage from './SelectionPage';
 
 const App = () => {
   return (
