@@ -9,6 +9,7 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
+        <Route path="/SelectionPage" element={<SelectionPage />} />
       </Routes>
     </Router>
   );
