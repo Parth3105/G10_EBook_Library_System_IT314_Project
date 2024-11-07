@@ -1,0 +1,118 @@
+/* RegisterPage.css */
+
+body, html {
+    margin: 0;
+    font-family: 'Nunito Sans';
+    color: #333; /* Dark text color */
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  
+  }
+  
+  .register-page {
+    display: flex;
+    height: 100vh;
+    background-color: #fef8e8;
+  
+  }
+  
+  .left-section {
+    flex: 1;
+    background-image: url('./images/bgimage1.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-color: #fef8e8;
+  }
+  
+  .tablet-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* This makes sure the image covers the entire section */
+    object-fit: cover; /* This ensures the image maintains aspect ratio while covering */
+  }
+  
+  .right-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #fef8e8;
+  }
+  
+  .logo img {
+    
+    
+      width: auto;              /* Set the size of the logo */
+      height: 112px;   
+      margin-bottom: 10px;   /* Keep the aspect ratio */
+  
+  }
+  
+  
+  .register-heading {
+    text-align: center;
+    width: 100%;
+    font-family: 'Nunito Sans';
+    color: #525252;
+    text-align: center;
+    font-weight: 700px;
+    margin-bottom: 36px;
+    font-size: 25px;
+  }
+  
+  
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 80%;
+    margin-left: 60px;
+    
+  }
+  
+  .register-form input {
+    padding: 10px;
+    border: 3px;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: black;
+    background-color: #fef8e8;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    font-family: 'Nunito Sans';
+  }
+  .register-btn {
+    padding: 10px;
+    background-color: #7f265b;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Nunito Sans';
+  }
+  .register-btn:hover {
+    background-color: #ffffff;
+    color: black;
+  }
+  
+  .login-link {
+    margin-top: 20px;
+  }
+  
+  .login-link :link{
+    margin-top: 20px;
+    text-align: center;
+    text-decoration: none;
+    color: #7f265b;
+  }
+  
+  
+  
+  
+  
