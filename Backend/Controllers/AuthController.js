@@ -3,7 +3,7 @@ const userModel = require("../Models/UserModel");
 const bcrypt = require("bcryptjs"); // bcryptjs is used in node to encrypt the passwords
 const nodemailer = require("nodemailer"); // nodemailer
 const Joi = require("joi");
-const { VERIFICATION_EMAIL_TEMPLATE } = require("../Utils/emailTemplates"); // email templates
+const { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE } = require("../Utils/emailTemplates"); // email templates
 const otpVerification = require("../Models/otpVerification");
 const validate = require('../utils/validateuser');
 
@@ -89,6 +89,27 @@ module.exports.loginUser = async (req, res) => {
         }
     }
 }
+module.exports.forgotPassword = async (req, res) => {
+    try {
+        const { email } = req.body;
+        if (!email) res.send("An email is required.");
+
+        // Check if user exists
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            res.send("No account found with the provided email.");
+        }
+
+        if (!user.verified) {
+            res.send("Email hasn't been verified yet. Please check your inbox.");
+        }
+
+        // Send OTP email for password reset
+        await sendPasswordResetOtpEmail(user, res);
+    } catch (error) {
+        res.status(400).json({ status: "FAILED", message: error.message });
+    }
+};
 
 // send otp verification email
 const sendOTPVerificationEmail = async ({ _id, email }, res) => {
@@ -129,6 +150,49 @@ const sendOTPVerificationEmail = async ({ _id, email }, res) => {
         });
     }
 };
+
+const sendPasswordResetOtpEmail = async (user, res) => {
+    try {
+        const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
+
+        // Mail options
+        const mailOptions = {
+            from: process.env.AUTH_EMAIL,
+            to: user.email,
+            subject: "Password Reset OTP",
+            html: PASSWORD_RESET_REQUEST_TEMPLATE.replace("{otpCode}", otp)
+        };
+
+        // Hash the OTP
+        const saltRounds = 10;
+        const hashedOTP = await bcrypt.hash(otp, saltRounds);
+
+        // Save OTP to database
+        const otpRecord = new otpVerification({
+            userId: user._id,
+            otp: hashedOTP,
+            createdAt: Date.now(),
+            expiresAt: Date.now() + 600000  // 10 minutes
+        });
+        await otpRecord.save();
+
+        // Send OTP email
+        await transporter.sendMail(mailOptions);
+
+        res.json({
+            status: "PENDING",
+            message: "Password reset OTP email sent",
+            data: {
+                userId: user._id,
+                email: user.email,
+            },
+        });
+    } catch (error) {
+        res.json({ status: "FAILED", message: error.message });
+    }
+};
+
+
 // Verify OTP email function
 module.exports.verifyOTP = async (req, res) => {
     try {
