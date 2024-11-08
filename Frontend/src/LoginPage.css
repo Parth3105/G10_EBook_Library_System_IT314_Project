@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Borel');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+body {
+  margin: 0;
+  font-family: 'Nunito Sans';
+  color: #333; /* Dark text color */
+}
+
+.login-page {
+  display: flex;
+  height: 100vh;
+  background-color: #fef8e8;
+}
+
+.left-section {
+  flex: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  object-fit: cover;
+  
+
+}
+
+.tablet-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* This makes sure the image covers the entire section */
+  object-fit: cover; /* This ensures the image maintains aspect ratio while covering */
+}
+
+.right-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+  padding-right: 100px;
+  padding-left: 100px;
+  background-color: #fef8e8;
+
+}
+
+.logo {
+  display: flex;           /* Use flexbox to align items */
+  align-items: center;      /* Vertically center the items */
+  justify-content: center;  /* Center the content horizontally */
+}
+
+
+img {
+  width: auto;              /* Set the size of the logo */
+  height: 112px;   
+  margin-bottom: 25px;          /* Keep the aspect ratio */
+}
+
+
+h2 {
+  font-family: 'Nunito Sans';
+  color: #525252;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 50px;
+  font-size: 35px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 80%;
+  margin-left: 60px;
+}
+
+.login-form input {
+  padding: 10px;
+  border: 3px;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: black;
+  background-color: #fef8e8;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  font-family: 'Nunito Sans';
+  
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  font-family: 'Nunito Sans';
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.remember-me label {
+  margin-left: 8px;
+}
+
+.register-btn {
+  padding: 10px;
+  background-color: #7F265B;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: 'Nunito Sans';
+}
+
+.google-login {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=');
+  background-color: #fef8e8;
+  background-repeat: no-repeat;
+  background-position: 110px 10px;
+  border: 1px solid #d9d9d9;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: 'Nunito Sans';
+  font-size: 16px;
+  color: #5f6368;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  outline: none;
+  width: 80%;
+  margin-left: 60px;
+}
+
+.additional-options {
+  margin-top: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.additional-options a {
+  color: #84226d;
+  text-decoration: none;
+  font-family: 'Nunito Sans';
+}
+
+.register-link {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #84226d;
+  text-decoration: none;
+  font-family: 'Nunito Sans';
+}
