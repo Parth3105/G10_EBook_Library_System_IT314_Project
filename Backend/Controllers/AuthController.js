@@ -21,41 +21,55 @@ module.exports.registerUser = async (req, res) => {
     try {
         const registerInput = req.body;
 
-
-
-        // Validate input
-        if (registerInput.password.length < 8 || registerInput.password.length > 12) {
-            res.send('Password must be between 8 and 12 characters long.');
+        // Check if email already exists
+        const existingUser = await userModel.findOne({ email: registerInput.email });
+        if (existingUser) {
+            return res.status(400).send("User with this email already exists.");
         }
+
+        // Validate password length
+        if (registerInput.password.length < 8 || registerInput.password.length > 12) {
+            return res.status(400).send("Password must be between 8 and 12 characters long.");
+        }
+
+        // Check if password and confirmPassword match
+        if (registerInput.password !== registerInput.confirmPassword) {
+            return res.status(400).send("Passwords do not match.");
+        }
+
+        // Validate other inputs using Joi (assuming validate function exists)
         const { error } = validate(registerInput);
         if (error) {
             return res.status(400).send(error.details[0].message);  // Send the validation error message
         }
-        else {
 
+        // Hash password
+        const saltRounds = 10;
+        const hashedPass = await bcrypt.hash(registerInput.password, saltRounds);
 
-            const saltRounds = 10; // It is used for more computed or say for making more prone to attacks on increment but less performance/time-cost.
-            const hashedPass = await bcrypt.hash(registerInput.password, saltRounds); //password is hashed using bcryptjs.
+        // Create a new user
+        const newUser = new userModel({
+            username: registerInput.username,
+            password: hashedPass,
+            email: registerInput.email,
+            verified: false
+        });
 
-            const newUser = new userModel({
-                username: registerInput.username,
-                password: hashedPass,
-                email: registerInput.email,
-                verified: false
+        // Save new user and send OTP verification email
+        newUser.save()
+            .then((result) => {
+                sendOTPVerificationEmail(result, res);
+            })
+            .catch((err) => {
+                console.log(err);
+                res.status(500).send("Sign up error.");
             });
-
-            newUser.save()
-                .then((result) => { sendOTPVerificationEmail(result, res); })
-                .catch((err) => {
-                    console.log(err);
-                    res.send("Sign up error!!!!");
-                });
-        }
-    }
-    catch (err) {
+    } catch (err) {
         console.log("User Creation Error: " + err);
+        res.status(500).send("Server error during registration.");
     }
-}
+};
+
 
 // function controls the login of user.
 module.exports.loginUser = async (req, res) => {
@@ -110,7 +124,41 @@ module.exports.forgotPassword = async (req, res) => {
         res.status(400).json({ status: "FAILED", message: error.message });
     }
 };
+module.exports.resetPassword = async (req, res) => {
+    try {
+        const { email, password, confirmPassword } = req.body;
 
+        if (password !== confirmPassword) {
+            return res.status(400).send("Passwords do not match.");
+        }
+
+        // Check if user exists and is verified
+        const user = await userModel.findOne({ email });
+        if (!user) {
+            return res.status(404).send("No account associated with this email.");
+        }
+        if (!user.verified) {
+            return res.status(400).send("Email hasn't been verified. Please check your inbox.");
+        }
+
+        // Hash the new password
+        const saltRounds = 10;
+        const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+        // Update user's password in the database
+        await userModel.updateOne({ email }, { password: hashedPassword });
+
+        res.json({
+            status: "SUCCESS",
+            message: "Password has been reset successfully."
+        });
+    } catch (error) {
+        res.status(500).json({
+            status: "FAILED",
+            message: error.message
+        });
+    }
+};
 // send otp verification email
 const sendOTPVerificationEmail = async ({ _id, email }, res) => {
     try {
@@ -127,7 +175,7 @@ const sendOTPVerificationEmail = async ({ _id, email }, res) => {
         const saltRounds = 10;
         const hashedOTP = await bcrypt.hash(otp, saltRounds);
         const newOTPVerification = await new otpVerification({
-            userId: _id,
+            email: email,
             otp: hashedOTP,
             createdAt: Date.now(),
             expiresAt: Date.now() + 120000,
@@ -196,14 +244,14 @@ const sendPasswordResetOtpEmail = async (user, res) => {
 // Verify OTP email function
 module.exports.verifyOTP = async (req, res) => {
     try {
-        const { userId, otp } = req.body;
+        const { email, otp } = req.body;
 
-        if (!userId || !otp) {
-            throw new Error("Empty OTP details are not allowed");
+        if (!email || !otp) {
+            throw new Error("Email and OTP are required");
         }
 
-        // Find OTP records for the user
-        const userOTPRecords = await otpVerification.find({ userId });
+        // Find OTP records for the user by email
+        const userOTPRecords = await otpVerification.find({ email });
 
         if (userOTPRecords.length <= 0) {
             throw new Error("Account record doesn't exist or has been verified already. Please sign up or log in.");
@@ -215,7 +263,7 @@ module.exports.verifyOTP = async (req, res) => {
 
         if (expiresAt < Date.now()) {
             // OTP has expired
-            await otpVerification.deleteMany({ userId });
+            await otpVerification.deleteMany({ email });
             throw new Error("Code has expired. Please request again.");
         }
 
@@ -226,13 +274,13 @@ module.exports.verifyOTP = async (req, res) => {
         }
 
         // OTP is valid, update user verification status
-        await userModel.updateOne({ _id: userId }, { verified: true });
+        await userModel.updateOne({ email }, { verified: true });
 
-        await otpVerification.deleteMany({ userId });
+        await otpVerification.deleteMany({ email });
 
         res.json({
             status: "VERIFIED",
-            message: "User email verified successfully."
+            message: "OTP verified successfully."
         });
     } catch (error) {
         res.json({
@@ -240,4 +288,4 @@ module.exports.verifyOTP = async (req, res) => {
             message: error.message,
         });
     }
-}
+};

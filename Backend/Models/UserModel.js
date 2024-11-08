@@ -7,12 +7,11 @@ const schema = new mongoose.Schema(
             required: true
         },
 
-        password: {
+        email: {
             type: String,
             required: true
         },
-
-        email: {
+        password: {
             type: String,
             required: true
         },
