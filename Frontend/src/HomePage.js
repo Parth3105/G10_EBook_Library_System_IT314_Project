@@ -1,5 +1,7 @@
 import React from 'react';
 import './HomePage.css';
+import { Link } from 'react-router-dom'; 
+
 
 
 // Importing images
@@ -37,7 +39,7 @@ function HomePage() {
               <img src={searchicon} alt="Search Icon" className="searchicon" />
           </div>
           <div className="auth-links">
-              <a href="/login">Login</a>|<a href="/register">Register</a>
+          <Link to="/LoginPage">Login</Link> | <Link to="/SelectionPage">Register</Link>  {/* Updated Login and Register link */}
           </div>
       </header>
 
