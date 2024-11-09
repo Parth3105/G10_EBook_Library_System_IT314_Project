@@ -103,6 +103,7 @@ module.exports.loginUser = async (req, res) => {
         }
     }
 }
+
 module.exports.forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
@@ -124,6 +125,7 @@ module.exports.forgotPassword = async (req, res) => {
         res.status(400).json({ status: "FAILED", message: error.message });
     }
 };
+
 module.exports.resetPassword = async (req, res) => {
     try {
         const { email, password, confirmPassword } = req.body;
@@ -159,6 +161,7 @@ module.exports.resetPassword = async (req, res) => {
         });
     }
 };
+
 // send otp verification email
 const sendOTPVerificationEmail = async ({ _id, email }, res) => {
     try {
@@ -281,6 +284,80 @@ module.exports.verifyOTP = async (req, res) => {
         res.json({
             status: "VERIFIED",
             message: "OTP verified successfully."
+        });
+    } catch (error) {
+        res.json({
+            status: "FAILED",
+            message: error.message,
+        });
+    }
+};
+
+module.exports.resendOTPVerificationEmail = async (req, res) => {
+    try {
+
+        const { _id, email } = req.body;
+
+        // Validate email
+        if (!email) {
+            return res.json({
+                status: "FAILED",
+                message: "Email is required",
+            });
+        }
+
+        // Find the existing OTP record for the user
+        const existingOTP = await otpVerification.findOne({ email });
+
+        // Check if an OTP exists and if it has expired
+        if (existingOTP && existingOTP.expiresAt > Date.now()) {
+            return res.json({
+                status: "PENDING",
+                message: "Please wait for the existing OTP to expire before requesting a new one.",
+                data: {
+                    userId: _id,
+                    email,
+                },
+            });
+        }
+
+        // Delete any expired OTP record
+        await otpVerification.deleteMany({ email });
+
+        // Generate a new OTP
+        const otp = `${Math.floor(1000 + Math.random() * 9000)}`;
+        
+        // Mail options
+        const mailOptions = {
+            from: process.env.AUTH_EMAIL,
+            to: email,
+            subject: "Resend Verification OTP",
+            html: VERIFICATION_EMAIL_TEMPLATE.replace("{verificationCode}", otp)
+        };
+
+        // Hash the OTP
+        const saltRounds = 10;
+        const hashedOTP = await bcrypt.hash(otp, saltRounds);
+
+        // Create new OTP verification record with a new expiration time
+        const newOTPVerification = new otpVerification({
+            email,
+            otp: hashedOTP,
+            createdAt: Date.now(),
+            expiresAt: Date.now() + 120000, // Expires in 2 minutes
+        });
+
+        // Save OTP record and send email
+        await newOTPVerification.save();
+        await transporter.sendMail(mailOptions);
+
+        res.json({
+            status: "PENDING",
+            message: "A new OTP has been sent to your email",
+            data: {
+                userId: _id,
+                email,
+            },
         });
     } catch (error) {
         res.json({
