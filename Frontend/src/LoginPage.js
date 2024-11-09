@@ -33,7 +33,7 @@ function LoginPage() {
 
         {/* Replaced anchor tag with Link component */}
         <p className="register-link">
-          Not Registered Yet? <Link to="/Register">Register Now</Link>
+          Not Registered Yet? <Link to="/SelectionPage">Register Now</Link>
         </p>
       </div>
     </div>
