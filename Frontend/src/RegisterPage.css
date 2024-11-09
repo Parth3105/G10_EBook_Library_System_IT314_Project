@@ -93,10 +93,6 @@ body, html {
     font-size: 1rem;
     font-family: 'Nunito Sans';
   }
-  .register-page .register-btn:hover {
-    background-color: #ffffff;
-    color: black;
-  }
   
   .register-page .login-link {
     margin-top: 20px;
