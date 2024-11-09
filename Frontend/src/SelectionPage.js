@@ -1,13 +1,16 @@
-// SelectionPage.js
-
 import React from 'react';
+import { useNavigate } from 'react-router-dom';  // Import useNavigate
 import Readericon from './images/readericon.png';
 import Authoricon from './images/authoricon.png';
 import './SelectionPage.css';
 
 const SelectionPage = () => {
+  const navigate = useNavigate();  // Initialize useNavigate hook
+
   const handleSelection = (role) => {
     console.log(`You selected: ${role}`);
+    // Navigate to RegisterPage
+    navigate('/Register', { state: { role } });  // Pass the selected role to RegisterPage
   };
 
   return (
