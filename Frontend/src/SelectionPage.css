@@ -1,15 +1,17 @@
 .selection-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: url(./images/bgimage2.png) no-repeat center center/cover;
-    background-size: 65% 100%;
-    color: #ffffff;
-    text-align: center;
-    position: relative;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;  /* Full viewport width */
+  background: url(./images/bgimage2.png) no-repeat center center;
+  background-size: cover;  /* Ensures the image covers the whole container */
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+}
+
   
   h1 {
     font-size: 2.5em;
@@ -36,8 +38,8 @@
     font-size: 1.3em;
     font-weight: bold;
     color: #fff;
-    background-color: #771c92;
-    border: 2px solid #ffffff;
+    background-color: #7F265B;
+    border: 0px solid #ffffff;
     border-radius: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
