@@ -1,12 +1,16 @@
+// src/LandingPage.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import bgVideo from './videos/bg1.mp4';
 import topIcon from './images/bookminiwhite.png';
 import ebooksImage from './images/landingImage.png';
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    // Add desired action here 
+    navigate('/home'); // Redirects to HomePage
   };
 
   return (
@@ -28,10 +32,7 @@ const LandingPage = () => {
           offers something for everyone.
         </p>
         <img src={ebooksImage} alt="Ebooks" className="ebooks-image" />
-        <button
-          className="get-started-button"
-          onClick={handleClick} // Placeholder action
-        >
+        <button className="get-started-button" onClick={handleClick}>
           Get Started
         </button>
       </div>

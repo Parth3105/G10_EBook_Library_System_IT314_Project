@@ -17,7 +17,7 @@ body, html {
   
   }
   
-  .left-section {
+  .register-page .left-section {
     flex: 1;
     background-image: url('./images/bgimage1.png');
     background-size: cover;
@@ -26,7 +26,7 @@ body, html {
     background-color: #fef8e8;
   }
   
-  .tablet-image {
+  .register-page .tablet-image {
     position: absolute;
     top: 0;
     left: 0;
@@ -35,7 +35,7 @@ body, html {
     object-fit: cover; /* This ensures the image maintains aspect ratio while covering */
   }
   
-  .right-section {
+  .register-page .right-section {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -45,17 +45,14 @@ body, html {
     background-color: #fef8e8;
   }
   
-  .logo img {
-    
-    
+  .register-page .logo1 img {
       width: auto;              /* Set the size of the logo */
       height: 112px;   
       margin-bottom: 10px;   /* Keep the aspect ratio */
-  
   }
   
   
-  .register-heading {
+  .register-page .register-heading {
     text-align: center;
     width: 100%;
     font-family: 'Nunito Sans';
@@ -67,7 +64,7 @@ body, html {
   }
   
   
-  .register-form {
+  .register-page .register-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -76,7 +73,7 @@ body, html {
     
   }
   
-  .register-form input {
+  .register-page .register-form input {
     padding: 10px;
     border: 3px;
     border-radius: 5px;
@@ -86,7 +83,7 @@ body, html {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     font-family: 'Nunito Sans';
   }
-  .register-btn {
+  .register-page .register-btn {
     padding: 10px;
     background-color: #7f265b;
     color: white;
@@ -96,16 +93,16 @@ body, html {
     font-size: 1rem;
     font-family: 'Nunito Sans';
   }
-  .register-btn:hover {
+  .register-page .register-btn:hover {
     background-color: #ffffff;
     color: black;
   }
   
-  .login-link {
+  .register-page .login-link {
     margin-top: 20px;
   }
   
-  .login-link :link{
+  .register-page .login-link :link{
     margin-top: 20px;
     text-align: center;
     text-decoration: none;

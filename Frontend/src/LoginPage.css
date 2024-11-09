@@ -13,7 +13,7 @@ body {
   background-color: #fef8e8;
 }
 
-.left-section {
+.login-page .left-section {
   flex: 1.5;
   display: flex;
   justify-content: center;
@@ -24,7 +24,7 @@ body {
 
 }
 
-.tablet-image {
+.login-page .tablet-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -33,7 +33,7 @@ body {
   object-fit: cover; /* This ensures the image maintains aspect ratio while covering */
 }
 
-.right-section {
+.login-page .right-section {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -45,21 +45,21 @@ body {
 
 }
 
-.logo {
+.login-page .logo {
   display: flex;           /* Use flexbox to align items */
   align-items: center;      /* Vertically center the items */
   justify-content: center;  /* Center the content horizontally */
 }
 
 
-img {
+.login-page .img {
   width: auto;              /* Set the size of the logo */
   height: 112px;   
   margin-bottom: 25px;          /* Keep the aspect ratio */
 }
 
 
-h2 {
+.login-page h2 {
   font-family: 'Nunito Sans';
   color: #525252;
   text-align: center;
@@ -68,7 +68,7 @@ h2 {
   font-size: 35px;
 }
 
-.login-form {
+.login-page .login-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -76,7 +76,7 @@ h2 {
   margin-left: 60px;
 }
 
-.login-form input {
+.login-page .login-form input {
   padding: 10px;
   border: 3px;
   border-radius: 5px;
@@ -88,7 +88,7 @@ h2 {
   
 }
 
-.remember-me {
+.login-page .remember-me {
   display: flex;
   align-items: center;
   font-family: 'Nunito Sans';
@@ -96,11 +96,11 @@ h2 {
   font-size: 15px;
 }
 
-.remember-me label {
+.login-page .remember-me label {
   margin-left: 8px;
 }
 
-.register-btn {
+.login-page .register-btn {
   padding: 10px;
   background-color: #7F265B;
   color: white;
@@ -111,7 +111,7 @@ h2 {
   font-family: 'Nunito Sans';
 }
 
-.google-login {
+.login-page .google-login {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMTcuNiA5LjJsLS4xLTEuOEg5djMuNGg0LjhDMTMuNiAxMiAxMyAxMyAxMiAxMy42djIuMmgzYTguOCA4LjggMCAwIDAgMi42LTYuNnoiIGZpbGw9IiM0Mjg1RjQiIGZpbGwtcnVsZT0ibm9uemVybyIvPjxwYXRoIGQ9Ik05IDE4YzIuNCAwIDQuNS0uOCA2LTIuMmwtMy0yLjJhNS40IDUuNCAwIDAgMS04LTIuOUgxVjEzYTkgOSAwIDAgMCA4IDV6IiBmaWxsPSIjMzRBODUzIiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNNCAxMC43YTUuNCA1LjQgMCAwIDEgMC0zLjRWNUgxYTkgOSAwIDAgMCAwIDhsMy0yLjN6IiBmaWxsPSIjRkJCQzA1IiBmaWxsLXJ1bGU9Im5vbnplcm8iLz48cGF0aCBkPSJNOSAzLjZjMS4zIDAgMi41LjQgMy40IDEuM0wxNSAyLjNBOSA5IDAgMCAwIDEgNWwzIDIuNGE1LjQgNS40IDAgMCAxIDUtMy43eiIgZmlsbD0iI0VBNDMzNSIgZmlsbC1ydWxlPSJub256ZXJvIi8+PHBhdGggZD0iTTAgMGgxOHYxOEgweiIvPjwvZz48L3N2Zz4=');
   background-color: #fef8e8;
   background-repeat: no-repeat;
@@ -129,24 +129,24 @@ h2 {
   margin-left: 60px;
 }
 
-.additional-options {
+.login-page .additional-options {
   margin-top: 20px;
   text-align: center;
   margin-bottom: 20px;
 }
 
-.additional-options a {
+.login-page .additional-options a {
   color: #84226d;
   text-decoration: none;
   font-family: 'Nunito Sans';
 }
 
-.register-link {
+.login-page .register-link {
   margin-top: 20px;
   text-align: center;
 }
 
-.register-link a {
+.login-page .register-link a {
   color: #84226d;
   text-decoration: none;
   font-family: 'Nunito Sans';
