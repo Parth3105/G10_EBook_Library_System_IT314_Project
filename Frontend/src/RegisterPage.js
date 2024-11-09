@@ -33,7 +33,7 @@ function RegisterPage() {
         </form>
 
         <p className="login-link">
-          Already Registered? <Link to="/login" className='Login-Page'>Log In</Link>
+          Already Registered? <Link to="/LoginPage" className='Login-Page'>Log In</Link>
         </p>
       </div>
     </div>
