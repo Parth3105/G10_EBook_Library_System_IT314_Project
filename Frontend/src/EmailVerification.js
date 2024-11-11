@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './EmailVerification.css';
+import fliplogo from './images/logo.png';
+import bgimg from './images/bgimage1.png';
 
 function EmailVerification() {
   const [code, setCode] = useState('');
@@ -11,7 +13,7 @@ function EmailVerification() {
   };
 
   const handleVerify = () => {
-    if (code === '1234') { // Replace '1234' with the actual code verification logic
+    if (code === '1234') { // Replace '1234' with actual code verification logic
       setMessage('Verification successful!');
     } else {
       setMessage('Invalid code. Please try again.');
@@ -21,34 +23,45 @@ function EmailVerification() {
   const handleResend = () => {
     setIsResendDisabled(true);
     setMessage('A new code has been sent to your email.');
-    
-    // Simulate the code resend and enable the button after 60 seconds
+
+    // Enable the button again after 60 seconds
     setTimeout(() => {
       setIsResendDisabled(false);
     }, 60000); // 60 seconds
   };
 
   return (
-    <div className="verification-container">
-      <h2 className="verification-title">Email Verification</h2>
-      <p className="verification-text">Please enter the 4-digit code sent to your email.</p>
-      <input
-        type="text"
-        maxLength="4"
-        value={code}
-        onChange={handleChange}
-        className="verification-input"
-        placeholder="1234"
-      />
-      <button onClick={handleVerify} className="verification-button">Verify</button>
-      <button
-        onClick={handleResend}
-        className="verification-button"
-        disabled={isResendDisabled}
-      >
-        Resend Code
-      </button>
-      {message && <p className="verification-message">{message}</p>}
+    <div className="verification-page">
+      {/* Left Section */}
+      <div className="verification-left">
+          
+      </div>
+      {/* Right Section */}
+      <div className="verification-right">
+      <div className="logo">
+        <img src={fliplogo} alt="Logo" />
+        </div>
+        <h1 className="verification-title">Verify your email</h1>
+        <div className='Verification-description'>
+            <p className="verification-text">We've sent a 4-digit verifiction code to your email.</p>
+            <p className="verification-text">please check your inbox and enter the code below.</p>
+        </div>  
+            <p className="veri-text">Enter the 4-digit code</p>
+        <input
+          type="text"
+          maxLength="4"
+          value={code}
+          onChange={handleChange}
+          className="verification-input"
+          placeholder="_ _ _ _"
+        />
+        <button onClick={handleVerify} className="verification-button">Verify</button>
+        
+        <p className="resend-text">
+          Didn’t receive the code? <span onClick={handleResend} className="resend-link">Resend code</span>
+        </p>
+        {message && <p className="verification-message">{message}</p>}
+      </div>
     </div>
   );
 }
