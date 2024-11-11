@@ -1,8 +1,8 @@
 import React from 'react';
 import './LoginPage.css';
-import fliplogo from './images/logo.svg'
-import bgimg from './images/bgimage1.png'
-
+import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+import fliplogo from './images/logo.svg';
+import bgimg from './images/bgimage1.png';
 
 function LoginPage() {
   return (
@@ -11,8 +11,8 @@ function LoginPage() {
         <img src={bgimg} alt="Tablet" className="tablet-image" />
       </div>
       <div className="right-section">
-      <div className="logo">
-        <img src={fliplogo} alt="Logo" />
+        <div className="logo">
+          <img src={fliplogo} alt="Logo" />
         </div>
         <h2>Log in to your Account</h2>
         <form className="login-form">
@@ -28,10 +28,12 @@ function LoginPage() {
           <a href="/forgot-password">Forgot Password?</a>
         </div>
         <button className="google-login">
-        Continue with Google</button>
-        
+          Continue with Google
+        </button>
+
+        {/* Replaced anchor tag with Link component */}
         <p className="register-link">
-          Not Registered Yet? <a href="/register">Register Now</a>
+          Not Registered Yet? <Link to="/SelectionPage">Register Now</Link>
         </p>
       </div>
     </div>

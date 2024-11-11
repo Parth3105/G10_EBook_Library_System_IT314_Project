@@ -1,17 +1,19 @@
 .selection-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: url(./images/bgimage2.png) no-repeat center center/cover;
-    background-size: 65% 100%;
-    color: #ffffff;
-    text-align: center;
-    position: relative;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full viewport height */
+  width: 100vw;  /* Full viewport width */
+  background: url(./images/bgimage2.png) no-repeat center center;
+  background-size: cover;  /* Ensures the image covers the whole container */
+  color: #000000;
+  text-align: center;
+  position: relative;
+}
+
   
-  h1 {
+  .selection-container h1 {
     font-size: 2.5em;
     font-weight: 600;
     margin-bottom: 0.7em;
@@ -19,7 +21,7 @@
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
   }
   
-  .button-group {
+  .selection-container .button-group {
     display: flex;
     flex-direction: column;
     gap: 0.8em;
@@ -27,7 +29,7 @@
     width: fit-content;
   }
   
-  .role-button {
+  .selection-container .role-button {
     display: flex; /* Enable flex layout */
     align-items: left; /* Center items vertically */
     justify-content: left; /* Center content horizontally */
@@ -36,34 +38,34 @@
     font-size: 1.3em;
     font-weight: bold;
     color: #fff;
-    background-color: #771c92;
-    border: 2px solid #ffffff;
+    background-color: #7F265B;
+    border: 0px solid #ffffff;
     border-radius: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
   }
   
-  .role-button:hover {
+  .selection-container .role-button:hover {
     background-color: rgba(255, 255, 255, 0.6);
     color: #000;
     transform: scale(1.05);
   }
   
-  .role-button:hover .icon {
+  .selection-container .role-button:hover .icon {
     filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(200deg) brightness(0) contrast(100%); /* Changes icon color to black */
   }
   
-  .role-button:active {
+  .selection-container .role-button:active {
     transform: scale(0.95);
     background-color: rgba(255, 255, 255, 0.8);
     color: red;
   }
   
-  .role-button:active .icon {
+  .selection-container .role-button:active .icon {
     filter: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(1000%) hue-rotate(0deg) brightness(0) contrast(100%); /* Change to red */
   }
   
-  .icon {
+  .selection-container .icon {
     width: 30px;
     height: 30px;
     margin-right: 0.4em;

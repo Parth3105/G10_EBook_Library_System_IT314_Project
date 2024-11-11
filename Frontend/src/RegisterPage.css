@@ -60,7 +60,7 @@ body, html {
     text-align: center;
     font-weight: 700px;
     margin-bottom: 36px;
-    font-size: 25px;
+    font-size: 32px;
   }
   
   
@@ -92,10 +92,6 @@ body, html {
     cursor: pointer;
     font-size: 1rem;
     font-family: 'Nunito Sans';
-  }
-  .register-page .register-btn:hover {
-    background-color: #ffffff;
-    color: black;
   }
   
   .register-page .login-link {
