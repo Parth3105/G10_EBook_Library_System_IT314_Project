@@ -25,7 +25,7 @@ function LoginPage() {
           <button type="submit" className="register-btn">Log In</button>
         </form>
         <div className="additional-options">
-          <a href="/forgot-password">Forgot Password?</a>
+           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
         <button className="google-login">
           Continue with Google

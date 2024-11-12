@@ -68,9 +68,8 @@ body, html {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    width: 80%;
+    width: 70%;
     margin-left: 60px;
-    
   }
   
   .register-page .register-form input {

@@ -7,6 +7,8 @@ import LoginPage from './LoginPage';
 import SelectionPage from './SelectionPage';
 import EmailVerification from './EmailVerification';
 import RegisterPage from './RegisterPage';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 
 const App = () => {
   return (
@@ -19,6 +21,8 @@ const App = () => {
         <Route path="/verifyEmail" element={<EmailVerification />} />
         <Route path="/Register" element={<RegisterPage />} />
         <Route path="/Login" element={<LoginPage />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} /> 
+        <Route path="/reset-password" element={<ResetPassword />} />
       </Routes>
     </Router>
   );
