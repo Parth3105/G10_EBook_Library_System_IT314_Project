@@ -2,7 +2,6 @@ const jwt = require("jsonwebtoken"); //jwt tokens are required for protected rou
 const userModel = require("../Models/UserModel");
 const bcrypt = require("bcryptjs"); // bcryptjs is used in node to encrypt the passwords
 const nodemailer = require("nodemailer"); // nodemailer
-const Joi = require("joi");
 const { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE } = require("../Utils/emailTemplates"); // email templates
 const otpVerification = require("../Models/otpVerification");
 const validate = require('../utils/validateuser');
@@ -25,6 +24,12 @@ module.exports.registerUser = async (req, res) => {
         const existingUser = await userModel.findOne({ email: registerInput.email });
         if (existingUser) {
             return res.status(400).send("User with this email already exists.");
+        }
+
+        // Check if username already exists
+        const existingUsername = await userModel.findOne({ username: registerInput.username });
+        if (existingUsername) {
+            return res.status(400).send("User with this username already exists. Please enter a unique one.");
         }
 
         // Validate password length

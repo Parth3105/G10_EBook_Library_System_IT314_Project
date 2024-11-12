@@ -1,6 +1,6 @@
-const mongoose = require(`mongoose`)
+const mongoose=require("mongoose");
 
-const schema = new mongoose.Schema(
+const schema = mongoose.Schema(
     {
         username: {
             type: String,
@@ -8,23 +8,18 @@ const schema = new mongoose.Schema(
             trim: true // to ensure the removal of whitespaces at the start and end of the string.
         },
 
-        email: {
+        bookTitle: {
+            type: String,
+            required: true,
+            trim: true  // to ensure the removal of whitespaces at the start and end of the string.
+        },
+
+        author: {
             type: String,
             required: true,
             trim: true
         },
-        password: {
-            type: String,
-            required: true,
-        },
-
-        verified: {
-            type: Boolean,
-            default: false
-        }
     }
+);
 
-
-)
-
-module.exports = mongoose.model('user', schema)
+module.exports = mongoose.model("wishlist",schema);
