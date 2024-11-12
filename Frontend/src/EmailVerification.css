@@ -2,7 +2,13 @@
 .verification-page {
   display: flex;
   height: 100vh;
-  font-family: Arial, sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Font Import */
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('assets/fonts/nunitosans.ttf') format('truetype');
 }
 
 /* Left section styling */
@@ -12,7 +18,7 @@
   background-size: cover;
   background-position: center;
   position: relative;  
-  background-color: #ded6a4;
+  background-color: #f7f3e6;
 }
 
 .verification-right h1 {
@@ -28,6 +34,7 @@
 
 .veri-text {
   font-size: 15px;
+  margin-top: 30px;
 }
 
 /* Right section styling */
@@ -38,7 +45,7 @@
   align-items: center;
   justify-content: center;
   padding: 40px;
-  background-color: #ded6a4;
+  background-color:#f7f3e6;
 }
 
 /* Title styling */
@@ -76,12 +83,13 @@
 .verification-button {
   width: 100%;
   max-width: 250px;
-  background-color: #7b3d77;
+  background-color: #7F265B;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
+  font-weight: bold;
   transition: background-color 0.3s;
   margin-top: 10px;
   color: white;

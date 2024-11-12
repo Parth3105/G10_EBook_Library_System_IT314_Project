@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './EmailVerification.css';
 import fliplogo from './images/logo.png';
-import bgimg from './images/bgimage1.png';
+//import bgimg from './images/bgimage1.png';
 
 function EmailVerification() {
   const [code, setCode] = useState('');

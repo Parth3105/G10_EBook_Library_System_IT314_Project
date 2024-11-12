@@ -1,28 +1,23 @@
 import React from "react";
 import "./ResetPassword.css";
-import logo from "./images/logo.png";
-import tablet from "./images/bgimage1.png";
+import fliplogo from './images/logo.svg';
+import bgimg from './images/bgimage1.png';
 
 function ResetPassword() {
   return (
-    <div className="reset-password-container">
-      <div className="background">
-        <div className="book-covers"></div>
+    <div className="reset-page">
+      <div className="left-section">
+        <img src={bgimg} alt="Tablet" className="tablet-image" />
       </div>
-      <div className="tablet-image">
-        <img src={tablet} alt="Tablet" />
-      </div>
-      <div className="reset-password-box">
+      <div className="right-section">
         <div className="logo">
-          <img src={logo} alt="FlipThePage Logo" />
+          <img src={fliplogo} alt="Logo" />
         </div>
         <h2>Reset Password</h2>
-        <form>
-          <label>New password</label>
-          <input type="password" placeholder="Type in your new password" />
-          <label>Confirm new password</label>
-          <input type="password" placeholder="Confirm the new password" />
-          <button type="submit">Reset Password</button>
+        <form className="reset-form">
+          <input type="password" placeholder="New Password" />
+          <input type="password" placeholder="Confirm New Password" />
+          <button type="submit" className="reset-btn">Reset</button>
         </form>
       </div>
     </div>
