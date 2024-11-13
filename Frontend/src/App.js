@@ -9,6 +9,9 @@ import EmailVerification from './EmailVerification';
 import RegisterPage from './RegisterPage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
+import AuthorProfile from './AuthorProfile';
+import AuthorUpload from './AuthorUpload';
+import AuthorReadingHistory from './AuthorReadingHistory';
 
 const App = () => {
   return (
@@ -23,6 +26,9 @@ const App = () => {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} /> 
         <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path='/author-profile' element={<AuthorProfile />} />
+        <Route path='/author-upload' element={<AuthorUpload />}/>
+        <Route path='/author-reading' element={<AuthorReadingHistory/>}/>
       </Routes>
     </Router>
   );
