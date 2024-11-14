@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./EmailVerification.css";
 import fliplogo from "./images/logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
@@ -6,6 +6,25 @@ import axios from "axios";
 //import bgimg from './images/bgimage1.png';
 
 function EmailVerification() {
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+        setTimeLeft((prevTime) => {
+            if (prevTime <= 1) {
+                clearInterval(timer);
+                setIsVisible(true); // Show resend link after countdown ends
+                return 0;
+            }
+            return prevTime - 1;
+        });
+    }, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(timer);
+  }, []);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(30); // 30 seconds timer
   const [code, setCode] = useState("");
   const [message, setMessage] = useState("");
   const [isResendDisabled, setIsResendDisabled] = useState(false);
@@ -18,56 +37,68 @@ function EmailVerification() {
   };
 
   const handleVerify = async (e) => {
-    // if (code === '1234') { // Replace '1234' with actual code verification logic
-    //   setMessage('Verification successful!');
-    // } else {
-    //   setMessage('Invalid code. Please try again.');
-    // }
-
     e.preventDefault();
 
     await axios
       .post("http://localhost:5000/verifyOTP", {
+        username: prevState.username,
+        password: prevState.password,
         email: prevState.email,
+        userRole: prevState.userRole,
+        verified: false,
         otp: code,
       })
       .then((result) => {
-        console.log("Verified successfully!");
-        // If validation passes, navigate to EmailVerification page
-        navigate("/LoginPage");
+        if(result.data.code === 101){
+          alert(result.data.msg);
+        }
+        else if(result.data.code === 102){
+          alert(result.data.msg);
+        }
+        else if(result.data.code === 200){
+          alert(result.data.msg);
+          // If validation passes, navigate to EmailVerification page
+          navigate("/LoginPage");
+        }
+        else if(result.data.code === 500){
+          alert(result.data.msg);
+        }
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // const handleResend = () => {
-  //   setIsResendDisabled(true);
-  //   setMessage("A new code has been sent to your email.");
 
-  //   // Enable the button again after 60 seconds
-  //   setTimeout(() => {
-  //     setIsResendDisabled(false);
-  //   }, 60000); // 60 seconds
-  // };
-
-  const handleResend = async () => {
+  const handleResend = async (e) => {
     setIsResendDisabled(true);
-    setMessage("Sending a new code to your email...");
+
+    setIsVisible(false); // Hide again after click
+    setTimeLeft(30); // Reset timer to 30
+
+    // Restart the timer
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          setIsVisible(true);
+          return 0;
+        }
+      return prevTime - 1;
+      });
+    }, 1000);
+
+    e.preventDefault();
 
     try {
       // Make a POST request to your backend endpoint to resend the OTP
-      await axios.post("http://localhost:5000/resendOTP", {
-        email: prevState.email,
-        otp: code,
-      });
+      await axios.post("http://localhost:5000/resendOTP", prevState);
 
       // Update the message to notify the user of successful resend
       setMessage("A new code has been sent to your email.");
     } catch (error) {
       // Update the message to notify the user in case of an error
       setMessage("Failed to send code. Please try again.");
-      console.error("Error resending OTP:", error);
     }
 
     // Enable the button again after 60 seconds
@@ -109,9 +140,15 @@ function EmailVerification() {
 
         <p className="resend-text">
           Didn’t receive the code?{" "}
-          <span onClick={handleResend} className="resend-link">
-            Resend code
-          </span>
+          {isVisible ? (
+                    <span onClick={handleResend} className="resend-link">
+                        Resend code
+                    </span>
+                ) : (
+                    <span className="resend-countdown">
+                        Please wait {Math.floor(timeLeft / 60)}:{("0" + (timeLeft % 60)).slice(-2)} to resend.
+                    </span>
+                )}
         </p>
         {message && <p className="verification-message">{message}</p>}
       </div>

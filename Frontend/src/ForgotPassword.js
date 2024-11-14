@@ -7,7 +7,7 @@ import axios from "axios";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
-
+  const [otp, setOTP] = useState("");
   const [showOtpModal, setShowOtpModal] = useState(false);
   const navigate = useNavigate(); // Initialize navigate
 
@@ -18,10 +18,16 @@ function ForgotPassword() {
         email: email,
       })
       .then((res) => {
-        console.log(res.data);
-        if (res.data.code === 400) {
-          alert("Email / Server Error.");
-        } else {
+        if (res.data.code === 501) {
+          alert(res.data.msg);
+        }
+        else if (res.data.code === 502) {
+          alert(res.data.msg);
+        }
+        else if (res.data.code === 503) {
+          alert(res.data.msg);
+        } 
+        else {
           setShowOtpModal(true);
         }
       })
@@ -34,10 +40,18 @@ function ForgotPassword() {
   const handleOtpSubmit = (e) => {
     e.preventDefault();
 
-    // Handle OTP submission logic here
-    console.log("OTP entered");
-
-    navigate("/reset-password"); // Navigate to ResetPassword page upon OTP submission
+    axios.post("http://localhost:5000/resetPass/verifyOTP",{email: email, otp: otp})
+      .then((res) => {
+        if(res.data.code === 600){
+          navigate("/reset-password", {state: {email: email}}); // Navigate to ResetPassword page upon OTP submission
+        }
+        else{
+          alert(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -50,11 +64,17 @@ function ForgotPassword() {
           <img src={fliplogo} alt="Logo" />
         </div>
         <h2>Reset Your Password</h2>
-        <p>Enter your email to receive a password reset link.</p>
+        <p>Enter your email to receive a password reset OTP.</p>
         <form className="forgot-password-form" onSubmit={handleSendResetLink}>
-          <input type="email" placeholder="Email" required />
+          <input
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }} 
+          type="email" 
+          placeholder="Email" 
+          required />
           <button type="submit" className="reset-btn">
-            Send Reset Link
+            Send OTP
           </button>
         </form>
         <div className="additional-options">
@@ -69,7 +89,14 @@ function ForgotPassword() {
             <h3>Enter the OTP</h3>
             <p>Enter the 4-digit code</p>
             <form onSubmit={handleOtpSubmit}>
-              <input type="text" maxLength="4" placeholder="••••" required />
+              <input 
+              onChange={(e) => {
+                setOTP(e.target.value);
+              }}
+              type="text" 
+              maxLength="4" 
+              placeholder="••••" 
+              required />
               <button type="submit" className="enter-btn">
                 Enter
               </button>

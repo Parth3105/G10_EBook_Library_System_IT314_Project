@@ -23,14 +23,12 @@ function LoginPage() {
         console.log(res.data);
 
         if (res.data.code === 400) {
-          alert("User Not Found!");
+          alert(res.data.msg);
         }
         if (res.data.code === 404) {
-          alert("Password is wrong");
+          alert(res.data.msg);
         }
-        if (res.data.code === 401) {
-          alert("not verified");
-        }
+
         if (res.data.code === 200) {
           navigate("/test");
           localStorage.setItem("TOKEN", res.data.token);

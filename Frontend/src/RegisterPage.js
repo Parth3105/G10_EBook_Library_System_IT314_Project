@@ -31,9 +31,23 @@ function RegisterPage() {
     await axios
       .post("http://localhost:5000/register", formData)
       .then((result) => {
-        console.log("Successful register");
+        if(result.data.code===400){
+          alert(result.data.msg);
+        }
+        else if(result.data.code===401){
+          alert(result.data.msg);
+        }
+        else if(result.data.code===402){
+          alert(result.data.msg);
+        }
+        else if(result.data.code===403){
+          alert(result.data.msg);
+        }
+        else if(result.data.code===404){
+          alert(result.data.msg);
+        }
         // If validation passes, navigate to EmailVerification page
-        navigate("/verifyEmail", { state: { email: formData.email } });
+        navigate("/verifyEmail", { state: result.data.data.userInput });
       })
       .catch((err) => {
         console.log(err);
