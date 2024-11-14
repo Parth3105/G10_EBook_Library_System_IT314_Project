@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
-import './ForgotPassword.css';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import fliplogo from './images/logo.svg';
-import bgimg from './images/bgimage1.png';
+import React, { useState } from "react";
+import "./ForgotPassword.css";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import fliplogo from "./images/logo.svg";
+import bgimg from "./images/bgimage1.png";
+import axios from "axios";
 
 function ForgotPassword() {
+  const [email, setEmail] = useState("");
+
   const [showOtpModal, setShowOtpModal] = useState(false);
   const navigate = useNavigate(); // Initialize navigate
 
   const handleSendResetLink = (e) => {
     e.preventDefault();
-    setShowOtpModal(true); // Show the OTP modal on button click
+    axios
+      .post("http://localhost:5000/forgotPassword", {
+        email: email,
+      })
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.code === 400) {
+          alert("Email / Server Error.");
+        } else {
+          setShowOtpModal(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // Show the OTP modal on button click
   };
 
   const handleOtpSubmit = (e) => {
     e.preventDefault();
+
     // Handle OTP submission logic here
     console.log("OTP entered");
-    navigate('/reset-password'); // Navigate to ResetPassword page upon OTP submission
+
+    navigate("/reset-password"); // Navigate to ResetPassword page upon OTP submission
   };
 
   return (
@@ -33,7 +53,9 @@ function ForgotPassword() {
         <p>Enter your email to receive a password reset link.</p>
         <form className="forgot-password-form" onSubmit={handleSendResetLink}>
           <input type="email" placeholder="Email" required />
-          <button type="submit" className="reset-btn">Send Reset Link</button>
+          <button type="submit" className="reset-btn">
+            Send Reset Link
+          </button>
         </form>
         <div className="additional-options">
           <Link to="/LoginPage">Back to Login</Link>
@@ -48,7 +70,9 @@ function ForgotPassword() {
             <p>Enter the 4-digit code</p>
             <form onSubmit={handleOtpSubmit}>
               <input type="text" maxLength="4" placeholder="••••" required />
-              <button type="submit" className="enter-btn">Enter</button>
+              <button type="submit" className="enter-btn">
+                Enter
+              </button>
             </form>
           </div>
         </div>

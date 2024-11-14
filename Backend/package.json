@@ -8,9 +8,18 @@
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.10.0",
-    "mongoose": "^8.8.0",
+    "mongoose": "^8.8.1",
     "node": "^22.11.0",
     "nodemailer": "^6.9.16",
     "nodemon": "^3.1.7"
-  }
+  },
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "Server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
