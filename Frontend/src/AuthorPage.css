@@ -1,0 +1,271 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('assets/fonts/nunitosans.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  overflow: hidden;
+  font-family: 'Nunito Sans', sans-serif; /* Default font */
+  background-color: #f4f4f4; /* Light background */
+  color: #333; /* Dark text color */
+}
+
+
+.Authorpage {
+  width: 1280px;
+  height: 832px;
+  position: relative;
+  background: #FEF8E8;
+}
+
+.ImagesBgimage2 {
+  width: 1280px;
+  height: 832px;
+  left: 0;
+  top: 0;
+  position: relative;
+}
+
+.Group36 {
+  width: 871px;
+  height: 650px;
+  left: 300px;
+  top: 91px;
+  position: relative;
+}
+
+.Rectangle6 {
+  width: 871px;
+  height: 650px;
+  position: relative;
+  background: #FEF8E8;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.40);
+  border-radius: 20px;
+}
+
+.Group32 {
+  width: 690.23px;
+  height: 131.48px;
+  left: 69px;
+  top: 268px;
+  position: relative;
+}
+
+.LinkOfTheBookIfTheBookIsAvailableOnline {
+  width: 436.26px;
+  height: 58.03px;
+  left: 17px;
+  top: 50px;
+  position: absolute;
+  color: #525252;
+  font-size: 24px;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  word-wrap: break-word;
+
+ 
+}
+
+.Rectangle10 {
+  width: 690.23px;
+  height: 44.48px;
+  left: 0px;
+  top: 87px;
+  position: relative;
+  background: rgba(217, 217, 217, 0);
+  border-radius: 15px;
+  border: 1px solid #7E7270;
+}
+
+.HttpsAbcxyzCom {
+  width: 174.09px;
+  height: 15.54px;
+  position: relative;
+  color: #A1A1A1;
+  font-size: 14px;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.Group31 {
+  width: 388.77px;
+  height: 118.48px;
+  left: 69px;
+  top: 421px;
+  position: relative;
+}
+
+.SocialMediaHandleIfAny {
+  width: 254.92px;
+  height: 80px;
+  left: 10px;
+  top: 50px;
+  position: relative;
+  color: #525252;
+  font-size: 24px;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.Group46 {
+  width: 388.77px;
+  height: 44.48px;
+  left: 0px;
+  top: 74px;
+  position: relative;
+}
+
+.Rectangle11 {
+  width: 388.77px;
+  height: 44.48px;
+  left: 0px;
+  top: 0px;
+  position: relative;
+  background: rgba(217, 217, 217, 0);
+  border-radius: 15px;
+  border: 1px solid #7E7270;
+}
+
+.Group35 {
+  width: 427.61px;
+  height: 81.70px;
+  left: 399.39px;
+  top: 50px;
+  position: relative;
+}
+
+.AnyBookWrittenByYou {
+  width: 307px;
+  height: 26px;
+  left: 14.61px;
+  top: 0px;
+  position: relative;
+  color: #525252;
+  font-size: 24px;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.Rectangle8 {
+  width: 427.61px;
+  height: 44.48px;
+  left: 0px;
+  top: 37.22px;
+  position: relative;
+  background: rgba(217, 217, 217, 0);
+  border-radius: 15px;
+  border: 1px solid #7E7270;
+}
+
+.Abcxyz {
+  width: 48.39px;
+  height: 15.65px;
+  left: 24.76px;
+  top: 51.23px;
+  position: relative;
+  color: #A1A1A1;
+  font-size: 14px;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.Group34 {
+  width: 312.99px;
+  height: 81.81px;
+  left: 69.14px;
+  top: 50px;
+  position: relative;
+}
+
+.Name {
+  width: 91.19px;
+  height: 30px;
+  left: 16.86px;
+  top: 300px;
+  position: relative;
+  color: #525252;
+  font-size: 24px;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.Rectangle7 {
+  width: 312.99px;
+  height: 44.48px;
+  left: 0px;
+  top: 37.33px;
+  position: relative;
+  background: rgba(217, 217, 217, 0);
+  border-radius: 15px;
+  border: 1px solid #7E7270;
+}
+
+.Johndunphy {
+  width: 111.91px;
+  height: 15.54px;
+  left: 16.26px;
+  top: 51.33px;
+  position: relative;
+  color: #A1A1A1;
+  font-size: 14px;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.Group33 {
+  width: 312.99px;
+  height: 86.48px;
+  left: 69px;
+  top: 165px;
+  position: relative;
+}
+
+.UploadBook {
+  width: 190px;
+  height: 27px;
+  left: 17px;
+  top: 0px;
+  position: relative;
+  color: #525252;
+  font-size: 24px;
+  font-family: 'Nunito Sans';
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.Rectangle9 {
+  width: 312.99px;
+  height: 44.48px;
+  left: 0px;
+  top: 42px;
+  position: relative;
+  background: #D9D9D9;
+  border-radius: 15px;
+  border: 1px solid #7E7270;
+}
+
+.ChooseFile {
+  width: 111.91px;
+  height: 15.54px;
+  left: 16.41px;
+  top: 56.68px;
+  position: relative;
+  color: #7E7270;
+  font-size: 14px;
+  font-family: 'Nunito Sans';
+  font-weight: 400;
+}
