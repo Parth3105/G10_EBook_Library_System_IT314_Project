@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
-import './RegisterPage.css';
-import { Link, useNavigate, useLocation } from 'react-router-dom'; // Import useNavigate
-import fliplogo from './images/logo.png';
+import React, { useState } from "react";
+import "./RegisterPage.css";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
+import fliplogo from "./images/logo.png";
+import axios from "axios";
 
 function RegisterPage() {
   // Retrieve the passed role from the location state
@@ -9,10 +10,11 @@ function RegisterPage() {
   const { role } = location.state || {}; // Destructure the role from state
 
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    userRole: role,
   });
 
   const navigate = useNavigate(); // Initialize useNavigate
@@ -23,11 +25,19 @@ function RegisterPage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // If validation passes, navigate to EmailVerification page
-    navigate('/verifyEmail');
+
+    await axios
+      .post("http://localhost:5000/register", formData)
+      .then((result) => {
+        console.log("Successful register");
+        // If validation passes, navigate to EmailVerification page
+        navigate("/verifyEmail", { state: { email: formData.email } });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -43,43 +53,48 @@ function RegisterPage() {
         <h2 className="register-heading">Register Your Account</h2>
 
         {/* Display the selected role */}
-        {role && <p className="role-info">You are registering as: {role}</p>} 
+        {role && <p className="role-info">You are registering as: {role}</p>}
 
         <form className="register-form" onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            placeholder="Username" 
+          <input
+            type="text"
+            placeholder="Username"
             name="username"
             value={formData.username}
             onChange={handleChange}
           />
-          <input 
-            type="email" 
-            placeholder="E-mail" 
+          <input
+            type="email"
+            placeholder="E-mail"
             name="email"
             value={formData.email}
             onChange={handleChange}
           />
-          <input 
-            type="password" 
-            placeholder="Password" 
+          <input
+            type="password"
+            placeholder="Password"
             name="password"
             value={formData.password}
             onChange={handleChange}
           />
-          <input 
-            type="password" 
-            placeholder="Confirm Password" 
+          <input
+            type="password"
+            placeholder="Confirm Password"
             name="confirmPassword"
             value={formData.confirmPassword}
             onChange={handleChange}
           />
 
-          <button type="submit" className="register-btn">Register</button>
+          <button type="submit" className="register-btn">
+            Register
+          </button>
         </form>
 
         <p className="login-link">
-          Already Registered? <Link to="/LoginPage" className='Login-Page'>Log In</Link>
+          Already Registered?{" "}
+          <Link to="/LoginPage" className="Login-Page">
+            Log In
+          </Link>
         </p>
       </div>
     </div>
