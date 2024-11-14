@@ -17,4 +17,6 @@ router.get("/myProfile/:username", dashboardController.getMyProfile);
 
 // router.post('/addHistory', dashboardController.addToHistory); // Just for testing not actual route
 
+router.get('/books', searchController.searchEBook);
+
 module.exports = router;
