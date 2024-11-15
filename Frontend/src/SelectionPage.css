@@ -1,73 +1,111 @@
-.selection-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh; /* Full viewport height */
-  width: 100vw;  /* Full viewport width */
-  background: url(./images/bgimage2.png) no-repeat center center;
-  background-size: cover;  /* Ensures the image covers the whole container */
-  color: #000000;
-  text-align: center;
-  position: relative;
+/* SelectionPage.css */
+
+/* Setting fonts for the webpage (SelectionPage) */
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url('assets/fonts/nunitosans.ttf') format('truetype');
+  font-weight: 400; 
+  font-style: normal;
 }
 
-  
-  .selection-container h1 {
-    font-size: 2.5em;
-    font-weight: 600;
-    margin-bottom: 0.7em;
-    color: #000;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+/* Styling the main container named selection-container */
+.selection-container {
+  font-family: 'Nunito Sans', sans-serif; 
+  display: flex; 
+  flex-direction: column; /* Stacking children vertically */
+  align-items: center; 
+  justify-content: center; 
+  height: 100vh; /* Full viewport height */
+  background: url(./images/bgimage2.png) no-repeat center center/cover;
+  background-size: cover; /* Covering the entire container */
+  background-color: #edefd1;
+  text-align: center;
+  position: relative;
+  padding: 20px;
+}
+
+/* Styling the main heading */
+.selection-container h1 {
+  font-size: 2.6em; 
+  font-weight: 600; 
+  margin-bottom: 0.7em; 
+  color: #000; /* Text color */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Media query for responsive font size */
+/* @media (max-width: 400px) {
+  h1 {
+    font-size: 2em;
   }
-  
-  .selection-container .button-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8em;
-    align-items: stretch;
-    width: fit-content;
-  }
-  
+} */
+
+/* Styling the button group */
+.selection-container .button-group {
+  display: flex; 
+  flex-direction: column; /* Stacking buttons vertically */
+  gap: 0.8em;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Styling individual role buttons */
+.selection-container .role-button {
+  display: flex; 
+  width: 100%; 
+  max-width: 300px; 
+  background-color: #7f265b; 
+  color: #fff; 
+  border: none;
+  border-radius: 8px; /* Rounded corners */
+  padding: 1.1rem; /* Padding inside the button */
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: left;
+  cursor: pointer; /* Pointer cursor on hover */
+  text-decoration: none; /* No underline */
+  align-items: center; 
+  justify-content: flex-start; /* Aligning items to the start */
+  gap: 0.5em;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+/* Hover effect for role buttons */
+.selection-container .role-button:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000; /* Change text color on hover */
+  transform: scale(1.05); /* Slightly enlarge button */
+}
+
+/* Icon effect on button hover */
+.selection-container .role-button:hover .icon {
+  filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(200deg) brightness(0) contrast(100%);
+}
+
+/* Active state for role buttons */
+.selection-container .role-button:active {
+  transform: scale(0.95); /* Slightly shrink button */
+  background-color: rgba(255, 255, 255, 0.8); /* Keep light background */
+  color: red; 
+}
+
+/* Styling the icon inside the buttons */
+.selection-container .role-button .icon {
+  width: 35px; 
+  height: 35px; 
+  margin-right: 0.4em;
+}
+
+/* Media query for responsive button size */
+/* @media (max-width: 400px) {
   .selection-container .role-button {
-    display: flex; /* Enable flex layout */
-    align-items: left; /* Center items vertically */
-    justify-content: left; /* Center content horizontally */
-    gap: 0.5em; /* Space between icon and text */
-    padding: 0.5em 1em;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #fff;
-    background-color: #7F265B;
-    border: 0px solid #ffffff;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    font-size: 1.1em;
+    padding: 1.1em;
   }
-  
-  .selection-container .role-button:hover {
-    background-color: rgba(255, 255, 255, 0.6);
-    color: #000;
-    transform: scale(1.05);
+
+  .selection-container .role-button .icon {
+    width: 24px; 
+    height: 24px; 
   }
-  
-  .selection-container .role-button:hover .icon {
-    filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(200deg) brightness(0) contrast(100%); /* Changes icon color to black */
-  }
-  
-  .selection-container .role-button:active {
-    transform: scale(0.95);
-    background-color: rgba(255, 255, 255, 0.8);
-    color: red;
-  }
-  
-  .selection-container .role-button:active .icon {
-    filter: brightness(0) saturate(100%) invert(0%) sepia(100%) saturate(1000%) hue-rotate(0deg) brightness(0) contrast(100%); /* Change to red */
-  }
-  
-  .selection-container .icon {
-    width: 30px;
-    height: 30px;
-    margin-right: 0.4em;
-  }
-  
+} */
