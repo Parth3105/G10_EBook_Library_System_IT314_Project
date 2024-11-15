@@ -1,0 +1,245 @@
+/* Wishlist.css */
+
+/* Container styling */
+.wishlist-container html, body {
+  height: 100%;
+  margin: -10px 0px;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #fef8e8;
+  color: #333;
+}
+
+.wishlist-container {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+  overflow-y: auto;
+}
+
+/* Header (navbar) styling */
+
+.wishlist-container .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 38px;
+  border-bottom: 1px solid black;
+  margin-top: -34px;
+  
+ 
+  
+}
+
+
+.wishlist-container .logo {
+  height: auto; /* Adjust logo size as needed */
+  width: 200px;
+  position: absolute;
+    top: 10px;
+    left: 40px; /* Positioning logo to the top left */
+}
+
+
+.wishlist-container .nav-icons {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: -10px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 6px; /* Space for underline */
+  padding-top: 7px;
+}
+
+.nav-icons .wishlisticon.active {
+  width: 40px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px;
+   /* Space for underline */
+  padding-top: 28px;
+  border-bottom: 4px solid  #940491; 
+  
+   
+ 
+
+  
+}
+.nav-icons .homeicon {
+  width: 50px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px; 
+  /* Space for underline */
+  padding-top: 20px;
+}
+.nav-icons .profileicon {
+  width: 35px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 5px; /* Space for underline */
+  padding-top: 20px;
+}
+
+/* Wishlist title styling with underline */
+
+.wishlist-container .wishlist-title {
+  font-size: 30px;
+  font-weight: bold;
+  /* font-family: fantasy; */
+  color: #000000;
+  text-align: center;
+  margin: 33px 0;
+  position: relative;
+  text-decoration: underline;
+  text-decoration-color: #940491;
+  text-decoration-thickness: 5px;
+  text-underline-offset: 10px;
+  
+}
+
+/* Wishlist items styling */
+
+.wishlist-container .wishlist {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* Wishlist item styling */
+
+.wishlist-container .wishlist-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 27px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(244, 242, 242, 0.885);
+  position: relative;
+  border: 2px solid #e2dde6;
+  gap: 20px;
+}
+
+/* Book cover styling */
+
+.wishlist-container .book-cover {
+  width: 110px;
+  height: 160px;
+  margin-right: 30px;
+  margin-left: 0px;
+  border-radius: 4px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+
+
+.wishlist-container .details {
+  margin: 3px 0;
+  font-size: 12px;
+  font-weight: bold;
+  color: black;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  
+
+  
+}
+
+
+.wishlist-container .book-title {
+  font-size: 25px;
+    margin: 4px 0px;
+    color: #333;
+    margin-top: -22px;
+}
+
+
+.wishlist-container .book-price {
+
+  font-weight: bold;
+    margin: 6px 0;
+    font-size: 15px;
+    color: black;
+}
+
+ 
+.wishlist-container .book-rating {
+  font-weight: bold;
+    margin: 6px 0;
+    font-size: 13px;
+    color: black;
+}
+
+
+.wishlist-container .book-author {
+  font-weight: lighter;
+    margin: 4px 2px;
+    color: #666;
+    font-size: 0.9rem; /* Slightly smaller font for author if desired */
+}
+
+
+/* Read button styling */
+
+.wishlist-container .read-btn {
+  background-color: #a13373;
+    color: white;
+    padding: 7px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 13px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+
+.wishlist-container .read-btn:hover {
+  background-color: #77114d;
+}
+
+/* Remove button styling */
+
+.wishlist-container .remove-btn {
+  background: none;
+  border: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  padding: 0;
+}
+
+
+.wishlist-container .remove-btn img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.1s ease;
+}
+
+
+.wishlist-container .remove-btn img:hover {
+  transform: scale(1.1);
+}
+
+.wishlist-container .empty-message {
+  font-size: 1.5rem;
+  color: #000000;
+  text-align: center;
+  margin-top: 50px;
+  font-weight: bold;
+  opacity: 0.8;
+}

@@ -16,6 +16,7 @@ import Home from "./Home";
 import AuthorProfile from './AuthorProfile';
 import AuthorReadingHistory from './AuthorReadingHistory';
 import AuthorUpload from './AuthorUpload';
+import Wishlistpage from './Wishlistpage';
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/author-profile" element={<AuthorProfile/>}/>
         <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
         <Route path="/author-upload" element={<AuthorUpload/>}/>
+        <Route path="/Wishlist" element={<Wishlistpage/>} />
 
       </Routes>
     </Router>
