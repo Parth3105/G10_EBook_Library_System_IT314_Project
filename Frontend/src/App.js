@@ -17,6 +17,8 @@ import AuthorProfile from './AuthorProfile';
 import AuthorReadingHistory from './AuthorReadingHistory';
 import AuthorUpload from './AuthorUpload';
 import Wishlistpage from './Wishlistpage';
+import ReaderProfile from './ReaderProfile';
+import ReaderReadingHistory from './ReaderReadingHistory';
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
         <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
         <Route path="/author-upload" element={<AuthorUpload/>}/>
         <Route path="/Wishlist" element={<Wishlistpage/>} />
+        <Route path="/reader-profile" element={<ReaderProfile />} />
+        <Route path="/reader-history" element={<ReaderReadingHistory />} />
 
       </Routes>
     </Router>
