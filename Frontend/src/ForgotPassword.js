@@ -1,23 +1,57 @@
-import React, { useState } from 'react';
-import './ForgotPassword.css';
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
-import fliplogo from './images/logo.svg';
-import bgimg from './images/bgimage1.png';
+import React, { useState } from "react";
+import "./ForgotPassword.css";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import fliplogo from "./images/logo.svg";
+import bgimg from "./images/bgimage1.png";
+import axios from "axios";
 
 function ForgotPassword() {
+  const [email, setEmail] = useState("");
+  const [otp, setOTP] = useState("");
   const [showOtpModal, setShowOtpModal] = useState(false);
   const navigate = useNavigate(); // Initialize navigate
 
   const handleSendResetLink = (e) => {
     e.preventDefault();
-    setShowOtpModal(true); // Show the OTP modal on button click
+    axios
+      .post("http://localhost:5000/forgotPassword", {
+        email: email,
+      })
+      .then((res) => {
+        if (res.data.code === 501) {
+          alert(res.data.msg);
+        }
+        else if (res.data.code === 502) {
+          alert(res.data.msg);
+        }
+        else if (res.data.code === 503) {
+          alert(res.data.msg);
+        } 
+        else {
+          setShowOtpModal(true);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // Show the OTP modal on button click
   };
 
   const handleOtpSubmit = (e) => {
     e.preventDefault();
-    // Handle OTP submission logic here
-    console.log("OTP entered");
-    navigate('/reset-password'); // Navigate to ResetPassword page upon OTP submission
+
+    axios.post("http://localhost:5000/resetPass/verifyOTP",{email: email, otp: otp})
+      .then((res) => {
+        if(res.data.code === 600){
+          navigate("/reset-password", {state: {email: email}}); // Navigate to ResetPassword page upon OTP submission
+        }
+        else{
+          alert(res.data.msg);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
@@ -30,10 +64,18 @@ function ForgotPassword() {
           <img src={fliplogo} alt="Logo" />
         </div>
         <h2>Reset Your Password</h2>
-        <p>Enter your email to receive a password reset link.</p>
+        <p>Enter your email to receive a password reset OTP.</p>
         <form className="forgot-password-form" onSubmit={handleSendResetLink}>
-          <input type="email" placeholder="Email" required />
-          <button type="submit" className="reset-btn">Send Reset Link</button>
+          <input
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }} 
+          type="email" 
+          placeholder="Email" 
+          required />
+          <button type="submit" className="reset-btn">
+            Send OTP
+          </button>
         </form>
         <div className="additional-options">
           <Link to="/LoginPage">Back to Login</Link>
@@ -47,8 +89,17 @@ function ForgotPassword() {
             <h3>Enter the OTP</h3>
             <p>Enter the 4-digit code</p>
             <form onSubmit={handleOtpSubmit}>
-              <input type="text" maxLength="4" placeholder="••••" required />
-              <button type="submit" className="enter-btn">Enter</button>
+              <input 
+              onChange={(e) => {
+                setOTP(e.target.value);
+              }}
+              type="text" 
+              maxLength="4" 
+              placeholder="••••" 
+              required />
+              <button type="submit" className="enter-btn">
+                Enter
+              </button>
             </form>
           </div>
         </div>
