@@ -1,115 +1,296 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './AuthorPage.css';
 import Image6 from './images/bgimage2.png';
 
-const AuthorPage = () => {
-  const [authorDetails, setAuthorDetails] = useState({
-    name: '',
-    writtenBook: '',
-    bookLink: '',
-    socialMedia: '',
-    uploadedFile: null,
-  });
 
-  const handleChange = (e) => {
-    
-  };
-
-  const handleFileUpload = (e) => {
-    setAuthorDetails({ ...authorDetails, uploadedFile: e.target.files[0] });
-  };
-
-  const handleSubmit = () => {
-    console.log('Submitted Data:', authorDetails);
-    // Add API call or other desired action
-    alert('Details submitted successfully!');
+const Authorpage = () => {
+  const handleClick = () => {
+    // Add desired action here
   };
 
   return (
     <div className="Authorpage" style={{ width: '100%', height: '100%', position: 'relative', background: '#FEF8E8' }}>
       <img
         className="Image6"
-        style={{ width: 1440, height: 1024, position: 'absolute' }}
-        src={Image6}
+        style={{ width: 1440, height: 1024, left: 0, top: 0, position: 'absolute' }}
+        src={Image6} // Replace placeholder with your actual image
         alt="Background"
       />
-      <div className="Group36">
-        <div className="Rectangle6"></div>
-
-        {/* Name */}
-        <div className="Group34">
-          <label className="Name">Name</label>
-          <input
-            type="text"
-            className="Rectangle7"
-            name="name"
-            placeholder="Enter your name"
-            value={authorDetails.name}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Written Book */}
-        <div className="Group35">
-          <label className="AnyBookWrittenByYou">Any book written by you</label>
-          <input
-            type="text"
-            className="Rectangle8"
-            name="writtenBook"
-            placeholder="Enter book name"
-            value={authorDetails.writtenBook}
-            onChange={handleChange}
-          />
-        </div>
-
-        {/* Book Link */}
-        <div className="Group32">
-          <label className="LinkOfTheBookIfTheBookIsAvailableOnline">
-            Link of the book (if available online)
-          </label>
-          <input
-            type="url"
+      <div className="Group36" style={{ width: 1030, height: 764, left: 205, top: 130, position: 'absolute' }}>
+        <div
+          className="Rectangle6"
+          style={{
+            width: 950,
+            height: 625,
+            left: 40,
+            top: -45,
+            position: 'absolute',
+            background: '#FEF8E8',
+            boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.40)',
+            borderRadius: 20,
+          }}
+        />
+        <div className="Group32" style={{ width: 838, height: 94, left: 96, top: 362, position: 'absolute' }}>
+          <div
+            className="LinkOfTheBookIfTheBookIsAvailableOnline"
+            style={{
+              left: 0,
+              top: -120,
+              position: 'absolute',
+              color: '#525252',
+              fontSize: 24,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '700',
+              wordWrap: 'break-word',
+            }}
+          >
+            Link of the book (if the book is available online)
+          </div>
+          <div
             className="Rectangle10"
-            name="bookLink"
-            placeholder="https://abcxyz.com"
-            value={authorDetails.bookLink}
-            onChange={handleChange}
+            style={{
+              width: 838,
+              height: 50,
+              left: -7,
+              top: -55,
+              position: 'absolute',
+              background: 'rgba(217, 217, 217, 0)',
+              borderRadius: 15,
+              border: '1px #7E7270 solid',
+            }}
           />
+          <div
+            className="HttpsAbcxyzCom"
+            style={{
+              left: 10,
+              top: -40,
+              position: 'absolute',
+              color: '#A1A1A1',
+              fontSize: 14,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '400',
+              wordWrap: 'break-word',
+            }}
+          >
+            https://abcxyz.com
+          </div>
         </div>
-
-        {/* Social Media Handle */}
-        <div className="Group31">
-          <label className="SocialMediaHandleIfAny">Social media handle (if any)</label>
-          <input
-            type="text"
+        <div className="Group31" style={{ width: 472, height: 92, left: 96, top: 515, position: 'absolute' }}>
+          <div
+            className="SocialMediaHandleIfAny"
+            style={{
+              left: 0,
+              top: -135,
+              position: 'absolute',
+              color: '#525252',
+              fontSize: 24,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '700',
+              wordWrap: 'break-word',
+            }}
+          >
+            Social media handle (if any)
+          </div>
+          <div
             className="Rectangle11"
-            name="socialMedia"
-            placeholder="https://socialmedia.com/your-profile"
-            value={authorDetails.socialMedia}
-            onChange={handleChange}
+            style={{
+              width: 472,
+              height: 50,
+              left: -7,
+              top: -70,
+              position: 'absolute',
+              background: 'rgba(217, 217, 217, 0)',
+              borderRadius: 15,
+              border: '1px #7E7270 solid',
+            }}
           />
+          <div
+            className="HttpsAbcxyzCom"
+            style={{
+              left: 9,
+              top: -53,
+              position: 'absolute',
+              color: '#A1A1A1',
+              fontSize: 14,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '400',
+              wordWrap: 'break-word',
+            }}
+          >
+            https://abcxyz.com
+          </div>
         </div>
-
-        {/* Upload Book */}
-        <div className="Group33">
-          <label className="UploadBook">Upload book</label>
-          <input
-            type="file"
+        <div className="Group35" style={{ width: 380, height: 96, left: 554, top: 58, position: 'absolute' }}>
+          <div
+            className="AnyBookWrittenByYou"
+            style={{
+              left: 10,
+              top: -50,
+              position: 'absolute',
+              color: '#525252',
+              fontSize: 24,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '700',
+              wordWrap: 'break-word',
+            }}
+          >
+            Any book written by you
+          </div>
+          <div
+            className="Rectangle8"
+            style={{
+              width: 380,
+              height: 50,
+              left: 0,
+              top: -15,
+              position: 'absolute',
+              background: 'rgba(217, 217, 217, 0)',
+              borderRadius: 15,
+              border: '1px #7E7270 solid',
+            }}
+          />
+          <div
+            className="Abcxyz"
+            style={{
+              left: 20,
+              top: 0,
+              position: 'absolute',
+              color: '#A1A1A1',
+              fontSize: 14,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '400',
+              wordWrap: 'break-word',
+            }}
+          >
+            abcxyz
+          </div>
+        </div>
+        <div className="Group34" style={{ width: 380, height: 96, left: 96, top: 58, position: 'absolute' }}>
+          <div
+            className="Name"
+            style={{
+              left: 0,
+              top: -50,
+              position: 'absolute',
+              color: '#525252',
+              fontSize: 24,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '700',
+              wordWrap: 'break-word',
+            }}
+          >
+            Name
+          </div>
+          <div
+            className="Rectangle7"
+            style={{
+              width: 380,
+              height: 50,
+              left: -7,
+              top: -15,
+              position: 'absolute',
+              background: 'rgba(217, 217, 217, 0)',
+              borderRadius: 15,
+              border: '1px #7E7270 solid',
+            }}
+          />
+          <div
+            className="Johndunphy"
+            style={{
+              left: 10,
+              top: 0,
+              position: 'absolute',
+              color: '#A1A1A1',
+              fontSize: 14,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '400',
+              wordWrap: 'break-word',
+            }}
+          >
+            johndunphy
+          </div>
+        </div>
+        <div className="Group33" style={{ width: 380, height: 92, left: 96, top: 213, position: 'absolute' }}>
+          <div
+            className="UploadBook"
+            style={{
+              left: 0,
+              top: -90,
+              position: 'absolute',
+              color: '#525252',
+              fontSize: 24,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '700',
+              wordWrap: 'break-word',
+            }}
+          >
+            Upload book
+          </div>
+          <div
             className="Rectangle9"
-            onChange={handleFileUpload}
+            style={{
+              width: 380,
+              height: 50,
+              left: -7,
+              top: -50,
+              position: 'absolute',
+              background: '#D9D9D9',
+              borderRadius: 15,
+              border: '1px #7E7270 solid',
+            }}
           />
-          {authorDetails.uploadedFile && (
-            <span className="UploadedFileName">{authorDetails.uploadedFile.name}</span>
-          )}
+          <div
+            className="ChooseFile"
+            style={{
+              left: 10,
+              top: -32,
+              position: 'absolute',
+              color: '#7E7270',
+              fontSize: 14,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '400',
+              wordWrap: 'break-word',
+            }}
+          >
+            Choose file
+          </div>
         </div>
-
-        {/* Submit Button */}
-        <button className="Frame7" onClick={handleSubmit}>
-          <span className="Submit">Submit</span>
-        </button>
+        <div
+          className="Frame7"
+          style={{
+            width: 250,
+            height: 50,
+            paddingTop: 13,
+            paddingBottom: 12,
+            paddingLeft: 10,
+            paddingRight: 10,
+            left: 387,
+            top: 510,
+            position: 'absolute',
+            background: '#7F265B',
+            borderRadius: 6,
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 13,
+            display: 'inline-flex',
+          }}
+        >
+          <div
+            className="Submit"
+            style={{
+              color: 'white',
+              fontSize: 18,
+              fontFamily: 'Nunito Sans',
+              fontWeight: '800',
+              wordWrap: 'break-word',
+            }}
+          >
+            Submit
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default AuthorPage;
+export default Authorpage;
