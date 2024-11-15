@@ -1,0 +1,165 @@
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('assets/fonts/nunitosans.ttf') format('truetype');
+    font-weight: 400; 
+    font-style: normal;
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #f7f3e6;
+    color: #333;
+  }
+  
+  .reader-profile-page {
+    max-width: 100%;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  .reader-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+  }
+  
+  .logoicon {
+    width: 200px; 
+    height: auto;
+  }
+  
+  .readeraction {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .readeractions a {
+    margin-left: 70px;
+  }
+  
+  .home {
+    margin-right: 70px;
+    width: 50px; /* Adjust size as needed */
+    height: auto; /* Adjust size as needed */
+  }
+  
+  .whishlist {
+    margin-left: 70px;
+    width: 50px;
+    height: auto;
+  }
+  
+  .ReaderProfile{
+    margin-left: 70px;
+    width : 50px;
+    height: auto;
+  }
+  
+  .navbar {
+    display: flex;
+    align-items: flex-start;
+    font-size: 1.8em;
+    background-color: #f7f3e6;
+    /* padding: 10px 0; */
+    margin-top: 10px;
+    border-bottom: 1px solid black;
+  }
+  
+  .navbar a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .navbar .item2{
+    margin-left: 50px;;
+    margin-right: 50px;
+  }
+  
+  .navbar .item1.active{
+    border-bottom: 10px solid #7f265b;
+    border-radius: 10px;
+  }
+  
+  .reader-content {
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .details-section h1 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1.5em;
+    margin-top: 0;
+    margin: 25px;
+    color: #796969;
+  }
+  
+  .books-section h1 {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 2em;
+    margin-top: 0;
+    margin: 25px;
+    color: #796969;
+  }
+  
+  .details {
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    font-size: 1em;
+    gap: 25px; /* Space between each input field */
+    margin-bottom: 15px;
+  }
+  
+  .input-group {
+    font-family: 'Nunito Sans', sans-serif;
+    flex: 1;
+    margin: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .reader-user-input {
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    font-size: 1em;
+    gap: 25px;
+    margin-bottom: 15px;;
+  }
+  
+  .input-group label {
+    font-family: 'Nunito Sans', sans-serif;
+    display: flex;
+    margin-bottom: 10px;
+  }
+  
+  .input-group input {
+    font-family: 'Nunito Sans', sans-serif;
+    width: 80%; /* Adjusts the width within the container */
+    height: 40px; /* Adjusts the height of the input box */
+    padding: 10px;
+    font-size: 1em;
+    color: #796969;
+    border-radius: 15px; /* Rounds the edges */
+  }
+  
+  .reader-user-input input{
+    font-family: 'Nunito Sans', sans-serif;
+    width: 24%; /* Adjusts the width within the container */
+    height: 40px; /* Adjusts the height of the input box */
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 15px; /* Rounds the edges */
+  }
+  
+  /* .books-section {
+    margin-top: 30px;
+    padding: 10px;
+  } */
+  
+  .books-section p {
+    margin: 150px;
+    text-align: center;
+  }
+  
