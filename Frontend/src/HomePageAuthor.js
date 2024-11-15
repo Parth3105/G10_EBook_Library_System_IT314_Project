@@ -1,11 +1,9 @@
 import React from 'react';
-import './HomePage.css';
-import { Link } from 'react-router-dom'; 
-
-
+import './HomePageAuthor.css';
+import { Link } from 'react-router-dom';
 
 // Importing images
-import Logo from './images/logo.svg'
+import Logo from './images/logo.svg';
 import searchicon from './images/searchicon.png';
 import FeaturedBooks from './images/featuredBooks.png';
 import Jaws from './images/jaws.png';
@@ -24,34 +22,34 @@ import Mystery from './images/mystery.png';
 import Romance from './images/romance.png';
 import SciFi from './images/scifi.png';
 import Fantasy from './images/fantasy.png';
+import Home from './images/homeicon.png';
+import Wishlist from './images/wishlisticon.png';
+import Profile from './images/profileicon.png';
 
-
-function HomePage() {
+function HomePageAuthor() {
     return (
-      <div className="homepage">
+        <div className="homepage-author">
+            <header className="header">
+                <img src={Logo} alt="FlipThePage Logo" className="logo" />
+                <div className="search-container">
+                    <input type="text" placeholder="Search ebooks" className="search-bar" />
+                    <img src={searchicon} alt="Search Icon" className="searchicon" />
+                </div>
+                <div className="icon-links">
+                    <img src={Home} alt="Icon1" className="header-icon active" />
+                    <img src={Wishlist} alt="Icon2" className="header-icon" />
+                    <img src={Profile} alt="Icon3" className="header-icon" />
+                </div>
+            </header>
 
-
-      <header className="header">
-      <img src={Logo} alt="FlipThePage Logo" className="logo" style={{ width: '250px', height: 'auto' }} />
-
-          <div className="search-container">
-              <input type="text" placeholder="Search ebooks" className="search-bar" />
-              <img src={searchicon} alt="Search Icon" className="searchicon" />
-          </div>
-          <div className="auth-links">
-          <Link to="/LoginPage">Login</Link> | <Link to="/SelectionPage">Register</Link>  {/* Updated Login and Register link */}
-          </div>
-      </header>
-
-
-      <section className="featured-books">
-    <div className="featured-text">
-        <p className="featured-heading">FLIPTHEPAGE RECOMMENDATION</p>
-        <h2>Featured Books of the<span>February</span></h2>
-        <button className="see-more-btn">See More</button>
-    </div>
-    <div className="featured-images">
-        <img src={FeaturedBooks} alt="Featured Books" />
+            <section className="upload-section">
+    <div className="upload-content">
+        <h2>Hello, Author!</h2>
+        <p>Upload your latest ebook to share with readers. It's simple and quick!</p>
+        <p>We're excited to help you share your work with readers around the world. </p>
+        <p>Upload your book here, and let your story inspire and connect with others. It's </p>
+        <p>quick and easy, so let's get started! </p>
+        <button className="upload-btn">Upload Ebook</button>
     </div>
 </section>
 
@@ -192,4 +190,4 @@ function HomePage() {
 }
 
 
-export default HomePage;
+export default HomePageAuthor;
