@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePageReader.css';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 
 // Importing images
 import Logo from './images/logo.svg';
@@ -27,6 +27,7 @@ import Wishlist from './images/wishlisticon.png';
 import Profile from './images/profileicon.png';
 
 function HomePageReader() {
+    const navigate=useNavigate();
     return (
         <div className="homepage-reader">
             <header className="header">
@@ -36,9 +37,9 @@ function HomePageReader() {
                     <img src={searchicon} alt="Search Icon" className="searchicon" />
                 </div>
                 <div className="icon-links">
-                    <img src={Home} alt="Icon1" className="header-icon active" />
-                    <img src={Wishlist} alt="Icon2" className="header-icon" />
-                    <img src={Profile} alt="Icon3" className="header-icon" />
+                    <img src={Home} alt="Icon1" className="header-icon active" onClick={() => navigate('/reader')}/>
+                    <img src={Wishlist} alt="Icon2" className="header-icon" onClick={() => navigate('/Wishlist')}/>
+                    <img src={Profile} alt="Icon3" className="header-icon" onClick={() => navigate('/reader-profile')}/>
                 </div>
             </header>
 

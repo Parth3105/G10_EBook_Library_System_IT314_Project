@@ -10,7 +10,8 @@ module.exports.addToWishlist= async (req,res) => {
             {
                 username: wishlistInfo.username,
                 bookTitle: wishlistInfo.bookTitle,
-                author: wishlistInfo.author
+                author: wishlistInfo.author,
+                coverImage: wishlistInfo.coverImage
             }
         );
 
@@ -46,29 +47,57 @@ module.exports.rmFromWishlist= async (req,res) => {
     }
 }
 
+module.exports.getMyWishlist= async (req,res) => {
+    try{
+        const reqParams=req.params;
+        const wishlistInfo=await bookPreferenceModel.find({username: reqParams.username});
+
+        res.send({code: 300, wishlist: wishlistInfo});
+    }
+    catch(err){
+        res.send({code: 301, msg: "Fetch error!"});
+    }
+}
+
+module.exports.rmHistory= async (req,res) => {
+    try{
+        const historyInfo=req.body;
+
+        const result= await readHistoryModel.deleteOne({
+            username: historyInfo.username,
+            bookTitle: historyInfo.bookTitle,
+            author: historyInfo.author
+        });
+
+        if(result.deletedCount==1) res.send("Deleted Successfully!!");
+        else res.send("Entry not found!!");
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+}
+
 module.exports.getMyProfile = async (req,res) => {
     try{
         const reqParams=req.params;
         const userProfile=await userModel.findOne({username: reqParams.username});
     
-        res.send(userProfile);
+        return res.send({code: 100, user:userProfile});
     }
     catch(err){
-        console.log(err);
-        res.send("Fetch error!");
+        return res.send({code: 101, msg: "Fetch error!"});
     }
 }
 
 module.exports.getMyReadHistory= async (req,res) => {
     try{
         const reqParams=req.params;
-        const readHistory=await readHistoryModel.find({username: reqParams.username});
+        const readHistory=await readHistoryModel.find({username: reqParams.username}).sort({lastRead:-1});
 
-        res.send(readHistory);
+        res.send({code: 200, history: readHistory});
     }
     catch(err){
-        console.log(err);
-        res.send("Fetch error!");
+        res.send({code: 201, msg: "Fetch error!"});
     }
 }
 
@@ -83,9 +112,12 @@ module.exports.getMyReadHistory= async (req,res) => {
 //             {
 //                 username: wishlistInfo.username,
 //                 bookTitle: wishlistInfo.bookTitle,
-//                 author: wishlistInfo.author
+//                 author: wishlistInfo.author,
+//                 coverImage: wishlistInfo.coverImage
 //             }
 //         );
+
+//         // Check if history of that book already present. If present, just update the last created date.
 
 //         await newWish.save()
 //             .then((result) => {
