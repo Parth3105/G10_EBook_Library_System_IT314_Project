@@ -1,14 +1,17 @@
 // src/App.js
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import LandingPage from "./LandingPage";
-import HomePage from "./HomePage";
-import LoginPage from "./LoginPage";
-import SelectionPage from "./SelectionPage";
-import EmailVerification from "./EmailVerification";
-import RegisterPage from "./RegisterPage";
-import ForgotPassword from "./ForgotPassword";
-import ResetPassword from "./ResetPassword";
+
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
+import LandingPage from './LandingPage';
+import HomePage from './HomePage';
+import LoginPage from './LoginPage';
+import SelectionPage from './SelectionPage';
+import EmailVerification from './EmailVerification';
+import RegisterPage from './RegisterPage';
+import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
+import HomePageReader from './HomePageReader';
+import HomePageAuthor from './HomePageAuthor' ;
 import Home from "./Home";
 
 
@@ -25,7 +28,11 @@ const App = () => {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
+
+        <Route path="/reader" element={<HomePageReader />} />
+        <Route path="/author" element={<HomePageAuthor />} />
         <Route path="/test" element={<Home />} />
+
       </Routes>
     </Router>
   );
