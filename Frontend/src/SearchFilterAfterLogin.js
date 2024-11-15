@@ -7,6 +7,7 @@ import fliplogo from './images/logo.svg'
 import searchIcon from './images/searchicon.png'
 import profileicon from './images/profileicon.png'
 import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import './SearchFilterAfterLogin.css'
 
 export default function SearchFilterAfterLogin() {
@@ -16,9 +17,12 @@ export default function SearchFilterAfterLogin() {
   const [author, setAuthor] = useState('')
   const [language, setLanguage] = useState('')
 
+  const navigate = useNavigate();
+
   const handleApplyFilter = () => {
     // Implement filter logic here
     console.log('Applying filters:', { searchTerm, genre, name, author, language })
+    navigate("/SearchFilterResultsAfterLogin");
   }
 
   return (
