@@ -17,7 +17,7 @@ const VERIFICATION_EMAIL_TEMPLATE = `
       <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #4CAF50;">{verificationCode}</span>
     </div>
     <p>Enter this code on the verification page to complete your registration.</p>
-    <p>This code will expire in 5 minutes for security reasons.</p>
+    <p>This code will expire in 2 minutes for security reasons.</p>
     <p>If you didn't create an account with us, please ignore this email.</p>
     <p>Best regards,<br>Flip The Page</p>
   </div>
@@ -84,8 +84,8 @@ const PASSWORD_RESET_REQUEST_TEMPLATE = `
       <span style="font-size: 32px; font-weight: bold; letter-spacing: 5px; color: #4CAF50;">{otpCode}</span>
     </div>
     <p>Enter this OTP on the reset password page to proceed with resetting your password.</p>
-    <p>This OTP will expire in 5 minutes for security reasons.</p>
-    <p>If you didn’t request a password reset, please ignore this email.</p>
+    <p>This OTP will expire in 2 minutes for security reasons.</p>
+    <p>If you didn't request a password reset, please ignore this email.</p>
     <p>Best regards,<br>Flip The Page</p>
   </div>
   <div style="text-align: center; margin-top: 20px; color: #888; font-size: 0.8em;">
