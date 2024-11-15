@@ -16,8 +16,7 @@ import Home from "./Home";
 import AuthorProfile from './AuthorProfile';
 import AuthorReadingHistory from './AuthorReadingHistory';
 import AuthorUpload from './AuthorUpload';
-import ReaderProfile from './ReaderProfile';
-import ReaderReadingHistory from './ReaderReadingHistory';
+import Wishlistpage from './Wishlistpage';
 
 const App = () => {
   return (
@@ -38,8 +37,8 @@ const App = () => {
         <Route path="/author-profile" element={<AuthorProfile/>}/>
         <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
         <Route path="/author-upload" element={<AuthorUpload/>}/>
-        <Route path="/reader-profile" element={<ReaderProfile />} />
-        <Route path="/reader-history" element={<ReaderReadingHistory />} />
+        <Route path="/Wishlist" element={<Wishlistpage/>} />
+
       </Routes>
     </Router>
   );
