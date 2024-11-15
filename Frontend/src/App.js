@@ -13,7 +13,9 @@ import ResetPassword from './ResetPassword';
 import HomePageReader from './HomePageReader';
 import HomePageAuthor from './HomePageAuthor' ;
 import Home from "./Home";
-
+import AuthorProfile from './AuthorProfile';
+import AuthorReadingHistory from './AuthorReadingHistory';
+import AuthorUpload from './AuthorUpload';
 
 const App = () => {
   return (
@@ -32,6 +34,9 @@ const App = () => {
         <Route path="/reader" element={<HomePageReader />} />
         <Route path="/author" element={<HomePageAuthor />} />
         <Route path="/test" element={<Home />} />
+        <Route path="/author-profile" element={<AuthorProfile/>}/>
+        <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
+        <Route path="/author-upload" element={<AuthorUpload/>}/>
 
       </Routes>
     </Router>
