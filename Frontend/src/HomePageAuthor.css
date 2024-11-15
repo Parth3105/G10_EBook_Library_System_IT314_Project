@@ -1,0 +1,328 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font Import */
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('assets/fonts/nunitosans.ttf') format('truetype');
+}
+
+
+/* Header */
+.homepage-author .header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FBE4DF;
+    align-items: center;
+    padding: 20px;
+    font-family: 'Nunito Sans', sans-serif; 
+}
+
+
+.homepage-author .search-container {
+    position: relative; 
+}
+
+.homepage-author .search-bar {
+    padding: 10px 40px; 
+    margin-top: 0px;
+    background-color: #C0B0AE;
+    font-size: 16px;
+    font-weight: 600;
+    border: 0px solid #A08A88; 
+    border-radius: 15px; 
+    color: #333; 
+    width: 700px; 
+    margin-top: 0px;
+}
+
+.homepage-author .search-bar:focus {
+    outline: none; 
+}
+
+.homepage-author .searchicon {
+    position: absolute; 
+    left: 10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    width: 20px; 
+    height: 20px; 
+    pointer-events: none;
+}
+
+.homepage-author .icon-links {
+    display: flex;
+    gap: 30px;
+}
+
+.homepage-author .header-icon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Active indicator for Home icon */
+.homepage-author .header-icon.active {
+    border-bottom: 4px solid #7F265B;
+    padding-bottom: 5px; /* Space for better visibility */
+}
+
+
+/* Upload Section */
+.homepage-author .upload-section {
+    width: 100%;
+    height: 650px; /* Adjust as per your design */
+    background-image: url('./images/HomePageAuthorBG.png'); /* Use your desired background image */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: black; /* Ensure text is visible on dark/light background */
+}
+
+.homepage-author .upload-content {
+    margin-top: 0px;
+    padding: 30px;
+    border-radius: 10px;
+    line-height: 0.5;
+}
+
+.homepage-author .upload-content h2 {
+    font-size: 64px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.homepage-author .upload-content p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 0.2;
+    color: #6E5C59;
+
+}
+
+.homepage-author .upload-btn {
+    padding: 12px 30px;
+    margin-top: 30px;
+    background-color: #7F265B;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.homepage-author .upload-btn:hover {
+    background-color: #a4004c;
+}
+
+
+
+/* Genres */
+.homepage-author .genres {
+    padding: 20px;
+    height: 500px;
+    background-color: #f7f3e6;
+    font-family: 'Nunito Sans', sans-serif; 
+}
+
+.homepage-author .genres-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 50px;
+    margin-top: 60px;
+}
+
+.homepage-author .genres h2 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.2; 
+}
+
+.homepage-author .see-more-genres {
+    color: #7F265B;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 40px;
+}
+
+.homepage-author .genres-list {
+    display: flex;
+    margin-top: 50px;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.homepage-author .genre-item {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #6E5C59;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.homepage-author .genre-item img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+/* Deals */
+.homepage-author .deals {
+    padding: 20px;
+    font-family: 'Nunito Sans', sans-serif; 
+    background-color: #f7f3e6;
+}
+
+.homepage-author .deals h2 {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.2; 
+    margin-bottom: 10px;
+    margin-left: 50px;
+}
+
+
+.homepage-author .deal-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.homepage-author .deal-card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-author .deal-card img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.homepage-author .deal-card h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.homepage-author .deal-card p {
+    margin: 5px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+.homepage-author .deal-card .old-price {
+    text-decoration: line-through;
+    color: #999;
+    font-size: 14px;
+}
+
+.homepage-author .deal-card span {
+    color: #ffcc00;
+    font-size: 16px;
+    margin-top: 5px;
+}
+
+.homepage-author .add-to-cart-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #7F265B;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.homepage-author .add-to-cart-btn:hover {
+    background-color: #a4004c;
+}
+
+
+/* Authors */
+.homepage-author .authors {
+    padding: 40px;
+    height: 600px;
+    text-align: center;
+    background-color: #f7f3e6;
+    font-family: 'Nunito Sans', sans-serif;
+    overflow: hidden; 
+}
+
+.homepage-author .authors h2 {
+    margin-top: 100px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #000000;
+    text-align: left;
+    margin-bottom: 40px;
+    padding-left: 20px;
+}
+
+.homepage-author .author-list {
+    margin-top: 60px;
+    display: flex;
+    justify-content: flex-start; 
+    padding: 0 20px;
+    animation: scrollAuthors 20s linear infinite; 
+    gap: 90px; 
+}
+
+@keyframes scrollAuthors {
+    0% {
+        transform: translateX(0); /* Starting position */
+    }
+    100% {
+        transform: translateX(-100%); /* Move left by the width of the entire author list */
+    }
+}
+
+.homepage-author .author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.homepage-author .author img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homepage-author .author p {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #6E5C59;
+}
