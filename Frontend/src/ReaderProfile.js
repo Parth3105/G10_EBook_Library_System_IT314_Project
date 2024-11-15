@@ -1,12 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './ReaderProfile.css';
 import logo from './images/logo.png';
 import homeicon from './images/homeicon.png';
 import wishlisticon from './images/wishlisticon.png';
 import profileicon from './images/profileicon.png';
+import axios from 'axios';
 
 function ReaderProfile() {
+  const [userData, setUserData] = useState({
+    username: '',
+    email: '',
+    userRole: '',
+  });
+
+  useEffect(()=>{
+    const storedUsername = localStorage.getItem('USERNAME');
+
+    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    .then(response => {
+      if(response.data.code===100){
+        const { username: username, email: email, userRole: userRole } = response.data.user;
+        setUserData({ username, email, userRole });
+      }
+  })
+  })
+  
   return (
     <div className="reader-profile-page">
       <header className="reader-header">
@@ -14,7 +33,7 @@ function ReaderProfile() {
           <img src={logo} alt="FlipThePage" className="logoicon"/>
         </div>
         <div className="readeraction">
-          <Link to="/home" className="home">
+          <Link to="/reader" className="home">
             <img src={homeicon} alt="Home" />
           </Link>
           <Link to="/wishlist" className="wishlist">
@@ -38,33 +57,33 @@ function ReaderProfile() {
           <h1>Details</h1>
           <div className="details">
             <div className="input-group">
-              <label>Firstname</label>
-              <input type="text" name="firstname" value="johnmurphy" readOnly/>
+              <label>Username</label>
+              <input type="text" name="username" value={userData.username} readOnly/>
             </div>
             <div className="input-group">
-              <label>Lastname</label>
-              <input type="text" name="lastname" value="johnmurphy" readOnly/>
+              <label>Email</label>
+              <input type="email" name="email" value={userData.email} readOnly/>
             </div>
             <div className="input-group">
               <label>Role</label>
-              <input type="text" name="role" value="reader" readOnly/>
+              <input type="text" name="role" value={userData.userRole} readOnly/>
             </div>
           </div>
-          <div className="reader-user-input">
+          {/* <div className="reader-user-input">
             <div className="input-group">
               <label>Username</label>
               <input type="text" name="username" value="johnmurphy" readOnly/>
             </div>
-          </div>
+          </div> */}
         </section>
-        <section className="books-section">
+        {/* <section className="books-section">
           <h1>Rented Books</h1>
           <p>No books rented yet.</p>
         </section>
         <section className="books-section">
           <h1>Purchased Books</h1>
           <p>No books purchased yet.</p>
-        </section>
+        </section> */}
       </div>
     </div>
   );

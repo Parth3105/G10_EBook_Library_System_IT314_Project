@@ -20,6 +20,11 @@ const schema = mongoose.Schema(
             trim: true
         },
 
+        coverImage: {
+            type: String,
+            required: true,
+        },
+
         lastRead: {
             type: Date,
             default: Date.now

@@ -19,6 +19,11 @@ const schema = mongoose.Schema(
             required: true,
             trim: true
         },
+
+        coverImage: {
+            type: String,
+            required: true,
+        },        
     }
 );
 

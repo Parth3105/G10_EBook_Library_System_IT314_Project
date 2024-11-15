@@ -14,8 +14,10 @@ router.post("/forgotPassword", authController.forgotPassword);
 router.post("/resetPassword", authController.resetPassword);
 router.post("/resendOTP", authController.resendOTPVerificationEmail);
 router.post("/addToWishlist", dashboardController.addToWishlist);
+router.get("/getWishlist/:username", dashboardController.getMyWishlist);
 router.post("/rmFromWishlist", dashboardController.rmFromWishlist);
 router.get("/readHistory/:username", dashboardController.getMyReadHistory);
+router.post("/rmhistory", dashboardController.rmHistory);
 router.get("/myProfile/:username", dashboardController.getMyProfile);
 
 // router.post('/addHistory', dashboardController.addToHistory); // Just for testing not actual route

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom'; // Import Link for navigation
 import './Wishlistpage.css';
 import homeIcon from './images/homeicon.png'
@@ -6,42 +6,31 @@ import wishlistIcon from './images/wishlisticon.png'
 import profileIcon from './images/profileicon.png'
 import removeIcon from './images/removeicon.png'
 import logo from './images/logo.png'
-import imageUrl1 from './images/jaws.png'
-import imageUrl2 from './images/Alchemist.png'
-
+import axios from 'axios';
 
 
 const Wishlist = () => {
     const [activeIcon, setActiveIcon] = useState('wishlist');
-    const [books, setBooks] = useState([
-        {
-            id: 1,
-            title: 'Jaws: A Novel',
-            author: 'Peter Benchley',
-            price: 'INR. 700',
-            rating: '5/5',
-            imageUrl: imageUrl1,
-        },
-        {
-            id: 2,
-            title: 'The Alchemist',
-            author: 'Paulo Coelho',
-            price: 'INR. 700',
-            rating: '5/5',
-            imageUrl: imageUrl2,
-        },
-        
-    ]);
+    const [books, setBooks] = useState([]);
+    const storedUsername = localStorage.getItem('USERNAME');
+
+    useEffect(()=>{
+        axios.get(`http://localhost:5000/getWishlist/${storedUsername}`)
+        .then(response => {
+          if(response.data.code===300){
+            setBooks(response.data.wishlist);
+          }
+        })
+      })
 
     const handleIconClick = (icon) => {
         setActiveIcon(icon);
     };
 
-    const handleRemove = (id) => {
-        setBooks(books.filter(book => book.id !== id));
+    const handleRemove = (book) => {
+        axios.post(`http://localhost:5000/rmFromWishlist`,book)
+        setBooks(books.filter(book => book!==book));
     };
-
-    console.log("Whishlist Page");
 
     return (
         <div className="wishlist-container">
@@ -50,7 +39,7 @@ const Wishlist = () => {
                     <img src={logo} alt="Logo" className="logo" />
                 </div>
                 <nav className="nav-icons">
-                    <Link to="/Home" onClick={() => handleIconClick('home')}>
+                    <Link to="/reader" onClick={() => handleIconClick('home')}>
                         <img
                             src={homeIcon}
                             alt="Home"
@@ -64,7 +53,7 @@ const Wishlist = () => {
                             className={`wishlisticon ${activeIcon === 'wishlist' ? 'active' : ''}`}
                         />
                     </Link>
-                    <Link to="/profile" onClick={() => handleIconClick('profile')}>
+                    <Link to="/reader-profile" onClick={() => handleIconClick('profile')}>
                         <img
                             src={profileIcon}
                             alt="Profile"
@@ -78,20 +67,18 @@ const Wishlist = () => {
                 <div className="wishlist">
                     {books.length > 0 ? (
                         books.map((book) => (
-                            <div key={book.id} className="wishlist-item">
-                                <img src={book.imageUrl} alt={book.title} className="book-cover" />
+                            <div key={book} className="wishlist-item">
+                                <img src={book.coverImage} alt={book.bookTitle} className="book-cover" />
                                 <div className="details">
-                                    <h2 className="book-title">{book.title}</h2>
+                                    <h2 className="book-title">{book.bookTitle}</h2>
                                     <p className="book-author">{book.author}</p>
-                                    <p className="book-price">{book.price}</p>
-                                    <p className="book-rating">⭐ {book.rating}</p>
-                                    <Link to={`/reading/${book.id}`} className="read-btn">
-                                        Read
+                                    <Link to={`/reading/`} className="read-btn">
+                                        View
                                     </Link>
                                 </div>
                                 <button
                                     className="remove-btn"
-                                    onClick={() => handleRemove(book.id)}
+                                    onClick={() => handleRemove(book)}
                                 >
                                     <img src={removeIcon} alt="Remove" />
                                 </button>

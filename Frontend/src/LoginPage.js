@@ -25,14 +25,21 @@ function LoginPage() {
         if (res.data.code === 400) {
           alert(res.data.msg);
         }
-        if (res.data.code === 404) {
+        else if (res.data.code === 404) {
           alert(res.data.msg);
         }
-
-        if (res.data.code === 200) {
-          navigate("/test");
+        else if (res.data.code === 200) {
+          if(res.data.userRole==="Reader"){
+            navigate("/reader");
+          }
+          else if(res.data.userRole==="Author"){
+            navigate("/author");
+          }
+          else if(res.data.userRole==="Admin"){
+            // Navigation path for admin
+          }
           localStorage.setItem("TOKEN", res.data.token);
-          localStorage.setItem("USERNAME", res.data.username);
+          localStorage.setItem("USERNAME", username);
         }
       })
       .catch((err) => {
