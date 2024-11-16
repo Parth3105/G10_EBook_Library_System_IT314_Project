@@ -19,6 +19,7 @@ import Wishlistpage from './Wishlistpage';
 import ReaderProfile from './ReaderProfile';
 import ReaderReadingHistory from './ReaderReadingHistory';
 import BookDescription from './BookDescription';
+import AuthorBookUpload from './AuthorBookUpload';
 
 const App = () => {
   return (
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/reader" element={<HomePageReader />} />
         <Route path="/author" element={<HomePageAuthor />} />
+        <Route path="/upload/author" element={<AuthorBookUpload />} />
         <Route path="/author-profile" element={<AuthorProfile/>}/>
         <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
         <Route path="/author-upload" element={<AuthorUpload/>}/>
@@ -42,6 +44,7 @@ const App = () => {
         <Route path="/reader-profile" element={<ReaderProfile />} />
         <Route path="/reader-history" element={<ReaderReadingHistory />} />
         <Route path="/book-description" element={<BookDescription/>} />
+
 
       </Routes>
     </Router>

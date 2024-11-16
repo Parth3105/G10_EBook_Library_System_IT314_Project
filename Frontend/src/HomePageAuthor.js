@@ -49,7 +49,9 @@ function HomePageAuthor() {
         <p>We're excited to help you share your work with readers around the world. </p>
         <p>Upload your book here, and let your story inspire and connect with others. It's </p>
         <p>quick and easy, so let's get started! </p>
+        <Link to="/upload/author">
         <button className="upload-btn">Upload Ebook</button>
+        </Link>
     </div>
 </section>
 

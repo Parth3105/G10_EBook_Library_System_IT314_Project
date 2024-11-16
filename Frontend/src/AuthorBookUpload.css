@@ -1,0 +1,92 @@
+.upload-page {
+    margin-top: -50px;
+    padding: 0;
+    font-family: 'Nunito Sans', sans-serif;
+    background: url('./images/bgimage2.png') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh; /* Ensures it spans the full viewport height */
+  }
+  
+  
+  .upload-form {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .upload-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .upload-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .upload-form input,
+  .upload-form textarea,
+  .upload-form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  .upload-form textarea {
+    resize: vertical;
+  }
+  
+  .upload-form button {
+    background-color: #7F265B;
+    font-weight: bold;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .upload-form button:hover {
+    background-color: gray;
+    color: black;
+  }
+  
+  .co-author {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .remove-button,
+  .add-button {
+    background-color: #7F265B;
+    font-weight: bold;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .remove-button:hover {
+    background-color: gray;
+    color: black;
+  }
+  
+  .add-button {
+    background-color: #7F265B;
+  }
+  
+  .add-button:hover {
+    background-color: white;
+  }
+  
