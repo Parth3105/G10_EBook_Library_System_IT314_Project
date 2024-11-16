@@ -19,9 +19,11 @@ router.post("/rmFromWishlist", dashboardController.rmFromWishlist);
 router.get("/readHistory/:username", dashboardController.getMyReadHistory);
 router.post("/rmhistory", dashboardController.rmHistory);
 router.get("/myProfile/:username", dashboardController.getMyProfile);
+router.get("/getRecentBooks", searchController.getRecentBooks);
+router.get("/getAllBooks", searchController.getBooks);
 
 // router.post('/addHistory', dashboardController.addToHistory); // Just for testing not actual route
-router.get('/books', searchController.searchEBook);
+router.get('/searchBook', searchController.searchEBook);
 router.post('/upload', upload.fields([{ name: 'coverImage' }, { name: 'bookFile' }]), bookController.uploadBook);
 
 

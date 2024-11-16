@@ -1,4 +1,4 @@
-const Book = require('../models/BookModel');
+const Book = require('../Models/BookModel');
 
 module.exports.searchEBook = async (req, res) => {
     try {
@@ -26,6 +26,9 @@ module.exports.searchEBook = async (req, res) => {
             ? (genre = genreOptions)
             : (genre = req.query.genre.split(","));
 
+         // Make genre filtering case-insensitive
+         genre = genre.map((g) => new RegExp(`^${g}$`, "i"));
+
         // Set up sort order
         req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
         const sortBy = sort[1] ? { [sort[0]]: sort[1] } : { [sort[0]]: "asc" };
@@ -36,7 +39,7 @@ module.exports.searchEBook = async (req, res) => {
             author: { $regex: author, $options: "i" },
             genre: { $in: genre }
         };
-        if (language !== "All") filter.language = language;
+        if (language !== "All") filter.language = { $regex: `^${language}$`, $options: "i" };
 
         // Fetch books based on filters
         const books = await Book.find(filter)
@@ -62,5 +65,27 @@ module.exports.searchEBook = async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: true, message: "Internal Server Error" });
+    }
+};
+
+module.exports.getRecentBooks = async (req, res) => {
+    try {
+        const books = await Book.find({})
+            .sort({ createdAt: -1 }) // Sort by `createdAt` field in descending order
+            .limit(4);              // Limit the result to the 4 most recent books
+        res.send(books); 
+    } catch (error) {
+        res.send("Error fetching recent books");
+    }
+};
+
+module.exports.getBooks = async (req, res) => {
+    try {
+        const books = await Book.find({})
+            .sort({ title: 1 }); // Sort lexicographically (ascending order)
+
+        res.send(books);
+    } catch (error) {
+        res.send({ code: 501, msg: "Error fetching books", error });
     }
 };

@@ -10,7 +10,13 @@ module.exports.uploadBook = async (req, res) => {
     try {
         // Check if required files (coverImage and bookFile) are provided
         if (!req.files || !req.files.coverImage || !req.files.bookFile) {
-            return res.status(400).json({ message: 'Both cover image and book file are required.' });
+            return res.status(400).json({ msg: 'Both cover image and book file are required.' });
+        }
+
+        // Check if the book already exists
+        const doesExist=await books.exists({title: title, author: author});
+        if(doesExist){
+            return res.send({code: 402, msg: "Book already exists!!"});
         }
 
         // Upload cover image to Cloudinary (or use other storage for images)
@@ -57,9 +63,9 @@ module.exports.uploadBook = async (req, res) => {
         });
 
         await newBook.save();
-        return res.status(201).send({ message: 'Book uploaded successfully', book: newBook });
+        return res.send({code: 401, msg: 'Book uploaded successfully', book: newBook });
     } catch (error) {
         console.error("Error uploading book:", error);
-        return res.status(500).send({ message: 'Error uploading book', error: error.message });
+        return res.send({ code: 403, msg: 'Error uploading book', error: error });
     }
 };

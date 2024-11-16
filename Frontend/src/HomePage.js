@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePage.css';
-import { Link } from 'react-router-dom'; 
+import { Link,useNavigate } from 'react-router-dom';
 
 
 
@@ -27,6 +27,13 @@ import Fantasy from './images/fantasy.png';
 
 
 function HomePage() {
+    const navigate=useNavigate();
+
+    const handleSearch = (e) => {
+        navigate("/search-before");
+    }
+
+
     return (
       <div className="homepage">
 
@@ -35,7 +42,7 @@ function HomePage() {
       <img src={Logo} alt="FlipThePage Logo" className="logo" style={{ width: '250px', height: 'auto' }} />
 
           <div className="search-container">
-              <input type="text" placeholder="Search ebooks" className="search-bar" />
+              <input onClick={handleSearch} type="text" placeholder="Search ebooks" className="search-bar" />
               <img src={searchicon} alt="Search Icon" className="searchicon" />
           </div>
           <div className="auth-links">
@@ -61,7 +68,6 @@ function HomePage() {
 <section className="genres">
             <div className="genres-header">
                 <h2>Popular Genres</h2>
-                <a href="/genres" className="see-more-genres">Browse</a>
             </div>
             <div className="genres-list">
                 <div className="genre-item">

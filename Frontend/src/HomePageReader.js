@@ -28,12 +28,17 @@ import Profile from './images/profileicon.png';
 
 function HomePageReader() {
     const navigate=useNavigate();
+    
+    const handleSearch = (e) => {
+        navigate("/search-results-after");
+    }
+
     return (
         <div className="homepage-reader">
             <header className="header">
                 <img src={Logo} alt="FlipThePage Logo" className="logo" />
                 <div className="search-container">
-                    <input type="text" placeholder="Search ebooks" className="search-bar" />
+                    <input onClick={handleSearch} type="text" placeholder="Search ebooks" className="search-bar" />
                     <img src={searchicon} alt="Search Icon" className="searchicon" />
                 </div>
                 <div className="icon-links">
@@ -60,7 +65,6 @@ function HomePageReader() {
 <section className="genres">
             <div className="genres-header">
                 <h2>Popular Genres</h2>
-                <a href="/genres" className="see-more-genres">Browse</a>
             </div>
             <div className="genres-list">
                 <div className="genre-item">

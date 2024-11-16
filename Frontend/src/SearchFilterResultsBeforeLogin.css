@@ -87,7 +87,7 @@
     background-color: #d4c5c5;
     font-size: 1rem;
     margin-bottom: 15px;
-    background-image: url('searchicon.png');
+    background-image: url('./images/searchicon.png');
     background-position: 15px 3px;
     background-size: 30px 27px;
     background-repeat: no-repeat;
