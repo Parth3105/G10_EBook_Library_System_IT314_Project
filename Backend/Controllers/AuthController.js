@@ -89,6 +89,7 @@ module.exports.loginUser = async (req, res) => {
                         res.send({
                             code: 200,
                             msg: "Login Successfull",
+                            userRole: userCredential.userRole,
                             token: token
                         });
                     }
@@ -97,8 +98,7 @@ module.exports.loginUser = async (req, res) => {
             else res.send({code: 404, msg:"Incorrect Password!"});
         }
         catch (err) {
-            console.log(err);
-            res.send("Login Error!")
+            res.send({ code: 401, msg: "Error logging in!" })
         }
     }
 }

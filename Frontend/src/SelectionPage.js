@@ -13,19 +13,21 @@ const SelectionPage = () => {
     navigate('/Register', { state: { role } });  // Pass the selected role to RegisterPage
   };
 
-  return (
-    <div className="selection-container">
-      <h1>Choose Your Role</h1>
-      <div className="button-group">
-        <button onClick={() => handleSelection("Reader")} className="role-button">
-            <img src={Readericon} alt="Reader Icon" className="icon" /> I'm a Reader
-        </button>
-        <button onClick={() => handleSelection("Author")} className="role-button">
-            <img src={Authoricon} alt="Author Icon" className="icon" /> I'm an Author
-        </button>
-      </div>
+return (
+  <div className="selection-container">
+    <h1 className="title">Choose Your Role</h1> {/* Corrected classname */}
+    <div className="button-group">
+      <button className="role-button" onClick={() => handleSelection('Reader')}>
+        <img src={Readericon} alt="Reader Icon" className="icon" />
+        I'm a Reader
+      </button>
+      <button className="role-button" onClick={() => handleSelection('Author')}>
+        <img src={Authoricon} alt="Author Icon" className="icon" />
+        I'm an Author
+      </button>
     </div>
-  );
+  </div>
+);
 };
 
 export default SelectionPage;

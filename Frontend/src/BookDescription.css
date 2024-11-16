@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css?family=Borel');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.book-page {
+    background-color: #FEF8E8;
+    min-height: 100vh; /* Ensures background color covers full page height */
+  }
+  
+  .book-page body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito Sans';
+  }
+  
+  /* Header */
+  .book-page .author-header {
+    margin-top: 21px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: solid 1px black;
+  }
+  
+  .book-page .logo {
+    width: 200px; 
+    height: auto;
+  }
+  
+  .book-page  .actions {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .book-page  .actions a {
+    margin-left: 70px;
+  }
+  
+  .book-page  .home {
+    width: 50px; /* Adjust size as needed */
+    height: auto; /* Adjust size as needed */
+  }
+  
+  .book-page  .whishlist {
+    width: 50px;
+    height: auto;
+  }
+  
+  .book-page  .author-profile{
+    width : 50px;
+    height: auto;
+  }
+  
+  
+  /* Main Content */
+  .book-page  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    margin-left: 80px;
+    margin-top: 66px;
+    margin-bottom: 22px;
+    
+  }
+  
+  .book-page  .book-details {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .book-page  .book-cover {
+    width: 297px;
+    height: 504px;
+    border-radius: 8px;
+  }
+  
+  .book-page  .book-info{
+  margin-left: 80px;
+  } 
+
+  .book-page  .book-info h2 {
+    width: 355px;
+    height: 49px;
+    font-weight: 700;
+    font-size: 36px;
+  }
+
+  .book-page  .book-info .authorname{
+    color:#6E5C59;
+    font-weight: 700;
+  }
+  
+  .book-page  .book-info .rating{
+    font-weight: 700;
+    margin-top: 14px;
+
+  }
+
+  .book-page  .book-info .price{
+    margin-top: 34px;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .book-page  .descriptioncontainer{
+    color: black;
+    width: 545px;
+    height: 154px;
+    margin-top: 17px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: Nunito Sans;
+  }
+
+  .book-page  .button-group {
+    display: flex;
+    margin-top: 33px;
+  }
+  
+  .book-page  .read-button {
+    width: 207px;
+    height: 53px;
+    border-radius: 10px;
+    font-weight: 800;
+    font-size: 18px;
+    font-family: Nunito Sans;
+    background-color: #7F265B;
+    color: #FFFFFF;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .book-page  .read-button:hover{
+    background-color: #a4004c;
+  }
+  
+  
+  .book-page  .wishlist-share {
+    display: flex;
+    align-items: center;
+  }
+  
+  .book-page  .wishlist-button {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between icon and text */
+    background-color: transparent;
+    border: none;
+    font-size: 19px;
+    font-weight: 500;
+    color: #000;
+    cursor: pointer;
+    margin-top: 34px;
+  }
+  
+  .book-page  .wishlist-button .icon {
+    width: 16px;
+    height: 16px;
+  }
+  
+  .book-page  .border2{
+    border: solid 1px black;
+  }
+
+
+  .book-page  .container {
+    display: flex;
+    
+}
+
+.book-page  .left-column {
+    width: 488px;
+    height: 312px;
+    border-right: 1px solid black;
+    
+}
+
+.book-page  .right-column {
+    margin-left: 56px;
+    margin-top: 44px;
+}
+
+.book-page  .title {
+  margin-left: 151px;
+  font-size: 32px;
+  font-weight: 600;
+  font-family: Nunito Sans;
+  margin-top: 46px;
+  color: black;
+}
+.book-page  .right-column {
+  margin-top: 44px;
+  margin-left: 58px;
+  
+}
+
+.book-page  .detail {
+ margin-bottom: 30px;
+}
+
+.book-page  .Genre {
+  font-weight: 600;
+  font-size: 24px;
+  font-family: Nunito Sans;
+  color: #6E5C59;
+  margin-right: 80px;
+  
+}
+
+.book-page  .language{
+  font-weight: 600;
+  font-size: 24px;
+  font-family: Nunito Sans;
+  color: #6E5C59;
+  margin-right: 38px;
+}
+
+.book-page  .typeof{
+  font-weight: 600;
+  font-size: 20px;
+  font-family: Nunito Sans;
+  color: black;
+}
+  /* Footer */
+  
+  

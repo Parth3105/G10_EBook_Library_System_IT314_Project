@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css?family=Borel');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+.search-filter-before-login {
+    background: #FEF8E8;
+    min-height: 100vh; /* Ensures background color covers full page height */
+  }
+  
+  .search-filter-before-login body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito Sans';
+  }
+  
+  .search-filter-before-login header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  
+  }
+  
+  .search-filter-before-login .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .search-filter-before-login .fliplogo {
+    width: auto;
+    height: 70px;
+    padding-top: 11px;
+    padding-left: 15px;
+  }
+  
+  .search-filter-before-login nav {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+  }
+  
+  .search-filter-before-login .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .search-filter-before-login .log-icon {
+    padding-right: 5px;
+    object-fit: contain;
+  }
+  
+  .search-filter-before-login nav a {
+    text-decoration: none;
+    color: #000;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .search-filter-before-login .nav-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  
+  .search-filter-before-login main {
+    padding: 2rem;
+    padding-top: 5px;
+  }
+  
+  .search-filter-before-login .search-container {
+    position: relative;
+    margin-top: 5px;
+    padding-left: 30px;
+    padding-right: 15px;
+  }
+  
+  .search-filter-before-login .search-container input[type="search"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #d4c5c5;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    background-image: url('searchicon.png');
+    background-position: 15px 3px;
+    background-size: 30px 27px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    padding-left: 50px;
+  }
+  
+  .search-filter-before-login h2 {
+    margin-left: 30px;
+  }
+  
+  .search-filter-before-login .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'Nunito Sans';
+    font-weight: 300;
+    margin-left: 30px;
+  }
+  
+  .search-filter-before-login .filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: 'Nunito Sans';
+    font-weight: 300;
+  }
+  
+  .search-filter-before-login .select-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-right: 100px;
+    font-family: 'Nunito Sans';
+    font-weight: 300;
+  }
+  
+  .search-filter-before-login .placeholder {
+    font-family: 'Nunito Sans';
+    font-weight: 300;
+  }
+  
+  .search-filter-before-login select {
+    padding: 0.5rem 2rem 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    background-color: #dae9ef;
+    font-size: 1rem;
+    font-family: 'Nunito Sans';
+    font-weight: 300;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  .search-filter-before-login .dropdown-icon {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+  
+  .search-filter-before-login .apply-filter {
+    margin-left: auto;
+    padding: 0.5rem 1rem;
+    background-color: #7F265B;
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.03rem;
+    cursor: pointer;
+    margin-right: 400px;
+    height: 50px;
+    width: 150px;
+    font-family: 'Nunito Sans';
+    font-weight: bold;
+  }
+  
+  .search-filter-before-login .apply-filter:hover {
+    background-color: #7F265B;
+  }
+  
+  @media (max-width: 768px) {
+    .search-filter-before-login .filter-container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .search-filter-before-login .apply-filter {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+  

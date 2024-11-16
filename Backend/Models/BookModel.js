@@ -1,69 +1,85 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const bookSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
-    trim: true  // to ensure the removal of whitespaces at the start and end of the string.
+    trim: true,
   },
 
   subtitle: {
     type: String,
-    trim: true
+    trim: true,
   },
 
   author: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
+
+  // Array of co-authors, each with a name and email
+  coAuthors: [
+    {
+      name: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+      email: {
+        type: String,
+        required: false,
+        trim: true,
+      },
+    },
+  ],
 
   genre: {
     type: [String],
-    required: true
+    required: true,
   },
 
   description: {
     type: String,
-    trim: true
+    trim: true,
   },
-  
+
   language: {
     type: String,
     required: true,
-    trim: true
+    trim: true,
   },
 
   pages: {
     type: Number,
-    min: 1
-  },
-  
-  amount: {
-      type: Number,
-      required: true,
-      min: 0 // Ensuring negative don't get inserted.
+    min: 1,
   },
 
-  ratings: {
-    averageRating: {
-      type: Number,
-      min: 0,
-      max: 5 // Ensuring rating between 0 to 5.
-    },
-    ratingCount: {
-      type: Number,
-      min: 0
-    }
+  amount: {
+    type: Number,
+    required: true,
+    min: 0, // Ensuring no negative values
   },
 
   createdAt: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
 
-  // Addition of coverpage and ebook PDF left.
+  // Placeholders for cover page and eBook PDF fields (if needed)
+  coverImage: {
+    type: String,
+    required: true,
+  },
 
+  file: {
+    type: String,
+    required: true,
+  },
 });
 
-module.exports = mongoose.model('book', bookSchema);
+if (mongoose.models['Book']) {
+  delete mongoose.models['Book'];
+}
+
+module.exports = mongoose.model("Book", bookSchema);

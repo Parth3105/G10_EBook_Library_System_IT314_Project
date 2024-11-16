@@ -12,8 +12,13 @@ import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import HomePageReader from './HomePageReader';
 import HomePageAuthor from './HomePageAuthor' ;
-import Home from "./Home";
-
+import AuthorProfile from './AuthorProfile';
+import AuthorReadingHistory from './AuthorReadingHistory';
+import AuthorUpload from './AuthorUpload';
+import Wishlistpage from './Wishlistpage';
+import ReaderProfile from './ReaderProfile';
+import ReaderReadingHistory from './ReaderReadingHistory';
+import BookDescription from './BookDescription';
 
 const App = () => {
   return (
@@ -30,7 +35,13 @@ const App = () => {
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/reader" element={<HomePageReader />} />
         <Route path="/author" element={<HomePageAuthor />} />
-        <Route path="/test" element={<Home />} />
+        <Route path="/author-profile" element={<AuthorProfile/>}/>
+        <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
+        <Route path="/author-upload" element={<AuthorUpload/>}/>
+        <Route path="/Wishlist" element={<Wishlistpage/>} />
+        <Route path="/reader-profile" element={<ReaderProfile />} />
+        <Route path="/reader-history" element={<ReaderReadingHistory />} />
+        <Route path="/book-description" element={<BookDescription/>} />
 
       </Routes>
     </Router>
