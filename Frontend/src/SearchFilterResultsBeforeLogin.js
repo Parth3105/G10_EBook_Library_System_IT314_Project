@@ -8,6 +8,9 @@ import searchIcon from './images/searchicon.png'
 import profileicon from './images/profileicon.png'
 import bookimage from './images/jaws.png'
 import './SearchFilterResultsBeforeLogin.css'
+import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import LoginPage from './LoginPage';
 
 export default function SearchFilterResultsBeforeLogin() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -31,6 +34,14 @@ export default function SearchFilterResultsBeforeLogin() {
     { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
   ];
 
+  const navigate = useNavigate();
+
+  const handleclearFilter = () => {
+    // Implement filter logic here
+    navigate("/search-before");
+  }
+
+
   return (
     <div className="search-filter-results-before-login">
       <div className="book-search">
@@ -40,11 +51,11 @@ export default function SearchFilterResultsBeforeLogin() {
           </div>
           <nav>
             <div className="nav-group">
-              <a href="#login" className="login-link">Login</a> |
-              <a href="#register" className="register-link">Register</a>
-              <a href="#home" className="home-icon">
-                <img src={homeicon} alt="Home" className="nav-icon" />
-              </a>
+            <Link to="/LoginPage" className="nav-icon">Login</Link> | 
+            <Link to="/Register" className="nav-icon">Register</Link>
+            <Link to="/home" className="home">
+            <img src={homeicon} alt="Home" className="nav-icon" />
+            </Link>
             </div>
           </nav>
         </header>
@@ -70,7 +81,7 @@ export default function SearchFilterResultsBeforeLogin() {
                 </select>
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
-              <div className="select-wrapper">
+              {/*<div className="select-wrapper">
                 <select value={name} onChange={(e) => setName(e.target.value)}>
                   <option value="" className="placeholder" disabled hidden>Name</option>
                   <option value="asc">A to Z</option>
@@ -85,7 +96,7 @@ export default function SearchFilterResultsBeforeLogin() {
                   <option value="desc">Z to A</option>
                 </select>
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
-              </div>
+              </div>*/}
               <div className="select-wrapper">
                 <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                   <option value="" className="placeholder" disabled hidden>Language</option>
@@ -97,7 +108,10 @@ export default function SearchFilterResultsBeforeLogin() {
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
             </div>
+            <div className="buttons">
             <button className="apply-filter" onClick={handleApplyFilter}>Apply Filter</button>
+            <button className="clear-filter" onClick={handleclearFilter}>Clear Filter</button>
+            </div>
           </div>
 
           

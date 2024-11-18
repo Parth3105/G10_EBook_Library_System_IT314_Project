@@ -8,6 +8,7 @@ import searchIcon from './images/searchicon.png'
 import profileicon from './images/profileicon.png'
 import './SearchFilterBeforeLogin.css'
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 
 export default function SearchFilterBeforeLogin() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -21,7 +22,7 @@ export default function SearchFilterBeforeLogin() {
   const handleApplyFilter = () => {
     // Implement filter logic here
     console.log('Applying filters:', { searchTerm, genre, name, author, language })
-    navigate("/SearchFilterResultsBeforeLogin");
+    navigate("/search-results-before");
   }
 
   return (
@@ -33,11 +34,11 @@ export default function SearchFilterBeforeLogin() {
       </div>
       <nav>
         <div className="nav-group">
-          <a href="#login" className="login-link">Login</a> | 
-          <a href="#register" className="register-link">Register</a>
-          <a href="#home" className="home-icon">
+        <Link to="/LoginPage" className="login-link">Login</Link> | 
+        <Link to="/Register" className="register-link">Register</Link>
+        <Link to="/home" className="home-icon">
             <img src={homeicon} alt="Home" className="nav-icon" />
-          </a>
+        </Link>
         </div>
       </nav>
     </header>

@@ -9,6 +9,7 @@ import profileicon from './images/profileicon.png'
 import bookimage from './images/jaws.png'
 import { Link } from 'react-router-dom'
 import './SearchFilterResultsAfterLogin.css'
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
 export default function SearchFilterResultsAfterLogin() {
@@ -44,7 +45,14 @@ export default function SearchFilterResultsAfterLogin() {
       setBooks(response.data);
     })
   },[])
+  
+  
+  const navigate = useNavigate();
 
+  const handleclearFilter = () => {
+    // Implement filter logic here
+    navigate("/search-after");
+  }
 
   return (
     <div className="search-filter-results-after-login">
@@ -57,10 +65,10 @@ export default function SearchFilterResultsAfterLogin() {
           <Link to="/home" className="home">
             <img src={homeicon} alt="home" />
           </Link>
-          <Link to="/whishlist" className="whishlist">
+          <Link to="/Wishlist" className="whishlist">
             <img src={wishlisticon} alt="whishlist" />
           </Link>
-          <Link to="/author-profile" className="author-profile">
+          <Link to="/reader-profile" className="author-profile">
             <img src={profileicon} alt="profile-photo" />
           </Link>
         </div>
@@ -116,7 +124,10 @@ export default function SearchFilterResultsAfterLogin() {
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
             </div>
+            <div className="buttons">
             <button className="apply-filter" onClick={handleApplyFilter}>Apply Filter</button>
+            <button className="clear-filter" onClick={handleclearFilter}>Clear Filter</button>
+            </div>
           </div>
 
           
