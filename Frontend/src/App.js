@@ -20,6 +20,10 @@ import ReaderProfile from './ReaderProfile';
 import ReaderReadingHistory from './ReaderReadingHistory';
 import BookDescription from './BookDescription';
 import AuthorBookUpload from './AuthorBookUpload';
+import SearchFilterAfterLogin from "./SearchFilterAfterLogin";
+import SearchFilterBeforeLogin from "./SearchFilterBeforeLogin";
+import SearchFilterResultsAfterLogin from "./SearchFilterResultsAfterLogin";
+import SearchFilterResultsBeforeLogin from "./SearchFilterResultsBeforeLogin";
 
 const App = () => {
   return (
@@ -44,7 +48,10 @@ const App = () => {
         <Route path="/reader-profile" element={<ReaderProfile />} />
         <Route path="/reader-history" element={<ReaderReadingHistory />} />
         <Route path="/book-description" element={<BookDescription/>} />
-
+        <Route path="/search-after" element={<SearchFilterAfterLogin/>} />
+        <Route path="/search-before" element={<SearchFilterBeforeLogin/>} />
+        <Route path="/search-results-after" element={<SearchFilterResultsAfterLogin/>} />
+        <Route path="/search-results-before" element={<SearchFilterResultsBeforeLogin/>} />
 
       </Routes>
     </Router>
