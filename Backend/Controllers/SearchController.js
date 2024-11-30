@@ -26,8 +26,8 @@ module.exports.searchEBook = async (req, res) => {
             ? (genre = genreOptions)
             : (genre = req.query.genre.split(","));
 
-         // Make genre filtering case-insensitive
-         genre = genre.map((g) => new RegExp(`^${g}$`, "i"));
+        // Make genre filtering case-insensitive
+        genre = genre.map((g) => new RegExp(`^${g}$`, "i"));
 
         // Set up sort order
         req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
@@ -73,7 +73,7 @@ module.exports.getRecentBooks = async (req, res) => {
         const books = await Book.find({})
             .sort({ createdAt: -1 }) // Sort by `createdAt` field in descending order
             .limit(4);              // Limit the result to the 4 most recent books
-        res.send(books); 
+        res.send(books);
     } catch (error) {
         res.send("Error fetching recent books");
     }
@@ -82,10 +82,25 @@ module.exports.getRecentBooks = async (req, res) => {
 module.exports.getBooks = async (req, res) => {
     try {
         const books = await Book.find({})
-            .sort({ title: 1 }); // Sort lexicographically (ascending order)
+            .sort({ createdAt: -1 })
 
-        res.send(books);
+        if (!books) {
+            return res.status(404).json({
+                code: 404,
+                msg: "No books found"
+            });
+        }
+
+        return res.status(200).json({
+            code: 200,
+            books: books
+        });
     } catch (error) {
-        res.send({ code: 501, msg: "Error fetching books", error });
+        console.error("Get Books Error:", error);
+        return res.status(500).json({
+            code: 500,
+            msg: "Error fetching books",
+            error: error.message
+        });
     }
 };

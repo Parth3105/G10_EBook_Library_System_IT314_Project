@@ -3,9 +3,19 @@ const books = require('../Models/BookModel');
 const userModel = require("../Models/UserModel");
 const fs = require("fs");
 const { uploadFileToDrive, setViewOnlyPermission } = require('../Utils/googleDrive');
-
+const { oauth2Client, ensureValidAccessToken } = require('../config/googleOAuth');
 module.exports.uploadBook = async (req, res) => {
     const { title, subtitle, author, coAuthors, genre, description, language, pages, amount } = req.body;
+
+    // try {
+    //     // Ensure a valid access token
+    //     await ensureValidAccessToken();
+
+    //     // (Existing code for file upload, book creation, etc.)
+    // } catch (error) {
+    //     console.error("Error uploading book:", error);
+    //     return res.status(403).json({ msg: 'Error uploading book', error: error.message });
+    // }
 
     try {
         // Check if required files (coverImage and bookFile) are provided
@@ -14,9 +24,9 @@ module.exports.uploadBook = async (req, res) => {
         }
 
         // Check if the book already exists
-        const doesExist=await books.exists({title: title, author: author});
-        if(doesExist){
-            return res.send({code: 402, msg: "Book already exists!!"});
+        const doesExist = await books.exists({ title: title, author: author });
+        if (doesExist) {
+            return res.send({ code: 402, msg: "Book already exists!!" });
         }
 
         // Upload cover image to Cloudinary (or use other storage for images)
@@ -63,9 +73,35 @@ module.exports.uploadBook = async (req, res) => {
         });
 
         await newBook.save();
-        return res.send({code: 401, msg: 'Book uploaded successfully', book: newBook });
+        return res.send({ code: 401, msg: 'Book uploaded successfully', book: newBook });
     } catch (error) {
         console.error("Error uploading book:", error);
         return res.send({ code: 403, msg: 'Error uploading book', error: error });
+    }
+};
+
+module.exports.getBookById = async (req, res) => {
+    try {
+        const bookId = req.params.id;
+        const book = await books.findById(bookId);
+
+        if (!book) {
+            return res.status(404).json({
+                code: 404,
+                msg: 'Book not found'
+            });
+        }
+
+        return res.status(200).json({
+            code: 200,
+            book
+        });
+    } catch (error) {
+        console.error("Error fetching book:", error);
+        return res.status(500).json({
+            code: 500,
+            msg: 'Error fetching book details',
+            error: error.message
+        });
     }
 };

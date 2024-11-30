@@ -1,66 +1,72 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
-import "./Wishlistpage.css";
-import homeicon from "./images/homeicon.png";
-import wishlisticon from "./images/wishlisticon.png";
-import profileicon from "./images/profileicon.png";
-import removeIcon from "./images/removeicon.png";
-import logo from "./images/logo.png";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom'; // Import Link for navigation
+import './Wishlistpage.css';
+import homeIcon from './images/homeicon.png'
+import wishlistIcon from './images/wishlisticon.png'
+import profileIcon from './images/profileicon.png'
+import removeIcon from './images/removeicon.png'
+import logo from './images/logo.png'
+import axios from 'axios';
+
 
 const Wishlist = () => {
-  const [activeIcon, setActiveIcon] = useState("wishlist");
+  const navigate = useNavigate();
+  const [activeIcon, setActiveIcon] = useState('wishlist');
   const [books, setBooks] = useState([]);
-  const storedUsername = localStorage.getItem("USERNAME");
+  const storedUsername = localStorage.getItem('USERNAME');
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/getWishlist/${storedUsername}`)
-      .then((response) => {
+    axios.get(`http://localhost:5000/getWishlist/${storedUsername}`)
+      .then(response => {
         if (response.data.code === 300) {
           setBooks(response.data.wishlist);
         }
-      });
-  });
+      })
+  })
 
   const handleIconClick = (icon) => {
     setActiveIcon(icon);
   };
 
   const handleRemove = (book) => {
-    axios.post(`http://localhost:5000/rmFromWishlist`, book);
-    setBooks(books.filter((book) => book !== book));
+    axios.post(`http://localhost:5000/rmFromWishlist`, book)
+    setBooks(books.filter(book => book !== book));
+  };
+
+  const handleViewClick = (book) => {
+    // console.log(book._id);
+    navigate(`/book/${book.bookId}`);
   };
 
   return (
     <div className="wishlist-container">
       <header className="header">
-        <div className="flip-the-page">
+        <div className="nav-icon">
           <img src={logo} alt="Logo" className="logo" />
         </div>
-        <div className="nav-icons">
-          <Link to="/author" onClick={() => handleIconClick("home")}>
+        <nav className="nav-icons">
+          <Link to="/reader" onClick={() => handleIconClick('home')}>
             <img
-              src={homeicon}
+              src={homeIcon}
               alt="Home"
-              className={`homeicon ${activeIcon === "home" ? "" : ""}`}
+              className={`homeicon ${activeIcon === 'home' ? 'active' : ''}`}
             />
           </Link>
-          <Link to="/wishlist" onClick={() => handleIconClick("wishlist")}>
+          <Link to="/wishlist" onClick={() => handleIconClick('wishlist')}>
             <img
-              src={wishlisticon}
+              src={wishlistIcon}
               alt="Wishlist"
-              className={`wishlisticon ${activeIcon === "wishlist" ? "" : ""}`}
+              className={`wishlisticon ${activeIcon === 'wishlist' ? 'active' : ''}`}
             />
           </Link>
-          <Link to="/author-profile" onClick={() => handleIconClick("profile")}>
+          <Link to="/reader-profile" onClick={() => handleIconClick('profile')}>
             <img
-              src={profileicon}
+              src={profileIcon}
               alt="Profile"
-              className={`profileicon ${activeIcon === "profile" ? "" : ""}`}
+              className={`profileicon ${activeIcon === 'profile' ? 'active' : ''}`}
             />
           </Link>
-        </div>
+        </nav>
       </header>
       <main>
         <h1 className="wishlist-title">My Wishlist</h1>
@@ -68,17 +74,13 @@ const Wishlist = () => {
           {books.length > 0 ? (
             books.map((book) => (
               <div key={book} className="wishlist-item">
-                <img
-                  src={book.coverImage}
-                  alt={book.bookTitle}
-                  className="book-cover"
-                />
+                <img src={book.coverImage} alt={book.bookTitle} className="book-cover" />
                 <div className="details">
                   <h2 className="book-title">{book.bookTitle}</h2>
                   <p className="book-author">{book.author}</p>
-                  <Link to={`/reading/`} className="read-btn">
+                  <button onClick={() => handleViewClick(book)} className="read-btn">
                     View
-                  </Link>
+                  </button>
                 </div>
                 <button
                   className="remove-btn"
