@@ -12,82 +12,64 @@
 
 .wishlist-container {
   max-width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 10px;
-  overflow-y: auto;
+  margin: auto;
+  padding: 20px;
 }
-
-/* Header (navbar) styling */
-
 .wishlist-container .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 38px;
+  padding: 0px 20px;
   border-bottom: 1px solid black;
-  margin-top: -34px;
-  
- 
-  
+  margin-top: -48px;
 }
-
-
 .wishlist-container .logo {
   height: auto; /* Adjust logo size as needed */
   width: 200px;
   position: absolute;
-    top: 10px;
+    top: 15px;
     left: 40px; /* Positioning logo to the top left */
 }
-
-
 .wishlist-container .nav-icons {
   display: flex;
-  gap: 40px;
+  gap: 50px;
   align-items: center;
   margin-top: 30px;
   margin-bottom: -10px;
   cursor: pointer;
   position: relative;
-  padding-bottom: 6px; /* Space for underline */
+  padding-bottom: 6px;
   padding-top: 7px;
 }
-
-.nav-icons .wishlisticon.active {
-  width: 40px;
+.wishlist-container .nav-icons .wishlisticon  {
+  width: 25px;
   height: auto;
   cursor: pointer;
   position: relative;
   padding-bottom: 10px;
-   /* Space for underline */
+ /* Space for underline */
   padding-top: 28px;
-  border-bottom: 4px solid  #940491; 
-  
-   
- 
-
-  
+  /* border-bottom: 4px solid  #940491; */
 }
-.nav-icons .homeicon {
-  width: 50px;
+.wishlist-container .nav-icons .homeicon {
+  width: 30px;
   height: auto;
   cursor: pointer;
   position: relative;
-  padding-bottom: 5px; 
+  padding-bottom: 10px;
   /* Space for underline */
-  padding-top: 20px;
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
 }
-.nav-icons .profileicon {
-  width: 35px;
+.wishlist-container .nav-icons .profileicon {
+  width: 20px;
   height: auto;
   cursor: pointer;
   position: relative;
   padding-bottom: 5px; /* Space for underline */
-  padding-top: 20px;
-}
+  padding-top: 28px;
+  border-bottom: 4px solid  #940491;
+} 
 
 /* Wishlist title styling with underline */
 
