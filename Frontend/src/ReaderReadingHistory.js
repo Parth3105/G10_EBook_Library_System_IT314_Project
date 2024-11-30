@@ -9,6 +9,7 @@ import removeIcon from './images/removeicon.png'
 import axios from 'axios';
 
 function ReaderReadingHistory() {
+  const [activeicon, setActiveicon] = useState("profile");
   const storedUsername = localStorage.getItem('USERNAME');
   const [books, setBooks] = useState([]);
 
@@ -21,6 +22,10 @@ function ReaderReadingHistory() {
     })
   })
 
+  const handleIconClick = (icon) => {
+    setActiveicon(icon);
+  };
+
   const handleRemove = (book) => {
     axios.post(`http://localhost:5000/rmHistory`,book)
     setBooks(books.filter(book => book !== book));
@@ -29,20 +34,32 @@ function ReaderReadingHistory() {
   return (
     <div className="reader-history-page">
       <header className="history-header">
-        <div className='logo'>
-          <img src={logo} alt="FlipThePage" className="logoicon"/>
-        </div>
-        <div className="readeraction">
-          <Link to="/home" className="home">
-            <img src={homeicon} alt="Home" />
-          </Link>
-          <Link to="/wishlist" className="wishlist">
-            <img src={wishlisticon} alt="Wishlist" />
-          </Link>
-          <Link to="/reader-profile" className="ReaderProfile">
-            <img src={profileicon} alt="Profile" />
-          </Link>
-        </div>
+      <div className="flip-the-page">
+            <img src={logo} alt="Logo" className="logo" />
+          </div>
+          <div className="nav-icons">
+            <Link to="/reader" onClick={() => handleIconClick("home")}>
+              <img
+                src={homeicon}
+                alt="Home"
+                className={`homeicon ${activeicon === "home" ? "" : ""}`}
+              />
+            </Link>
+            <Link to="/wishlist" onClick={() => handleIconClick("wishlist")}>
+              <img
+                src={wishlisticon}
+                alt="Wishlist"
+                className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
+              />
+            </Link>
+            <Link to="/reader-profile" onClick={() => handleIconClick("profile")}>
+              <img
+                src={profileicon}
+                alt="Profile"
+                className={`profileicon ${activeicon === "profile" ? "" : ""}`}
+              />
+            </Link>
+          </div>
       </header>
       <nav className="navbar">
         <div className="item1">
