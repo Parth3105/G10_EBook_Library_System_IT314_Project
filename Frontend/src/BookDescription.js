@@ -26,6 +26,7 @@ export default function BookDescription() {
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [wishlistMessage, setWishlistMessage] = useState("");
   const storedUsername = localStorage.getItem('USERNAME');
+  const [userRole, setUserRole] = useState('');
 
   // PDF states
   const [numPages, setNumPages] = useState(null);
@@ -42,6 +43,19 @@ export default function BookDescription() {
   useEffect(() => {
     checkWishlist();
   }, [book]);
+
+  useEffect(() => {
+    // Fetch user role
+    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+      .then(response => {
+        if (response.data.code === 100) {
+          setUserRole(response.data.user.userRole);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user role:', error);
+      });
+  }, [storedUsername]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -185,6 +199,22 @@ export default function BookDescription() {
     setScale(prevScale => Math.max(prevScale - 0.1, 0.5));
   };
 
+  const handleHomeClick = () => {
+    if (userRole?.toUpperCase() === 'AUTHOR') {
+      navigate('/author');
+    } else {
+      navigate('/reader');
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (userRole?.toUpperCase() === 'AUTHOR') {
+      navigate('/author-profile');
+    } else {
+      navigate('/reader-profile');
+    }
+  };
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -231,15 +261,21 @@ export default function BookDescription() {
               <img src={fliplogo} alt="FlipThePage" className="logo" />
             </div>
             <div className="actions">
-              <Link to="/home" className="home">
-                <img src={homeicon} alt="home" />
-              </Link>
+              <img 
+                src={homeicon} 
+                alt="home" 
+                onClick={handleHomeClick}
+                style={{ cursor: 'pointer' }}
+              />
               <Link to="/wishlist" className="wishlist">
                 <img src={wishlisticon} alt="wishlist" />
               </Link>
-              <Link to="/author-profile" className="author-profile">
-                <img src={profileicon} alt="profile-photo" />
-              </Link>
+              <img 
+                src={profileicon} 
+                alt="profile-photo" 
+                onClick={handleProfileClick}
+                style={{ cursor: 'pointer' }}
+              />
             </div>
           </header>
 

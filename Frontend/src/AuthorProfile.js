@@ -35,7 +35,7 @@ function AuthorProfile() {
           <Link to="/author" className="home">
             <img src={Homeicon} alt="home" />
           </Link>
-          <Link to="/wishlist" className="wishlist">
+          <Link to="/Wishlist" className="wishlist">
             <img src={Likeicon} alt="whishlist" />
           </Link>
           <Link to="/author-profile" className="author-profile">
@@ -51,7 +51,7 @@ function AuthorProfile() {
           <Link to="/author-upload">My Uploads</Link>
         </div>
         <div className="text-3">
-          <Link to="/author-reading">Reading History</Link>
+          <Link to="/reading-history">Reading History</Link>
         </div>
       </nav>
 
