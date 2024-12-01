@@ -1,7 +1,7 @@
 // src/App.js
 
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import LandingPage from './LandingPage';
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
@@ -11,7 +11,7 @@ import RegisterPage from './RegisterPage';
 import ForgotPassword from './ForgotPassword';
 import ResetPassword from './ResetPassword';
 import HomePageReader from './HomePageReader';
-import HomePageAuthor from './HomePageAuthor' ;
+import HomePageAuthor from './HomePageAuthor';
 import AuthorProfile from './AuthorProfile';
 import AuthorReadingHistory from './AuthorReadingHistory';
 import AuthorUpload from './AuthorUpload';
@@ -41,17 +41,20 @@ const App = () => {
         <Route path="/reader" element={<HomePageReader />} />
         <Route path="/author" element={<HomePageAuthor />} />
         <Route path="/upload/author" element={<AuthorBookUpload />} />
-        <Route path="/author-profile" element={<AuthorProfile/>}/>
-        <Route path="/author-reading" element={<AuthorReadingHistory/>}/>
-        <Route path="/author-upload" element={<AuthorUpload/>}/>
-        <Route path="/Wishlist" element={<Wishlistpage/>} />
+        <Route path="/author-profile" element={<AuthorProfile />} />
+        <Route path="/author-reading" element={<AuthorReadingHistory />} />
+        <Route path="/author-upload" element={<AuthorUpload />} />
+        <Route path="/Wishlist" element={<Wishlistpage />} />
         <Route path="/reader-profile" element={<ReaderProfile />} />
         <Route path="/reader-history" element={<ReaderReadingHistory />} />
-        <Route path="/book-description" element={<BookDescription/>} />
-        <Route path="/search-after" element={<SearchFilterAfterLogin/>} />
-        <Route path="/search-before" element={<SearchFilterBeforeLogin/>} />
-        <Route path="/search-results-after" element={<SearchFilterResultsAfterLogin/>} />
-        <Route path="/search-results-before" element={<SearchFilterResultsBeforeLogin/>} />
+        <Route path="/search-after" element={<SearchFilterAfterLogin />} />
+        <Route path="/search-before" element={<SearchFilterBeforeLogin />} />
+        <Route path="/search-results-after" element={<SearchFilterResultsAfterLogin />} />
+        <Route path="/search-results-before" element={<SearchFilterResultsBeforeLogin />} />
+
+        {/* Book Description Routes with and without parameters*/}
+        <Route path="/book-description" element={<BookDescription />} />
+        <Route path="/book/:id" element={<BookDescription />} />
 
       </Routes>
     </Router>

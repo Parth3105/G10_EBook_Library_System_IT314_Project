@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./AuthorBookUpload.css";
 
 const AuthorBookUpload = () => {
@@ -18,39 +21,170 @@ const AuthorBookUpload = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    const { name, files } = e.target;
-    setFormData({ ...formData, [name]: files[0] });
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
   };
 
   const handleCoAuthorChange = (index, field, value) => {
     const updatedCoAuthors = [...formData.coAuthors];
-    updatedCoAuthors[index][field] = value;
-    setFormData({ ...formData, coAuthors: updatedCoAuthors });
+    updatedCoAuthors[index] = {
+      ...updatedCoAuthors[index],
+      [field]: value
+    };
+    setFormData(prevState => ({
+      ...prevState,
+      coAuthors: updatedCoAuthors
+    }));
+  };
+
+  const removeCoAuthor = (index) => {
+    if (formData.coAuthors.length > 1) {
+      const updatedCoAuthors = formData.coAuthors.filter((_, i) => i !== index);
+      setFormData(prevState => ({
+        ...prevState,
+        coAuthors: updatedCoAuthors
+      }));
+    } else {
+      toast.warning("At least one co-author field must remain");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate required fields
+    if (!formData.title || !formData.author || !formData.genre ||
+      !formData.language || !formData.amount ||
+      !formData.coverImage || !formData.file) {
+      toast.error("Please fill in all required fields");
+      return;
+    }
+
+    // Show loading toast
+    const loadingToast = toast.loading("Uploading book...");
+
+    try {
+      const formDataToSend = new FormData();
+
+      // Add basic fields
+      formDataToSend.append("title", formData.title);
+      formDataToSend.append("subtitle", formData.subtitle);
+      formDataToSend.append("author", formData.author);
+      formDataToSend.append("genre", formData.genre);
+      formDataToSend.append("description", formData.description);
+      formDataToSend.append("language", formData.language);
+      formDataToSend.append("pages", formData.pages);
+      formDataToSend.append("amount", formData.amount);
+
+      // Add files
+      formDataToSend.append("coverImage", formData.coverImage);
+      formDataToSend.append("bookFile", formData.file);
+
+      // Add co-authors as JSON string
+      formDataToSend.append("coAuthors", JSON.stringify(formData.coAuthors));
+
+      const response = await axios.post(
+        "http://localhost:5000/upload",
+        formDataToSend,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      // Dismiss loading toast
+      toast.dismiss(loadingToast);
+
+      if (response.data.code === 401) {
+        toast.success("Book uploaded successfully!");
+        // Reset form
+        setFormData({
+          title: "",
+          subtitle: "",
+          author: "",
+          coAuthors: [{ name: "", email: "" }],
+          genre: "",
+          description: "",
+          language: "",
+          pages: "",
+          amount: "",
+          coverImage: null,
+          file: null,
+        });
+      } else {
+        toast.error(response.data.msg);
+      }
+    } catch (error) {
+      // Dismiss loading toast
+      toast.dismiss(loadingToast);
+      console.error("Error uploading book:", error);
+      toast.error(error.response?.data?.msg || "Error uploading book. Please try again.");
+    }
+  };
+
+  const handleFileChange = (e) => {
+    const { name, files } = e.target;
+    const file = files[0];
+
+    // Validate cover image
+    if (name === "coverImage") {
+      if (!file.type.startsWith("image/")) {
+        toast.error("Please upload a valid image file");
+        e.target.value = "";
+        return;
+      }
+      if (file.size > 5 * 1024 * 1024) { // 5MB limit
+        toast.error("Image size should be less than 5MB");
+        e.target.value = "";
+        return;
+      }
+    }
+
+    // Validate PDF file
+    if (name === "file") {
+      if (file.type !== "application/pdf") {
+        toast.error("Please upload a PDF file");
+        e.target.value = "";
+        return;
+      }
+      if (file.size > 50 * 1024 * 1024) { // 50MB limit
+        toast.error("PDF size should be less than 50MB");
+        e.target.value = "";
+        return;
+      }
+    }
+
+    setFormData({ ...formData, [name]: file });
   };
 
   const addCoAuthor = () => {
+    if (formData.coAuthors.length >= 5) {
+      toast.warning("Maximum 5 co-authors allowed");
+      return;
+    }
     setFormData({
       ...formData,
       coAuthors: [...formData.coAuthors, { name: "", email: "" }],
     });
   };
 
-  const removeCoAuthor = (index) => {
-    const updatedCoAuthors = formData.coAuthors.filter((_, i) => i !== index);
-    setFormData({ ...formData, coAuthors: updatedCoAuthors });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form Data Submitted:", formData);
-  };
-
   return (
     <div className="upload-page">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <form className="upload-form" onSubmit={handleSubmit}>
         <h2>Upload Your Book</h2>
         <label>

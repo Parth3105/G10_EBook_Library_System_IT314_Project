@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import carticon from './images/carticon.png'
 import homeicon from './images/homeicon.png'
 import dropdownicon from './images/dropdownicon.png'
@@ -24,11 +24,11 @@ export default function SearchFilterResultsAfterLogin() {
     const params = new URLSearchParams();
     if (genre) params.append('genre', genre);
     if (language) params.append('language', language);
-    if (searchTerm) params.append('search',searchTerm);
+    if (searchTerm) params.append('search', searchTerm);
     axios
       .get(`http://localhost:5000/searchBook?${params.toString()}`)
       .then((response) => {
-        setBooks(response.data.books||[]);
+        setBooks(response.data.books || []);
         console.log(response);
       })
       .catch((error) => {
@@ -38,33 +38,33 @@ export default function SearchFilterResultsAfterLogin() {
   };
 
   // fetch all books
-  useEffect(()=>{
+  useEffect(() => {
     axios.get(`http://localhost:5000/getAllBooks`)
-    .then(response => {
-      setBooks(response.data);
-    })
-  },[])
+      .then(response => {
+        setBooks(response.data);
+      })
+  }, [])
 
 
   return (
     <div className="search-filter-results-after-login">
       <div className="book-search">
-      <header className="author-header">
-        <div className="logo-icon">
-          <img src={fliplogo} alt="FlipThePage" className="logo" />
-        </div>
-        <div className="actions">
-          <Link to="/home" className="home">
-            <img src={homeicon} alt="home" />
-          </Link>
-          <Link to="/whishlist" className="whishlist">
-            <img src={wishlisticon} alt="whishlist" />
-          </Link>
-          <Link to="/author-profile" className="author-profile">
-            <img src={profileicon} alt="profile-photo" />
-          </Link>
-        </div>
-      </header>
+        <header className="author-header">
+          <div className="logo-icon">
+            <img src={fliplogo} alt="FlipThePage" className="logo" />
+          </div>
+          <div className="actions">
+            <Link to="/home" className="home">
+              <img src={homeicon} alt="home" />
+            </Link>
+            <Link to="/whishlist" className="whishlist">
+              <img src={wishlisticon} alt="whishlist" />
+            </Link>
+            <Link to="/author-profile" className="author-profile">
+              <img src={profileicon} alt="profile-photo" />
+            </Link>
+          </div>
+        </header>
         <main>
           <div className="search-container">
             <input
@@ -119,22 +119,22 @@ export default function SearchFilterResultsAfterLogin() {
             <button className="apply-filter" onClick={handleApplyFilter}>Apply Filter</button>
           </div>
 
-          
+
         </main>
       </div>
       <div className="book-results">
-            <h2>Results:</h2>
-            <div className="books-grid">
-              {books.map((book, index) => (
-                <div key={index} className="book-card">
-                  <img src={book.coverImage} alt="booktitle" className="book-image" />
-                  <h3 className="bookname">{book.title}</h3>
-                  <p className="author-text">{book.author}</p>
-                  <button className="view-button">View</button>
-                </div>
-              ))}
+        <h2>Results:</h2>
+        <div className="books-grid">
+          {books.map((book, index) => (
+            <div key={index} className="book-card">
+              <img src={book.coverImage} alt="booktitle" className="book-image" />
+              <h3 className="bookname">{book.title}</h3>
+              <p className="author-text">{book.author}</p>
+              <button className="view-button">View</button>
             </div>
-          </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
