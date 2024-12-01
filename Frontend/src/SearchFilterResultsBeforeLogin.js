@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import carticon from './images/carticon.png'
 import homeicon from './images/homeicon.png'
 import dropdownicon from './images/dropdownicon.png'
@@ -11,36 +11,56 @@ import './SearchFilterResultsBeforeLogin.css'
 import {Link} from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import LoginPage from './LoginPage';
+import axios from 'axios';
 
 export default function SearchFilterResultsBeforeLogin() {
   const [searchTerm, setSearchTerm] = useState('');
   const [genre, setGenre] = useState('');
-  const [name, setName] = useState('');
-  const [author, setAuthor] = useState('');
   const [language, setLanguage] = useState('');
-
-  const handleApplyFilter = () => {
-    console.log('Applying filters:', { searchTerm, genre, name, author, language });
-  };
-
-  const books = [
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-    { title: 'Jaws: A Novel', author: 'Peter Benchley', price: 'INR 700', rating: 5, image: 'jaws.jpg' },
-  ];
-
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    // Fetch all books when component mounts
+    axios.get(`http://localhost:5000/getAllBooks`)
+      .then(response => {
+        if (response.data.code === 200) {
+          setBooks(response.data.books || []);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching books:', error);
+        setBooks([]);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  const handleApplyFilter = () => {
+    const params = new URLSearchParams();
+    if (genre) params.append('genre', genre);
+    if (language) params.append('language', language);
+    if (searchTerm) params.append('search', searchTerm);
+    
+    axios
+      .get(`http://localhost:5000/searchBook?${params.toString()}`)
+      .then((response) => {
+        setBooks(response.data.books || []);
+      })
+      .catch((error) => {
+        console.error('Error fetching books:', error);
+        setBooks([]);
+      });
+  };
+
   const handleclearFilter = () => {
-    // Implement filter logic here
+    setSearchTerm('');
+    setGenre('');
+    setLanguage('');
     navigate("/search-before");
   }
-
 
   return (
     <div className="search-filter-results-before-login">
@@ -81,22 +101,6 @@ export default function SearchFilterResultsBeforeLogin() {
                 </select>
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
-              {/*<div className="select-wrapper">
-                <select value={name} onChange={(e) => setName(e.target.value)}>
-                  <option value="" className="placeholder" disabled hidden>Name</option>
-                  <option value="asc">A to Z</option>
-                  <option value="desc">Z to A</option>
-                </select>
-                <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
-              </div>
-              <div className="select-wrapper">
-                <select value={author} onChange={(e) => setAuthor(e.target.value)}>
-                  <option value="" className="placeholder" disabled hidden>Author</option>
-                  <option value="asc">A to Z</option>
-                  <option value="desc">Z to A</option>
-                </select>
-                <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
-              </div>*/}
               <div className="select-wrapper">
                 <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                   <option value="" className="placeholder" disabled hidden>Language</option>
@@ -118,20 +122,39 @@ export default function SearchFilterResultsBeforeLogin() {
         </main>
       </div>
       <div className="book-results">
-            <h2>Results:</h2>
-            <div className="books-grid">
-              {books.map((book, index) => (
-                <div key={index} className="book-card">
-                  <img src={bookimage} alt="booktitle" className="book-image" />
-                  <h3 className="bookname">{book.title}</h3>
-                  <p className="author-text">{book.author}</p>
-                  <p className="pricevalue">{book.price}</p>
-                  <p className="pricevalue">⭐ {book.rating}/5</p>
-                  <button className="view-button">View</button>
-                </div>
-              ))}
-            </div>
-          </div>
+        <h2>Results:</h2>
+        <div className="books-grid">
+          {loading ? (
+            <p>Loading books...</p>
+          ) : Array.isArray(books) && books.length > 0 ? (
+            books.map((book, index) => (
+              <div key={index} className="book-card">
+                <img 
+                  src={book.coverImage} 
+                  alt={book.title} 
+                  className="book-image"
+                  onError={(e) => {
+                    e.target.onerror = null;
+                    e.target.src = bookimage; // Your default image
+                  }}
+                />
+                <h3 className="bookname">{book.title}</h3>
+                <p className="author-text">{book.author}</p>
+                <p className="pricevalue">INR {book.amount}</p>
+                <p className="pricevalue">⭐ {book.rating || 5}/5</p>
+                <button 
+                  className="view-button"
+                  onClick={() => navigate(`/book-before/${book._id}`)}
+                >
+                  View
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No books found</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

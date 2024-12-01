@@ -38,6 +38,7 @@ function HomePageAuthor() {
     useEffect(() => {
         fetchBooks();
     }, []);
+    
 
     const fetchBooks = async () => {
         try {
@@ -67,8 +68,16 @@ function HomePageAuthor() {
         navigate(`/book/${bookId}`);
     };
 
-    const handleSearch = (e) => {
-        navigate("/search-results-after");
+    const handleSearchClick = () => {
+        navigate('/search-after');
+    };
+
+    const handleProfileClick = () => {
+        navigate('/author-profile');
+    };
+
+    const handleWishlistClick = () => {
+        navigate('/Wishlist');
     };
 
     return (
@@ -77,13 +86,40 @@ function HomePageAuthor() {
             <header className="header">
                 <img src={Logo} alt="FlipThePage Logo" className="logo" />
                 <div className="search-container">
-                    <input type="text" placeholder="Search ebooks" className="search-bar" />
-                    <img src={searchicon} alt="Search Icon" className="searchicon" />
+                    <input 
+                        type="text" 
+                        placeholder="Search ebooks" 
+                        className="search-bar" 
+                        onClick={handleSearchClick}
+                        readOnly
+                    />
+                    <img 
+                        src={searchicon} 
+                        alt="Search Icon" 
+                        className="searchicon" 
+                        onClick={handleSearchClick}
+                    />
                 </div>
                 <div className="icon-links">
-                    <img src={Home} alt="Icon1" className="header-icon active" />
-                    <img src={Wishlist} alt="Icon2" className="header-icon" />
-                    <img src={Profile} alt="Icon3" className="header-icon" />
+                    <img 
+                        src={Home} 
+                        alt="Home" 
+                        className="header-icon active"
+                    />
+                    <img 
+                        src={Wishlist} 
+                        alt="Wishlist" 
+                        className="header-icon" 
+                        onClick={handleWishlistClick}
+                        style={{ cursor: 'pointer' }}
+                    />
+                    <img 
+                        src={Profile} 
+                        alt="Profile" 
+                        className="header-icon" 
+                        onClick={handleProfileClick}
+                        style={{ cursor: 'pointer' }}
+                    />
                 </div>
             </header>
 

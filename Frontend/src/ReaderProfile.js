@@ -45,7 +45,7 @@ function ReaderProfile() {
                 className={`homeicon ${activeicon === "home" ? "" : ""}`}
               />
             </Link>
-            <Link to="/wishlist" onClick={() => handleIconClick("wishlist")}>
+            <Link to="/Wishlist" onClick={() => handleIconClick("wishlist")}>
               <img
                 src={wishlisticon}
                 alt="Wishlist"
@@ -66,7 +66,7 @@ function ReaderProfile() {
           <Link to="/reader-profile">My Profile</Link>
         </div>
         <div className="item2">
-          <Link to="/reader-history">Reading History</Link>
+          <Link to="/reading-history">Reading History</Link>
         </div>
       </nav>
       <div className="reader-content">

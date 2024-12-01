@@ -7,17 +7,57 @@ import fliplogo from './images/logo.svg'
 import searchIcon from './images/searchicon.png'
 import profileicon from './images/profileicon.png'
 import bookimage from './images/jaws.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './SearchFilterResultsAfterLogin.css'
 import axios from 'axios'
 
 export default function SearchFilterResultsAfterLogin() {
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
   const [genre, setGenre] = useState('');
-  // const [name, setName] = useState('');
-  // const [author, setAuthor] = useState('');
   const [language, setLanguage] = useState('');
   const [books, setBooks] = useState([]);
+  const [userRole, setUserRole] = useState('');
+  const storedUsername = localStorage.getItem('USERNAME');
+
+  useEffect(() => {
+    // Fetch user role
+    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+      .then(response => {
+        if (response.data.code === 100) {
+          setUserRole(response.data.user.userRole);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user role:', error);
+      });
+
+    // Fetch all books
+    axios.get(`http://localhost:5000/getAllBooks`)
+      .then(response => {
+        setBooks(response.data.books || []);
+      })
+      .catch(error => {
+        console.error('Error fetching books:', error);
+        setBooks([]);
+      });
+  }, [storedUsername]);
+
+  const handleHomeClick = () => {
+    if (userRole?.toUpperCase() === 'AUTHOR') {
+      navigate('/author');
+    } else {
+      navigate('/reader');
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (userRole?.toUpperCase() === 'AUTHOR') {
+      navigate('/author-profile');
+    } else {
+      navigate('/reader-profile');
+    }
+  };
 
   // fetch filtered books
   const handleApplyFilter = () => {
@@ -25,26 +65,21 @@ export default function SearchFilterResultsAfterLogin() {
     if (genre) params.append('genre', genre);
     if (language) params.append('language', language);
     if (searchTerm) params.append('search', searchTerm);
+    
     axios
       .get(`http://localhost:5000/searchBook?${params.toString()}`)
       .then((response) => {
         setBooks(response.data.books || []);
-        console.log(response);
       })
       .catch((error) => {
         console.error('Error fetching books:', error);
-        setBooks([]); // Fallback to an empty array on error
+        setBooks([]);
       });
   };
 
-  // fetch all books
-  useEffect(() => {
-    axios.get(`http://localhost:5000/getAllBooks`)
-      .then(response => {
-        setBooks(response.data);
-      })
-  }, [])
-
+  const handleViewBook = (bookId) => {
+    navigate(`/book/${bookId}`);
+  };
 
   return (
     <div className="search-filter-results-after-login">
@@ -54,15 +89,21 @@ export default function SearchFilterResultsAfterLogin() {
             <img src={fliplogo} alt="FlipThePage" className="logo" />
           </div>
           <div className="actions">
-            <Link to="/home" className="home">
-              <img src={homeicon} alt="home" />
-            </Link>
-            <Link to="/whishlist" className="whishlist">
+            <img 
+              src={homeicon} 
+              alt="home" 
+              onClick={handleHomeClick}
+              style={{ cursor: 'pointer' }}
+            />
+            <Link to="/Wishlist">
               <img src={wishlisticon} alt="whishlist" />
             </Link>
-            <Link to="/author-profile" className="author-profile">
-              <img src={profileicon} alt="profile-photo" />
-            </Link>
+            <img 
+              src={profileicon} 
+              alt="profile-photo" 
+              onClick={handleProfileClick}
+              style={{ cursor: 'pointer' }}
+            />
           </div>
         </header>
         <main>
@@ -89,22 +130,6 @@ export default function SearchFilterResultsAfterLogin() {
                 </select>
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
-              {/* <div className="select-wrapper">
-                <select value={name} onChange={(e) => setName(e.target.value)}>
-                  <option value="" className="placeholder" disabled hidden>Name</option>
-                  <option value="asc">A to Z</option>
-                  <option value="desc">Z to A</option>
-                </select>
-                <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
-              </div> */}
-              {/* <div className="select-wrapper">
-                <select value={author} onChange={(e) => setAuthor(e.target.value)}>
-                  <option value="" className="placeholder" disabled hidden>Author</option>
-                  <option value="asc">A to Z</option>
-                  <option value="desc">Z to A</option>
-                </select>
-                <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
-              </div> */}
               <div className="select-wrapper">
                 <select value={language} onChange={(e) => setLanguage(e.target.value)}>
                   <option value="" className="placeholder" disabled hidden>Language</option>
@@ -125,14 +150,23 @@ export default function SearchFilterResultsAfterLogin() {
       <div className="book-results">
         <h2>Results:</h2>
         <div className="books-grid">
-          {books.map((book, index) => (
-            <div key={index} className="book-card">
-              <img src={book.coverImage} alt="booktitle" className="book-image" />
-              <h3 className="bookname">{book.title}</h3>
-              <p className="author-text">{book.author}</p>
-              <button className="view-button">View</button>
-            </div>
-          ))}
+          {Array.isArray(books) && books.length > 0 ? (
+            books.map((book, index) => (
+              <div key={index} className="book-card">
+                <img src={book.coverImage} alt="booktitle" className="book-image" />
+                <h3 className="bookname">{book.title}</h3>
+                <p className="author-text">{book.author}</p>
+                <button 
+                  className="view-button"
+                  onClick={() => handleViewBook(book._id)}
+                >
+                  View
+                </button>
+              </div>
+            ))
+          ) : (
+            <p>No books found</p>
+          )}
         </div>
       </div>
     </div>

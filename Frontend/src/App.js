@@ -24,6 +24,7 @@ import SearchFilterAfterLogin from "./SearchFilterAfterLogin";
 import SearchFilterBeforeLogin from "./SearchFilterBeforeLogin";
 import SearchFilterResultsAfterLogin from "./SearchFilterResultsAfterLogin";
 import SearchFilterResultsBeforeLogin from "./SearchFilterResultsBeforeLogin";
+import BookDescriptionBeforeLogin from "./BookDescriptionBeforeLogin";
 
 const App = () => {
   return (
@@ -46,15 +47,16 @@ const App = () => {
         <Route path="/author-upload" element={<AuthorUpload />} />
         <Route path="/Wishlist" element={<Wishlistpage />} />
         <Route path="/reader-profile" element={<ReaderProfile />} />
-        <Route path="/reader-history" element={<ReaderReadingHistory />} />
-        <Route path="/search-after" element={<SearchFilterAfterLogin />} />
-        <Route path="/search-before" element={<SearchFilterBeforeLogin />} />
-        <Route path="/search-results-after" element={<SearchFilterResultsAfterLogin />} />
-        <Route path="/search-results-before" element={<SearchFilterResultsBeforeLogin />} />
+        <Route path="/reading-history" element={<ReaderReadingHistory />} />
+        <Route path="/search-after" element={<SearchFilterResultsAfterLogin  />} />
+        <Route path="/search-before" element={<SearchFilterResultsBeforeLogin  />} />
+        {/* <Route path="/search-results-after" element={<SearchFilterResultsAfterLogin />} />
+        <Route path="/search-results-before" element={<SearchFilterResultsBeforeLogin />} /> */}
 
         {/* Book Description Routes with and without parameters*/}
         <Route path="/book-description" element={<BookDescription />} />
         <Route path="/book/:id" element={<BookDescription />} />
+        <Route path="/book-before/:id" element={<BookDescriptionBeforeLogin />} />
 
       </Routes>
     </Router>

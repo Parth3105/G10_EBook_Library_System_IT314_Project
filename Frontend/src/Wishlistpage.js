@@ -13,16 +13,30 @@ const Wishlist = () => {
   const navigate = useNavigate();
   const [activeIcon, setActiveIcon] = useState('wishlist');
   const [books, setBooks] = useState([]);
+  const [userRole, setUserRole] = useState('');
   const storedUsername = localStorage.getItem('USERNAME');
+  console.log(userRole);
 
   useEffect(() => {
+    // Fetch user profile to get role
+    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+      .then(response => {
+        if (response.data.code === 100) {
+          setUserRole(response.data.user.userRole);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user role:', error);
+      });
+
+    // Fetch wishlist
     axios.get(`http://localhost:5000/getWishlist/${storedUsername}`)
       .then(response => {
         if (response.data.code === 300) {
           setBooks(response.data.wishlist);
         }
-      })
-  })
+      });
+  }, [storedUsername]);
 
   const handleIconClick = (icon) => {
     setActiveIcon(icon);
@@ -38,6 +52,24 @@ const Wishlist = () => {
     navigate(`/book/${book.bookId}`);
   };
 
+  const handleHomeClick = () => {
+    handleIconClick('home');
+    if (userRole === 'Author') {
+      navigate('/author');
+    } else {
+      navigate('/reader');
+    }
+  };
+
+  const handleProfileClick = () => {
+    handleIconClick('profile');
+    if (userRole === 'Author') {
+      navigate('/author-profile');
+    } else {
+      navigate('/reader-profile');
+    }
+  };
+
   return (
     <div className="wishlist-container">
       <header className="header">
@@ -45,13 +77,12 @@ const Wishlist = () => {
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <nav className="nav-icons">
-          <Link to="/reader" onClick={() => handleIconClick('home')}>
-            <img
-              src={homeIcon}
-              alt="Home"
-              className={`homeicon ${activeIcon === 'home' ? 'active' : ''}`}
-            />
-          </Link>
+          <img
+            src={homeIcon}
+            alt="Home"
+            className={`homeicon ${activeIcon === 'home' ? 'active' : ''}`}
+            onClick={handleHomeClick}
+          />
           <Link to="/wishlist" onClick={() => handleIconClick('wishlist')}>
             <img
               src={wishlistIcon}
@@ -59,13 +90,12 @@ const Wishlist = () => {
               className={`wishlisticon ${activeIcon === 'wishlist' ? 'active' : ''}`}
             />
           </Link>
-          <Link to="/reader-profile" onClick={() => handleIconClick('profile')}>
-            <img
-              src={profileIcon}
-              alt="Profile"
-              className={`profileicon ${activeIcon === 'profile' ? 'active' : ''}`}
-            />
-          </Link>
+          <img
+            src={profileIcon}
+            alt="Profile"
+            className={`profileicon ${activeIcon === 'profile' ? 'active' : ''}`}
+            onClick={handleProfileClick}
+          />
         </nav>
       </header>
       <main>
