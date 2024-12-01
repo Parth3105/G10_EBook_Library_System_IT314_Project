@@ -53,7 +53,7 @@
     object-fit: contain;
   }
   
-  .search-filter-results-before-login nav a {
+  .search-filter-results-before-login nav .nav-icon {
     text-decoration: none;
     color: #000;
     display: flex;
@@ -67,6 +67,10 @@
     object-fit: contain;
   }
   
+  .search-filter-results-before-login .home{
+     padding-left: 12px;
+  }
+
   .search-filter-results-before-login main {
     padding: 2rem;
     padding-top: 5px;
@@ -97,6 +101,7 @@
   
   .search-filter-results-before-login h2 {
     margin-left: 30px;
+    margin-top: 30px;
   }
   
   .search-filter-results-before-login .filter-container {
@@ -107,6 +112,8 @@
     font-family: 'Nunito Sans';
     font-weight: 300;
     margin-left: 30px;
+    margin-top: 30px;
+    
   }
   
   .search-filter-results-before-login .filter-options {
@@ -151,25 +158,32 @@
     pointer-events: none;
   }
   
-  .search-filter-results-before-login .apply-filter {
-    margin-left: auto;
-    padding: 0.5rem 1rem;
-    background-color: #7F265B;
-    color: white;
-    border: none;
-    border-radius: 0.25rem;
-    font-size: 1.03rem;
-    cursor: pointer;
-    margin-right: 400px;
-    height: 50px;
-    width: 150px;
-    font-family: 'Nunito Sans';
-    font-weight: bold;
+  .search-filter-results-before-login .buttons{
+    display: flex; /* Enable Flexbox for alignment */
+  justify-content: flex-end; /* Align buttons to the right */
+  gap: 100px; /* Add spacing between the buttons */
+  margin-right: 350px; /* Adjust position as needed */
   }
   
-  .search-filter-results-before-login .apply-filter:hover {
-    background-color: #7F265B;
-  }
+  .search-filter-results-before-login .apply-filter,
+.search-filter-results-before-login .clear-filter {
+  padding: 0.5rem 1rem;
+  background-color: #7F265B;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1.03rem;
+  cursor: pointer;
+  height: 50px;
+  width: 150px;
+  font-family: 'Nunito Sans';
+  font-weight: bold;
+}
+
+.search-filter-results-before-login .apply-filter:hover,
+.search-filter-results-before-login .clear-filter:hover {
+  background-color: #7F265B;
+}
 
   .search-filter-results-before-login .book-results {
     margin-top: 2rem;

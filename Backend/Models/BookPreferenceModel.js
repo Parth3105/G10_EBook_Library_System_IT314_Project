@@ -1,4 +1,4 @@
-const mongoose=require("mongoose");
+const mongoose = require("mongoose");
 
 const schema = mongoose.Schema(
     {
@@ -23,8 +23,13 @@ const schema = mongoose.Schema(
         coverImage: {
             type: String,
             required: true,
-        },        
+        },
+
+        bookId: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+        }
     }
 );
 
-module.exports = mongoose.model("wishlist",schema);
+module.exports = mongoose.model("wishlist", schema);

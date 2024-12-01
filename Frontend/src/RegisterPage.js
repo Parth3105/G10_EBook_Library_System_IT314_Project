@@ -3,6 +3,8 @@ import "./RegisterPage.css";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 import fliplogo from "./images/logo.png";
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function RegisterPage() {
   // Retrieve the passed role from the location state
@@ -31,31 +33,35 @@ function RegisterPage() {
     await axios
       .post("http://localhost:5000/register", formData)
       .then((result) => {
-        if(result.data.code===400){
-          alert(result.data.msg);
+        if (result.data.code === 400) {
+          toast.error(result.data.msg);
         }
-        else if(result.data.code===401){
-          alert(result.data.msg);
+        else if (result.data.code === 401) {
+          toast.error(result.data.msg);
         }
-        else if(result.data.code===402){
-          alert(result.data.msg);
+        else if (result.data.code === 402) {
+          toast.error(result.data.msg);
         }
-        else if(result.data.code===403){
-          alert(result.data.msg);
+        else if (result.data.code === 403) {
+          toast.error(result.data.msg);
         }
-        else if(result.data.code===404){
-          alert(result.data.msg);
+        else if (result.data.code === 404) {
+          toast.error(result.data.msg);
         }
-        // If validation passes, navigate to EmailVerification page
-        navigate("/verifyEmail", { state: result.data.data.userInput });
+        else {
+          toast.success('Registration successful!');
+          navigate("/verifyEmail", { state: result.data.data.userInput });
+        }
       })
       .catch((err) => {
         console.log(err);
+        toast.error('An error occurred. Please try again.');
       });
   };
 
   return (
     <div className="register-page">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="left-section">
         {/* Add content for left section if needed */}
       </div>

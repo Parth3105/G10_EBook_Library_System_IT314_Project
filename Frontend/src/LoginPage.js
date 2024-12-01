@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom"; // Import Link from react-
 import fliplogo from "./images/logo.svg";
 import bgimg from "./images/bgimage1.png";
 import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -23,32 +25,40 @@ function LoginPage() {
         console.log(res.data);
 
         if (res.data.code === 400) {
-          alert(res.data.msg);
+          toast.error(res.data.msg);
         }
         else if (res.data.code === 404) {
-          alert(res.data.msg);
+          toast.error(res.data.msg);
         }
         else if (res.data.code === 200) {
-          if(res.data.userRole==="Reader"){
-            navigate("/reader");
-          }
-          else if(res.data.userRole==="Author"){
-            navigate("/author");
-          }
-          else if(res.data.userRole==="Admin"){
-            // Navigation path for admin
-          }
           localStorage.setItem("TOKEN", res.data.token);
           localStorage.setItem("USERNAME", username);
+
+          toast.success('Login successful!', {
+            autoClose: 1000,
+            onClose: () => {
+              if (res.data.userRole === "Reader") {
+                navigate("/reader");
+              }
+              else if (res.data.userRole === "Author") {
+                navigate("/author");
+              }
+              else if (res.data.userRole === "Admin") {
+                // Navigation path for admin
+              }
+            }
+          });
         }
       })
       .catch((err) => {
         console.log(err);
+        toast.error('An error occurred. Please try again.');
       });
   };
 
   return (
     <div className="login-page">
+      <ToastContainer position="top-right" autoClose={3000} />
       <div className="left-section">
         <img src={bgimg} alt="Tablet" className="tablet-image" />
       </div>
