@@ -87,24 +87,6 @@ module.exports.checkWishlist = async (req, res) => {
     }
 }
 
-module.exports.rmHistory = async (req, res) => {
-    try {
-        const historyInfo = req.body;
-
-        const result = await readHistoryModel.deleteOne({
-            username: historyInfo.username,
-            bookTitle: historyInfo.bookTitle,
-            author: historyInfo.author
-        });
-
-        if (result.deletedCount == 1) res.send("Deleted Successfully!!");
-        else res.send("Entry not found!!");
-    }
-    catch (err) {
-        res.status(500).send(err);
-    }
-}
-
 module.exports.getMyProfile = async (req, res) => {
     try {
         const reqParams = req.params;
@@ -117,6 +99,24 @@ module.exports.getMyProfile = async (req, res) => {
     }
 }
 
+module.exports.rmHistory = async (req, res) => {
+    try {
+        const historyInfo = req.body;
+
+        const result = await readHistoryModel.deleteOne({
+            username: historyInfo.username,
+            bookId: historyInfo.bookId
+        });
+
+        if (result.deletedCount == 1) res.send({ code: 600, msg: "Deleted Successfully!!" });
+        else res.send({ code: 601, msg: "Entry not found!!" });
+    }
+    catch (err) {
+        res.send({ code: 602, msg: "Request error!!!" });
+        console.log(err);
+    }
+}
+
 module.exports.getMyReadHistory = async (req, res) => {
     try {
         const reqParams = req.params;
@@ -125,38 +125,41 @@ module.exports.getMyReadHistory = async (req, res) => {
         res.send({ code: 200, history: readHistory });
     }
     catch (err) {
-        res.send({ code: 201, msg: "Fetch error!" });
+        res.send({ code: 201, msg: "Request error!" });
+        console.log(err);
     }
 }
 
 
 /////  Only for testing purpose//////
 
-// module.exports.addToHistory= async (req,res) => {
-//     try{
-//         const wishlistInfo=req.body;
+module.exports.addToHistory = async (req, res) => {
+    try {
+        const historyInfo = req.body;
 
-//         const newWish=new readHistoryModel(
-//             {
-//                 username: wishlistInfo.username,
-//                 bookTitle: wishlistInfo.bookTitle,
-//                 author: wishlistInfo.author,
-//                 coverImage: wishlistInfo.coverImage
-//             }
-//         );
+        const newHist = {
+            username: historyInfo.username,
+            bookTitle: historyInfo.bookTitle,
+            author: historyInfo.author,
+            coverImage: historyInfo.coverImage,
+            bookId: historyInfo.bookId
+        };
 
-//         // Check if history of that book already present. If present, just update the last created date.
+        const updateInfoIfExist = { $set: { lastRead: Date.now() } };
 
-//         await newWish.save()
-//             .then((result) => {
-//                 res.send("Added to history!");
-//             })
-//             .catch((err) => {
-//                 res.send("Error in adding!!");
-//                 console.log(err);
-//             })
-//     }
-//     catch(err){
-//         res.status(500).send(err);
-//     }
-// }
+        const options = { upsert: true };
+
+        await readHistoryModel.updateOne(newHist, updateInfoIfExist, options)
+            .then((result) => {
+                res.send({ code: 800, msg: "Added to history!" });
+            })
+            .catch((err) => {
+                res.send({ code: 801, msg: "Error Saving!!!" });
+                console.log(err);
+            })
+    }
+    catch (err) {
+        res.send({ code: 802, msg: "Request error!!!" });
+        console.log(err);
+    }
+}
