@@ -145,6 +145,14 @@ export default function BookDescription() {
     }
     setPdfError(null);
     setShowReader(true);
+
+    axios.post("http://localhost:5000/addHistory", {
+      username: storedUsername,
+      bookTitle: book.title,
+      author: book.author,
+      coverImage: book.coverImage,
+      bookId: book._id
+    });
   };
 
   const handleCloseReader = () => {

@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
 import './ReaderReadingHistory.css';
 import logo from './images/logo.png';
 import homeicon from './images/homeicon.png';
@@ -12,6 +12,8 @@ function ReaderReadingHistory() {
   const [activeicon, setActiveicon] = useState("profile");
   const storedUsername = localStorage.getItem('USERNAME');
   const [books, setBooks] = useState([]);
+
+  const navigate=useNavigate();
 
   useEffect(()=>{
     axios.get(`http://localhost:5000/readHistory/${storedUsername}`)
@@ -30,6 +32,10 @@ function ReaderReadingHistory() {
     axios.post(`http://localhost:5000/rmHistory`,book)
     setBooks(books.filter(book => book !== book));
   };
+
+  const handleViewClick = (book) => {
+    navigate(`/book/${book.bookId}`);
+  }
   
   return (
     <div className="reader-history-page">
@@ -75,25 +81,25 @@ function ReaderReadingHistory() {
           <p>The books that you are currently reading will appeare here.</p>
         </section>
         </div> */}
-      <div className="wishlist-container">
+      <div className="reader-history-container">
             <main>
-                <h1 className="history-title"></h1>  
-                <div className="wishlist">
+                <h1 className="reader-history-title"></h1>  
+                <div className="reader-history">
                     {books.length > 0 ? (
                         books.map((book) => (
-                            <div key={book._id} className="wishlist-item">
+                            <div key={book._id} className="reader-history-item">
                                 <img src={book.coverImage} alt={book.bookTitle} className="book-cover" />
-                                <div className="details">
-                                    <h2 className="book-title">{book.bookTitle}</h2>
-                                    <p className="book-author">{book.author}</p>
+                                <div className="reader-history-details">
+                                    <h2 className="reader-history-book-title">{book.bookTitle}</h2>
+                                    <p className="reader-history-book-author">{book.author}</p>
                                     {/* <p className="book-price">{book.price}</p>
                                     <p className="book-rating">⭐ {book.rating}</p> */}
-                                    <Link to={`/reading/${book.id}`} className="read-btn">
+                                    <button to={`/reading/${book.id}`} onClick={() => handleViewClick(book)} className="reader-history-read-btn">
                                         View
-                                    </Link>
+                                    </button>
                                 </div>
                                 <button
-                                    className="remove-btn"
+                                    className="reader-history-remove-btn"
                                     onClick={() => handleRemove(book)}
                                 >
                                     <img src={removeIcon} alt="Remove" />
@@ -101,7 +107,7 @@ function ReaderReadingHistory() {
                             </div>
                         ))
                     ) : (
-                        <p className="empty-message">Your history is empty.</p>
+                        <p className="reader-history-empty-message">Your history is empty.</p>
                     )}
                 </div>
             </main>

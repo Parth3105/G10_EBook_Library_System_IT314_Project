@@ -15,6 +15,7 @@ router.post("/resetPassword", authController.resetPassword);
 router.post("/resendOTP", authController.resendOTPVerificationEmail);
 router.post("/addToWishlist", dashboardController.addToWishlist);
 router.get("/getWishlist/:username", dashboardController.getMyWishlist);
+router.post('/addHistory', dashboardController.addToHistory);
 router.post("/rmFromWishlist", dashboardController.rmFromWishlist);
 router.get("/readHistory/:username", dashboardController.getMyReadHistory);
 router.post("/rmhistory", dashboardController.rmHistory);
@@ -22,7 +23,6 @@ router.get("/myProfile/:username", dashboardController.getMyProfile);
 router.get("/getRecentBooks", searchController.getRecentBooks);
 router.get('/getAllBooks', searchController.getBooks);
 router.get('/book/:id', bookController.getBookById);
-// router.post('/addHistory', dashboardController.addToHistory); // Just for testing not actual route
 router.get('/searchBook', searchController.searchEBook);
 router.post('/upload', upload.fields([{ name: 'coverImage' }, { name: 'bookFile' }]), bookController.uploadBook);
 router.get('/checkWishlist', dashboardController.checkWishlist);
