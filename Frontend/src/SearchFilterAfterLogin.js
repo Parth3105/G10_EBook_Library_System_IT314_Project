@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import carticon from './images/carticon.png'
 import homeicon from './images/homeicon.png'
 import dropdownicon from './images/dropdownicon.png'
@@ -9,15 +9,46 @@ import profileicon from './images/profileicon.png'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom";
 import './SearchFilterAfterLogin.css'
+import axios from 'axios'
 
 export default function SearchFilterAfterLogin() {
-  const [searchTerm, setSearchTerm] = useState('')
-  const [genre, setGenre] = useState('')
-  const [name, setName] = useState('')
-  const [author, setAuthor] = useState('')
-  const [language, setLanguage] = useState('')
-
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState('');
+  const [genre, setGenre] = useState('');
+  const [name, setName] = useState('');
+  const [author, setAuthor] = useState('');
+  const [language, setLanguage] = useState('');
+  const [userRole, setUserRole] = useState('');
+  const storedUsername = localStorage.getItem('USERNAME');
+
+  useEffect(() => {
+    // Fetch user role when component mounts
+    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+      .then(response => {
+        if (response.data.code === 100) {
+          setUserRole(response.data.user.userRole);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching user role:', error);
+      });
+  }, [storedUsername]);
+
+  const handleHomeClick = () => {
+    if (userRole?.toUpperCase() === 'AUTHOR') {
+      navigate('/author');
+    } else {
+      navigate('/reader');
+    }
+  };
+
+  const handleProfileClick = () => {
+    if (userRole?.toUpperCase() === 'AUTHOR') {
+      navigate('/author-profile');
+    } else {
+      navigate('/reader-profile');
+    }
+  };
 
   const handleApplyFilter = () => {
     // Implement filter logic here
@@ -33,15 +64,21 @@ export default function SearchFilterAfterLogin() {
           <img src={fliplogo} alt="FlipThePage" className="logo" />
         </div>
         <div className="actions">
-          <Link to="/home" className="home">
-            <img src={homeicon} alt="home" />
+          <img 
+            src={homeicon} 
+            alt="home" 
+            onClick={handleHomeClick}
+            style={{ cursor: 'pointer' }}
+          />
+          <Link to="/wishlist">
+            <img src={wishlisticon} alt="wishlist" />
           </Link>
-          <Link to="/whishlist" className="whishlist">
-            <img src={wishlisticon} alt="whishlist" />
-          </Link>
-          <Link to="/author-profile" className="author-profile">
-            <img src={profileicon} alt="profile-photo" />
-          </Link>
+          <img 
+            src={profileicon} 
+            alt="profile" 
+            onClick={handleProfileClick}
+            style={{ cursor: 'pointer' }}
+          />
         </div>
       </header>
     <main>

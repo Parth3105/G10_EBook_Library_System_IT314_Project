@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs"); // bcryptjs is used in node to encrypt the p
 const nodemailer = require("nodemailer"); // nodemailer
 const { VERIFICATION_EMAIL_TEMPLATE, PASSWORD_RESET_REQUEST_TEMPLATE } = require("../Utils/emailTemplates"); // email templates
 const otpVerification = require("../Models/otpVerification");
-const validate = require('../utils/validateuser');
+const validate = require('../Utils/validateuser');
 
 // nodemailer
 let transporter = nodemailer.createTransport({

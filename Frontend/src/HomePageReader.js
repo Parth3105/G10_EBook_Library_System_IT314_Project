@@ -38,6 +38,15 @@ function HomePageReader() {
         fetchBooks();
     }, []);
 
+    const getCurrentMonth = () => {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const currentMonth = new Date().getMonth(); // Returns 0-11
+        return months[currentMonth];
+    };
+
     const fetchBooks = async () => {
         try {
             setLoading(true);
@@ -69,7 +78,7 @@ function HomePageReader() {
     };
 
     const handleSearch = (e) => {
-        navigate("/search-results-after");
+        navigate("/search-after");
     };
 
     const handleViewBook = (bookId) => {
@@ -96,7 +105,7 @@ function HomePageReader() {
             <section className="featured-books">
                 <div className="featured-text">
                     <p className="featured-heading">FLIPTHEPAGE RECOMMENDATION</p>
-                    <h2>Featured Books of the<span>February</span></h2>
+                    <h2>Featured Books of the<span>{getCurrentMonth()}</span></h2>
                     <button className="see-more-btn">See More</button>
                 </div>
                 <div className="featured-images">

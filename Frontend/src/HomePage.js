@@ -29,6 +29,16 @@ import Fantasy from './images/fantasy.png';
 function HomePage() {
     const navigate=useNavigate();
 
+    // Get current month
+    const getCurrentMonth = () => {
+        const months = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+        ];
+        const currentMonth = new Date().getMonth(); // Returns 0-11
+        return months[currentMonth];
+    };
+
     const handleSearch = (e) => {
         navigate("/search-before");
     }
@@ -54,7 +64,7 @@ function HomePage() {
       <section className="featured-books">
     <div className="featured-text">
         <p className="featured-heading">FLIPTHEPAGE RECOMMENDATION</p>
-        <h2>Featured Books of the<span>February</span></h2>
+        <h2>Featured Books of the <span>{getCurrentMonth()}</span></h2>
         <button className="see-more-btn">See More</button>
     </div>
     <div className="featured-images">

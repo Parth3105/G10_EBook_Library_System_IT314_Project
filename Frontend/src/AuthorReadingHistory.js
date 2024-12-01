@@ -17,7 +17,7 @@ function AuthorReadingHistory() {
           <Link to="/home" className="home">
             <img src={Homeicon} alt="home" />
           </Link>
-          <Link to="/whishlist" className="whishlist">
+          <Link to="/Wishlist" className="whishlist">
             <img src={Likeicon} alt="whishlist" />
           </Link>
           <Link to="/author-profile" className="author-profile">
