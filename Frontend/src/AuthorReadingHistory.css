@@ -1,101 +1,127 @@
 @font-face {
-    font-family: 'Nunito Sans';
-    src: url('assets/fonts/nunitosans.ttf') format('truetype');
-    font-weight: 400; 
-    font-style: normal;
-  }
-  
-  body {
-    margin: 0;
-    font-family: 'Nunito Sans', sans-serif;
-    background-color: #f7f3e6;
-    color: #333;
-  }
-  
-  .author-profile-container {
-    max-width: 100%;
-    margin: auto;
-    padding: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid black;
-  }
-  
-  .logo {
-    width: 200px; 
-    height: auto;
-  }
-  
-  .actions {
-    display: flex;
-    align-items: center;
-    
-  }
-  
-  .actions a {
-    margin-left: 70px;
-  }
-  
-  .home {
-    width: 50px; /* Adjust size as needed */
-    height: auto; /* Adjust size as needed */
-  }
-  
-  .whishlist {
-    width: 50px;
-    height: auto;
-  }
-  
-  .author-profile{
-    width : 50px;
-    height: auto;
-  }
-  
-  .navigation {
-    display: flex;
-    align-items: flex-start;
-    font-size: 1.8em;
-    background-color: #f7f3e6;
-    /* padding: 10px 0; */
-    margin-top: 10px;
-    border-bottom: 1px solid black;
-  }
-  
-  .navigation a {
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .navigation .text-2{
-    margin-left: 50px;;
-    margin-right: 50px;
-  }
-  
-  .navigation .text-3.active{
-    border-bottom: 10px solid #7f265b;
-    border-radius: 10px;
-  }
-  
-  .author-content {
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .author-content h1 {
-    font-family: 'Nunito Sans', sans-serif;
-    font-size: 1.6em;
-    margin-top: 0;
-    margin: 25px;
-    color: #796969;
-  }
-  
-  
-  .curr-reading p {
-    margin: 20px;
-    text-align: center;
-  }
+  font-family: 'Nunito Sans';
+  src: url('assets/fonts/nunitosans.ttf') format('truetype');
+  font-weight: 400; 
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito Sans', sans-serif;
+  background-color: #f7f3e6;
+  color: #333;
+}
+
+.author-profile-container {
+  max-width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+.author-profile-container .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 20px;
+  border-bottom: 1px solid black;
+  margin-top: -48px;
+}
+
+
+.author-profile-container .logo {
+  height: auto; /* Adjust logo size as needed */
+  width: 200px;
+  position: absolute;
+    top: 15px;
+    left: 40px; /* Positioning logo to the top left */
+}
+
+
+.author-profile-container .nav-icons {
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: -10px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 6px;
+  padding-top: 7px;
+}
+
+.author-profile-container .nav-icons .wishlisticon  {
+  width: 25px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px;
+ /* Space for underline */
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
+}
+
+.author-profile-container .nav-icons .homeicon {
+  width: 30px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px; 
+  /* Space for underline */
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
+
+}
+
+.author-profile-container .nav-icons .profileicon {
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px; /* Space for underline */
+  padding-top: 28px;
+  border-bottom: 4px solid  #940491;
+}
+
+.author-profile-container .navigation {
+  display: flex;
+  align-items: flex-start;
+  font-size: 1.8em;
+  background-color: #f7f3e6;
+  /* padding: 10px 0; */
+  margin-top: 10px;
+  border-bottom: 1px solid black;
+}
+
+.author-profile-container .navigation a {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.author-profile-container .navigation .text-2{
+  margin-left: 50px;;
+  margin-right: 50px;
+}
+
+.author-profile-container .navigation .text-3.active{
+  border-bottom: 10px solid #7f265b;
+  border-radius: 10px;
+}
+
+.author-profile-container .author-content {
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.author-profile-container .author-content h1 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1.6em;
+  margin-top: 0;
+  margin: 25px;
+  color: #796969;
+}
+
+.author-profile-container .curr-reading p {
+  margin: 20px;
+  text-align: center;
+}

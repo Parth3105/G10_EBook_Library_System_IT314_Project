@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import mainlogo from "./images/logo.png";
-import Homeicon from "./images/homeicon.png";
-import Likeicon from "./images/wishlisticon.png";
-import Usericon from "./images/profileicon.png";
+import homeIcon from "./images/homeicon.png";
+import wishlistIcon from "./images/wishlisticon.png";
+import profileIcon from "./images/profileicon.png";
+import logo from "./images/logo.png";
 import "./AuthorProfile.css";
 import axios from 'axios';
 
 function AuthorProfile() {
+  const [activeIcon, setActiveIcon] = useState("profile");
   const [userData, setUserData] = useState({
     username: '',
     email: '',
@@ -23,23 +24,39 @@ function AuthorProfile() {
         const { username: username, email: email, userRole: userRole } = response.data.user;
         setUserData({ username, email, userRole });
       }
-    })
   })
+  })
+  const handleIconClick = (icon) => {
+    setActiveIcon(icon);
+  };
+
   return (
     <div className="author-profile-container">
-      <header className="author-header">
-        <div className="logo-icon">
-          <img src={mainlogo} alt="FlipThePage" className="logo" />
+      <header className="header">
+        <div className="flip-the-page">
+          <img src={logo} alt="Logo" className="logo" />
         </div>
-        <div className="actions">
-          <Link to="/author" className="home">
-            <img src={Homeicon} alt="home" />
+        <div className="nav-icons">
+          <Link to="/author" onClick={() => handleIconClick("home")}>
+            <img
+              src={homeIcon}
+              alt="Home"
+              className={`homeicon ${activeIcon === "home" ? "" : ""}`}
+            />
           </Link>
-          <Link to="/wishlist" className="wishlist">
-            <img src={Likeicon} alt="whishlist" />
+          <Link to="/wishlist" onClick={() => handleIconClick("wishlist")}>
+            <img
+              src={wishlistIcon}
+              alt="Wishlist"
+              className={`wishlisticon ${activeIcon === "wishlist" ? "" : ""}`}
+            />
           </Link>
-          <Link to="/author-profile" className="author-profile">
-            <img src={Usericon} alt="profile-photo" />
+          <Link to="/author-profile" onClick={() => handleIconClick("profile")}>
+            <img
+              src={profileIcon}
+              alt="Profile"
+              className={`profileicon ${activeIcon === "profile" ? "" : ""}`}
+            />
           </Link>
         </div>
       </header>
