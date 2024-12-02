@@ -17,7 +17,7 @@
     justify-content: space-between;
     background-color: #FBE4DF;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     font-family: 'Nunito Sans', sans-serif; 
 }
 
@@ -55,22 +55,33 @@
 
 .homepage-reader .icon-links {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 50px;
+    padding-right: 25px;
 }
 
-.homepage-reader .header-icon {
-    width: 30px;
-    height: 30px;
+.homepage-reader .header-icon-reader {
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 4px solid #7F265B;
+    padding-bottom: 2px;
+}
+
+.homepage-reader .header-icon-wishlist {
+    width: auto;
+    height: 22px;
     cursor: pointer;
     position: relative;
 }
 
-/* Active indicator for Home icon */
-.homepage-reader .header-icon.active {
-    border-bottom: 4px solid #7F265B;
-    padding-bottom: 5px; /* Space for better visibility */
+.homepage-reader .header-icon-profile {
+    width: auto;
+    height: 25px;
+    cursor: pointer;
+    position: relative;
 }
-
 
 /* Featured Books */
 .homepage-reader .featured-books {
@@ -239,7 +250,8 @@
 
 .homepage-reader .deal-card img {
     width: 150px;
-    height: auto;
+    height: 210px;
+ 
     margin-bottom: 15px;
     border-radius: 5px;
 }
@@ -279,11 +291,15 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    
     transition: background-color 0.3s ease;
 }
 
 .homepage-reader .add-to-cart-btn:hover {
     background-color: #a4004c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease; 
+    transform: scale(1.05);
 }
 
 

@@ -3,7 +3,7 @@ import carticon from './images/carticon.png'
 import homeicon from './images/homeicon.png'
 import dropdownicon from './images/dropdownicon.png'
 import wishlisticon from './images/wishlisticon.png'
-import fliplogo from './images/logo.svg'
+import logo from './images/logo.svg'
 import searchIcon from './images/searchicon.png'
 import profileicon from './images/profileicon.png'
 import bookimage from './images/jaws.png'
@@ -18,6 +18,7 @@ export default function SearchFilterResultsAfterLogin() {
   const [language, setLanguage] = useState('');
   const [books, setBooks] = useState([]);
   const [userRole, setUserRole] = useState('');
+  const [activeicon, setActiveicon] = useState("profile");
   const storedUsername = localStorage.getItem('USERNAME');
 
   useEffect(() => {
@@ -81,31 +82,41 @@ export default function SearchFilterResultsAfterLogin() {
     navigate(`/book/${bookId}`);
   };
 
+  const handleIconClick = (icon) => {
+    setActiveicon(icon);
+  };
+
   return (
     <div className="search-filter-results-after-login">
       <div className="book-search">
-        <header className="author-header">
-          <div className="logo-icon">
-            <img src={fliplogo} alt="FlipThePage" className="logo" />
+      <header className="after-result-login-head">
+      <div className="flip-the-page">
+            <img src={logo} alt="Logo" className="logo" />
           </div>
-          <div className="actions">
-            <img 
-              src={homeicon} 
-              alt="home" 
-              onClick={handleHomeClick}
-              style={{ cursor: 'pointer' }}
-            />
-            <Link to="/Wishlist">
-              <img src={wishlisticon} alt="whishlist" />
+          <div className="nav-icons">
+            <Link to="/reader" onClick={() => handleHomeClick("home")}>
+              <img
+                src={homeicon}
+                alt="Home"
+                className={`homeicon ${activeicon === "home" ? "" : ""}`}
+              />
             </Link>
-            <img 
-              src={profileicon} 
-              alt="profile-photo" 
-              onClick={handleProfileClick}
-              style={{ cursor: 'pointer' }}
-            />
+            <Link to="/Wishlist" onClick={() => handleIconClick("wishlist")}>
+              <img
+                src={wishlisticon}
+                alt="Wishlist"
+                className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
+              />
+            </Link>
+            <Link to="/reader-profile" onClick={() => handleProfileClick("profile")}>
+              <img
+                src={profileicon}
+                alt="Profile"
+                className={`profileicon ${activeicon === "profile" ? "" : ""}`}
+              />
+            </Link>
           </div>
-        </header>
+      </header>
         <main>
           <div className="search-container">
             <input

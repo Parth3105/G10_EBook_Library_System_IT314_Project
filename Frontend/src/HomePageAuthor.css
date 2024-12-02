@@ -17,7 +17,7 @@
     justify-content: space-between;
     background-color: #FBE4DF;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     font-family: 'Nunito Sans', sans-serif; 
 }
 
@@ -55,20 +55,39 @@
 
 .homepage-author .icon-links {
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 50px;
+    padding-right: 25px;
 }
 
-.homepage-author .header-icon {
-    width: 30px;
-    height: 30px;
+.homepage-author .header-icon-reader {
+    width: auto;
+    height: 35px;
+    cursor: pointer;
+    position: relative;
+    border-bottom: 4px solid #7F265B;
+    padding-bottom: 2px;
+}
+
+.homepage-author .header-icon-wishlist {
+    width: auto;
+    height: 22px;
+    cursor: pointer;
+    position: relative;
+}
+
+.homepage-author .header-icon-profile {
+    width: auto;
+    height: 25px;
     cursor: pointer;
     position: relative;
 }
 
 /* Active indicator for Home icon */
 .homepage-author .header-icon.active {
-    border-bottom: 4px solid #7F265B;
+    
     padding-bottom: 5px; /* Space for better visibility */
+    border-bottom: 4px solid #940491;
 }
 
 
@@ -219,7 +238,7 @@
 
 .homepage-author .deal-card img {
     width: 150px;
-    height: auto;
+    height: 210px;
     margin-bottom: 15px;
     border-radius: 5px;
 }
@@ -264,6 +283,9 @@
 
 .homepage-author .add-to-cart-btn:hover {
     background-color: #a4004c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease; 
+    transform: scale(1.05);
 }
 
 

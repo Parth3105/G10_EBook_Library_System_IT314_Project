@@ -12,48 +12,68 @@ body {
   color: #333;
 }
 
-.author-profile-container {
-  max-width: 100%;
-  margin: auto;
-  padding: 20px;
-}
-
-.author-header {
+.author-profile-container .author-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0px 20px;
   border-bottom: 1px solid black;
+  margin-top: -48px;
 }
 
-.logo {
-  width: 200px; 
-  height: auto;
+.author-profile-container .logo {
+  height: auto; /* Adjust logo size as needed */
+  width: 200px;
+  position: absolute;
+    top: 15px;
+    left: 40px; /* Positioning logo to the top left */
 }
 
-.actions {
+.author-profile-container .nav-icons {
   display: flex;
+  gap: 50px;
   align-items: center;
-  
+  margin-top: 30px;
+  margin-bottom: -10px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 6px;
+  padding-top: 7px;
 }
 
-.actions a {
-  margin-left: 70px;
-}
-
-.home {
-  width: 50px; /* Adjust size as needed */
-  height: auto; /* Adjust size as needed */
-}
-
-.whishlist {
-  width: 50px;
+.author-profile-container .nav-icons .wishlisticon  {
+  width: 25px;
   height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px;
+ /* Space for underline */
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
 }
 
-.author-profile{
-  width : 50px;
+.author-profile-container .nav-icons .homeicon {
+  width: 30px;
   height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px; 
+  /* Space for underline */
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
+
 }
+
+.author-profile-container .nav-icons .profileicon {
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px; /* Space for underline */
+  padding-top: 28px;
+  border-bottom: 4px solid  #940491;
+}
+
 
 .navigation {
   display: flex;
@@ -86,9 +106,17 @@ body {
   border-radius: 8px;
 }
 
-.author-profile-container .profile-details h1 {
+.author-profile-container .details-section h1 {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 1.5em;
+  margin-top: 0;
+  margin: 25px;
+  color: #796969;
+}
+
+.author-profile-container .books-section h1 {
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 2em;
   margin-top: 0;
   margin: 25px;
   color: #796969;
@@ -109,6 +137,14 @@ body {
   margin-bottom: 20px;
 }
 
+.author-profile-container .reader-user-input {
+  font-family: 'Nunito Sans', sans-serif;
+  display: flex;
+  font-size: 1em;
+  gap: 25px;
+  margin-bottom: 15px;;
+}
+
 .author-profile-container .input-group label {
   font-family: 'Nunito Sans', sans-serif;
   display: flex;
@@ -125,55 +161,7 @@ body {
   border-radius: 15px; /* Rounds the edges */
 }
 
-.rented-books h1,
-.purchased-books h1 {
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 1.8em;
-  margin-top: 0;
-  margin: 25px;
-  color: #796969;
-}
-
-.form-row {
-  font-family: 'Nunito Sans', sans-serif;
-  display: flex;
-  font-size: 1em;
-  gap: 25px; /* Space between each input field */
-  margin-bottom: 15px;
-}
-
-.form-group {
-  font-family: 'Nunito Sans', sans-serif;
-  flex: 1;
-  margin: 20px;
-  margin-bottom: 20px;
-}
-
-.user-input {
-  font-family: 'Nunito Sans', sans-serif;
-  display: flex;
-  font-size: 1em;
-  gap: 25px;
-  margin-bottom: 15px;;
-}
-
-.form-group label {
-  font-family: 'Nunito Sans', sans-serif;
-  display: flex;
-  margin-bottom: 10px;
-}
-
-.form-group input {
-  font-family: 'Nunito Sans', sans-serif;
-  width: 80%; /* Adjusts the width within the container */
-  height: 40px; /* Adjusts the height of the input box */
-  padding: 10px;
-  font-size: 0.9em;
-  color: #796969;
-  border-radius: 15px; /* Rounds the edges */
-}
-
-.user-input input{
+.author-profile-container .reader-user-input input{
   font-family: 'Nunito Sans', sans-serif;
   width: 24%; /* Adjusts the width within the container */
   height: 40px; /* Adjusts the height of the input box */
@@ -182,14 +170,12 @@ body {
   border-radius: 15px; /* Rounds the edges */
 }
 
-.rented-books,
-.purchased-books {
+/* .books-section {
   margin-top: 30px;
   padding: 10px;
-}
+} */
 
-.rented-books p,
-.purchased-books p {
+.author-profile-container .books-section p {
   margin: 150px;
   text-align: center;
 }

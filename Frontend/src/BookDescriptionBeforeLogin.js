@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './BookDescription.css';
 
 // Import images
-import fliplogo from './images/logo.svg';
+import logo from './images/logo.svg';
 import homeicon from './images/homeicon.png';
 
 export default function BookDescriptionBeforeLogin() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [activeicon] = useState("profile");
   const [book, setBook] = useState(null);
   const [loading, setLoading] = useState(true);
   const [showReader, setShowReader] = useState(false);
@@ -54,19 +55,20 @@ export default function BookDescriptionBeforeLogin() {
     <div className="book-page">
       {!showReader ? (
         <>
-          <header className="author-header">
-            <div className="logo-icon">
-              <img src={fliplogo} alt="FlipThePage" className="logo" />
-            </div>
-            <div className="actions">
-              <img 
-                src={homeicon} 
-                alt="home" 
-                onClick={handleHomeClick}
-                style={{ cursor: 'pointer' }}
+          <header className="book-description-head">
+      <div className="flip-the-page">
+            <img src={logo} alt="Logo" className="logo" />
+          </div>
+          <div className="nav-icons">
+            <Link to="/reader" onClick={() => handleHomeClick("home")}>
+              <img
+                src={homeicon}
+                alt="Home"
+                className={`homeicon ${activeicon === "home" ? "" : ""}`}
               />
-            </div>
-          </header>
+            </Link>
+          </div>
+      </header>
 
           <main className="main-content">
             <div className="book-details">

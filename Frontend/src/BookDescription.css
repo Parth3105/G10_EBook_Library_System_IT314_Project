@@ -67,44 +67,69 @@
   }
   
   /* Header */
-  .book-page .author-header {
-    margin-top: 21px;
-    margin-left: 20px;
+  .book-description-head {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: solid 1px black;
+    padding: 0px 20px;
+    border-bottom: 1px solid black;
+    margin-top: -40px;
   }
   
-  .book-page .logo {
-    width: 200px; 
-    height: auto;
+  .book-description-head .logo {
+    height: auto; /* Adjust logo size as needed */
+    width: 200px;
+    position: absolute;
+      top: 1px;
+      left: 40px; /* Positioning logo to the top left */
   }
   
-  .book-page  .actions {
+  .book-description-head .nav-icons {
     display: flex;
+    gap: 50px;
     align-items: center;
-    
+    margin-top: 30px;
+    margin-bottom: -10px;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 6px;
+    padding-top: 7px;
   }
   
-  .book-page  .actions a {
-    margin-left: 70px;
-  }
-  
-  .book-page  .home {
-    width: 50px; /* Adjust size as needed */
-    height: auto; /* Adjust size as needed */
-  }
-  
-  .book-page  .whishlist {
-    width: 50px;
+  .book-description-head .nav-icons .wishlisticon  {
+    width: 25px;
     height: auto;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 10px;
+   /* Space for underline */
+    padding-top: 28px;
+    /* border-bottom: 4px solid  #940491; */
   }
   
-  .book-page  .author-profile{
-    width : 50px;
+  .book-description-head .nav-icons .homeicon {
+    width: 30px;
     height: auto;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 10px; 
+    /* Space for underline */
+    padding-top: 28px;
+    /* border-bottom: 4px solid  #940491; */
+  
   }
+  
+  .book-description-head .nav-icons .profileicon {
+    width: 20px;
+    height: auto;
+    cursor: pointer;
+    position: relative;
+    padding-bottom: 10px; /* Space for underline */
+    padding-top: 28px;
+    border-bottom: 4px solid  #940491;
+  }
+
+  
   
   
   /* Main Content */
@@ -136,24 +161,29 @@
 
   .book-page  .book-info h2 {
     width: 355px;
+    
     height: 49px;
     font-weight: 700;
     font-size: 36px;
   }
 
   .book-page  .book-info .authorname{
+    padding-top: 90px;
+    display:flex;
+    padding-top: 70px;
     color:#6E5C59;
     font-weight: 700;
   }
   
   .book-page  .book-info .rating{
+    display: flex;
     font-weight: 700;
-    margin-top: 14px;
+    padding-top: 20px;
 
   }
 
   .book-page  .book-info .price{
-    margin-top: 34px;
+    margin-top: 19px;
     font-size: 24px;
     font-weight: 700;
   }
@@ -187,6 +217,9 @@
   }
   .book-page  .read-button:hover{
     background-color: #a4004c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease; 
+    transform: scale(1.05);
   }
   
   

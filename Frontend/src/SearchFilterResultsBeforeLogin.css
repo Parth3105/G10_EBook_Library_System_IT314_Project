@@ -17,39 +17,45 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 6px 1px;
+    /* padding-right: -150px; */
   
   }
   
   .search-filter-results-before-login .logo {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    /* gap: 0.5rem; */
     font-size: 1.5rem;
-    font-weight: bold;
+    /* font-weight: bold; */
+
   }
   
   .search-filter-results-before-login .fliplogo {
+    height: 70px;/* Adjust logo size as needed */
     width: auto;
-    height: 70px;
-    padding-top: 11px;
-    padding-left: 15px;
+    padding-top: 1px;
+    padding-left: 70px;
   }
   
   .search-filter-results-before-login nav {
     display: flex;
     align-items: center;
     font-weight: 700;
+    
+    font-size: 23px;
+    /* padding-top: 20px; */
+ 
   }
   
   .search-filter-results-before-login .nav-group {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap:18px;
   }
   
   .search-filter-results-before-login .log-icon {
-    padding-right: 5px;
+    padding-right: 20px;
     object-fit: contain;
   }
   
@@ -62,18 +68,20 @@
   }
   
   .search-filter-results-before-login .nav-icon {
-    width: 40px;
-    height: 40px;
+    width: auto;
+    height: 37px;
+    /* border-bottom: 4px solid #940491; */
     object-fit: contain;
   }
   
   .search-filter-results-before-login .home{
-     padding-left: 12px;
+    margin-right:40px ;
+    
   }
 
   .search-filter-results-before-login main {
     padding: 2rem;
-    padding-top: 5px;
+    padding-top: 0px;
   }
   
   .search-filter-results-before-login .search-container {
@@ -101,7 +109,7 @@
   
   .search-filter-results-before-login h2 {
     margin-left: 30px;
-    margin-top: 30px;
+    margin-top: 5px;
   }
   
   .search-filter-results-before-login .filter-container {
@@ -112,7 +120,7 @@
     font-family: 'Nunito Sans';
     font-weight: 300;
     margin-left: 30px;
-    margin-top: 30px;
+    margin-top: 5px;
     
   }
   
@@ -245,7 +253,11 @@
   }
   
   .search-filter-results-before-login .view-button:hover {
-    background-color: #6b1f4a;
+    /* background-color: #6b1f4a; */
+    background-color: #a4004c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease; 
+    transform: scale(1.05);
   }
   
   
