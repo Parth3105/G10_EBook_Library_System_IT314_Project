@@ -3,14 +3,17 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 body {
   margin: 0;
-  font-family: 'Nunito Sans';
-  color: #333; /* Dark text color */
+    font-family: 'Nunito Sans';
+    color: #333; /* Dark text color */
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .login-page {
   display: flex;
-  height: 100vh;
-  background-color: #fef8e8;
+    height: 100vh;
+    background-color: #fef8e8;
 }
 
 .login-page .left-section {
@@ -33,22 +36,20 @@ body {
 
 .login-page .right-section {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
-  padding-right: 100px;
-  padding-left: 100px;
-  background-color: #fef8e8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #fef8e8;
 
 }
 
 .login-page .logo {
-  display: flex;           /* Use flexbox to align items */
-  align-items: center;      /* Vertically center the items */
-  justify-content: center;  /* Center the content horizontally */
+  width: auto;              /* Set the size of the logo */
+  height: 112px;   
+  margin-bottom: 10px;   /* Keep the aspect ratio */ 
 }
-
 
 .login-page .img {
   width: auto;              /* Set the size of the logo */

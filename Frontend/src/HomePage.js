@@ -101,7 +101,7 @@ function HomePage() {
 
 
             <section className="deals">
-                <h2>Deals of the week</h2>
+                <h2>Featured Books</h2>
                 <div className="deal-cards">
                     <div className="deal-card">
                         <img src={Jaws} alt="Jaws" />

@@ -85,10 +85,7 @@ function LoginPage() {
             type="password"
             placeholder="Password"
           />
-          <div className="remember-me">
-            <input type="checkbox" id="remember" />
-            <label htmlFor="remember">Remember Me</label>
-          </div>
+          
           <button onClick={handleSubmit} type="submit" className="register-btn">
             Log In
           </button>
@@ -96,7 +93,7 @@ function LoginPage() {
         <div className="additional-options">
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
-        <button className="google-login">Continue with Google</button>
+        
 
         {/* Replaced anchor tag with Link component */}
         <p className="register-link">

@@ -96,9 +96,9 @@ function HomePageReader() {
                     <img src={searchicon} alt="Search Icon" className="searchicon" />
                 </div>
                 <div className="icon-links">
-                    <img src={Home} alt="Icon1" className="header-icon active" onClick={() => navigate('/reader')} />
-                    <img src={Wishlist} alt="Icon2" className="header-icon" onClick={() => navigate('/Wishlist')} />
-                    <img src={Profile} alt="Icon3" className="header-icon" onClick={() => navigate('/reader-profile')} />
+                    <img src={Home} alt="Icon1" className="header-icon-reader" onClick={() => navigate('/reader')} />
+                    <img src={Wishlist} alt="Icon2" className="header-icon-wishlist" onClick={() => navigate('/Wishlist')} />
+                    <img src={Profile} alt="Icon3" className="header-icon-profile" onClick={() => navigate('/reader-profile')} />
                 </div>
             </header>
 
@@ -142,7 +142,7 @@ function HomePageReader() {
 
 
             <section className="deals">
-                <h2>Deals of the week</h2>
+            <h2>Featured Books</h2>
                 <div className="deal-cards">
                     {loading ? (
                         <div className="loading-spinner">Loading books...</div>
