@@ -50,7 +50,7 @@ function AuthorUpload() {
               className={`homeicon ${activeIcon === "home" ? "" : ""}`}
             />
           </Link>
-          <Link to="/wishlist" onClick={() => handleIconClick("wishlist")}>
+          <Link to="/Wishlist" onClick={() => handleIconClick("wishlist")}>
             <img
               src={wishlisticon}
               alt="Wishlist"
@@ -74,7 +74,7 @@ function AuthorUpload() {
           <Link to="/author-upload">My Uploads</Link>
         </div>
         <div className="text-3">
-          <Link to="/author-reading">Reading History</Link>
+          <Link to="/reading-history">Reading History</Link>
         </div>
       </nav>
 
