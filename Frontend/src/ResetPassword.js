@@ -5,7 +5,7 @@ import "./ResetPassword.css";
 import fliplogo from './images/logo.svg';
 import bgimg from './images/bgimage1.png';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function ResetPassword() {
   const location=useLocation();

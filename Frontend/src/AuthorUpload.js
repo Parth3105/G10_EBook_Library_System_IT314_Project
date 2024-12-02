@@ -8,7 +8,7 @@ import removeIcon from './images/removeicon.png';
 import "./AuthorUpload.css";
 import axios from 'axios';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function AuthorUpload() {
   const [activeIcon, setActiveicon] = useState("profile");

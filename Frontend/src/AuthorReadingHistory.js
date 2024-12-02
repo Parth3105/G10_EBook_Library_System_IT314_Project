@@ -8,7 +8,7 @@ import removeIcon from './images/removeicon.png';
 import "./AuthorReadingHistory.css";
 import axios from "axios";
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function AuthorReadingHistory() {
   const [activeicon, setActiveicon] = useState("profile");

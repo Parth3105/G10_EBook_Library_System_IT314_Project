@@ -9,7 +9,7 @@ import './BookDescription.css';
 import logo from './images/logo.svg';
 import homeicon from './images/homeicon.png';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 export default function BookDescriptionBeforeLogin() {
   const { id } = useParams();

@@ -29,7 +29,7 @@ import Home from './images/homeicon.png';
 import Wishlist from './images/wishlisticon.png';
 import Profile from './images/profileicon.png';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function HomePageReader() {
     const navigate = useNavigate();

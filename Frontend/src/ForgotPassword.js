@@ -5,7 +5,7 @@ import fliplogo from "./images/logo.svg";
 import bgimg from "./images/bgimage1.png";
 import axios from "axios";
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");

@@ -5,7 +5,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom"; // Import use
 import axios from "axios";
 //import bgimg from './images/bgimage1.png';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function EmailVerification() {
 

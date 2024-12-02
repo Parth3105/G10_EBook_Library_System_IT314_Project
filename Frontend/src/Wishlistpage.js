@@ -8,7 +8,7 @@ import removeIcon from './images/removeicon.png'
 import logo from './images/logo.png'
 import axios from 'axios';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 const Wishlist = () => {
   const navigate = useNavigate();

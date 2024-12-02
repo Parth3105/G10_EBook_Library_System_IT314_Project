@@ -7,7 +7,7 @@ import wishlisticon from './images/wishlisticon.png';
 import profileicon from './images/profileicon.png';
 import axios from 'axios';
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 function ReaderProfile() {
   const [activeicon, setActiveicon] = useState("profile");

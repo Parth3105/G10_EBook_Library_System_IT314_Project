@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import './SearchFilterAfterLogin.css'
 import axios from 'axios'
 
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
 
 export default function SearchFilterAfterLogin() {
   const navigate = useNavigate();
