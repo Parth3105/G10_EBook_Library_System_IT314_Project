@@ -8,6 +8,7 @@ import removeIcon from './images/removeicon.png'
 import logo from './images/logo.png'
 import axios from 'axios';
 
+const BACKEND_URL = "http://localhost:5000";
 
 const Wishlist = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Wishlist = () => {
 
   useEffect(() => {
     // Fetch user profile to get role
-    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/myProfile/${storedUsername}`)
       .then(response => {
         if (response.data.code === 100) {
           setUserRole(response.data.user.userRole);
@@ -30,7 +31,7 @@ const Wishlist = () => {
       });
 
     // Fetch wishlist
-    axios.get(`http://localhost:5000/getWishlist/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/getWishlist/${storedUsername}`)
       .then(response => {
         if (response.data.code === 300) {
           setBooks(response.data.wishlist);
@@ -43,7 +44,7 @@ const Wishlist = () => {
   };
 
   const handleRemove = (book) => {
-    axios.post(`http://localhost:5000/rmFromWishlist`, book)
+    axios.post(`${BACKEND_URL}/rmFromWishlist`, book)
     setBooks(books.filter(book => book !== book));
   };
 

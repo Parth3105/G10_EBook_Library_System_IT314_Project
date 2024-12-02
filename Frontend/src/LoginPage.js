@@ -8,6 +8,8 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function LoginPage() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -17,7 +19,7 @@ function LoginPage() {
     e.preventDefault(); // Prevent page refresh
     console.log(username, password);
     axios
-      .post("http://localhost:5000/login", {
+      .post(`${BACKEND_URL}/login`, {
         username: username,
         password: password,
       })

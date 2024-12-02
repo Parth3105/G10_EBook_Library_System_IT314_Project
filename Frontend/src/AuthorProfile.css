@@ -96,6 +96,16 @@ body {
   margin-right: 50px;
 }
 
+.navigation .text-1{
+  margin-left: 50px;;
+  margin-right: 50px;
+}
+
+.navigation .text-3{
+  margin-left: 50px;;
+  margin-right: 50px;
+}
+
 .navigation .text-1.active{
   border-bottom: 10px solid #7f265b;
   border-radius: 10px;

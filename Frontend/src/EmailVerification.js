@@ -5,6 +5,8 @@ import { Link, useNavigate, useLocation } from "react-router-dom"; // Import use
 import axios from "axios";
 //import bgimg from './images/bgimage1.png';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function EmailVerification() {
 
   useEffect(() => {
@@ -40,7 +42,7 @@ function EmailVerification() {
     e.preventDefault();
 
     await axios
-      .post("http://localhost:5000/verifyOTP", {
+      .post(`${BACKEND_URL}/verifyOTP`, {
         username: prevState.username,
         password: prevState.password,
         email: prevState.email,
@@ -92,7 +94,7 @@ function EmailVerification() {
 
     try {
       // Make a POST request to your backend endpoint to resend the OTP
-      await axios.post("http://localhost:5000/resendOTP", prevState);
+      await axios.post(`${BACKEND_URL}/resendOTP`, prevState);
 
       // Update the message to notify the user of successful resend
       setMessage("A new code has been sent to your email.");

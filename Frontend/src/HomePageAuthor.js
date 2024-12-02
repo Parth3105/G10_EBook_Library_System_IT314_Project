@@ -29,6 +29,8 @@ import Home from './images/homeicon.png';
 import Wishlist from './images/wishlisticon.png';
 import Profile from './images/profileicon.png';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function HomePageAuthor() {
 
     const navigate = useNavigate();
@@ -45,7 +47,7 @@ function HomePageAuthor() {
             setLoading(true);
             // console.log('Fetching books...'); // Debug log
 
-            const response = await axios.get('http://localhost:5000/getAllBooks');
+            const response = await axios.get(`${BACKEND_URL}/getAllBooks`);
             // console.log('API Response:', response.data); // Debug log
 
             if (response.data && response.data.books) {

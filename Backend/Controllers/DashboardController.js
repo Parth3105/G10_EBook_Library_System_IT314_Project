@@ -1,6 +1,8 @@
 const bookPreferenceModel = require("../Models/BookPreferenceModel");
 const readHistoryModel = require("../Models/ReadHistoryModel");
 const userModel = require("../Models/UserModel");
+const bookModel = require("../Models/BookModel");
+const authorUploadModel = require("../Models/AuthorUploadModel");
 
 module.exports.addToWishlist = async (req, res) => {
     try {
@@ -160,6 +162,25 @@ module.exports.addToHistory = async (req, res) => {
     }
     catch (err) {
         res.send({ code: 802, msg: "Request error!!!" });
+        console.log(err);
+    }
+}
+
+module.exports.getAuthorUploads = async (req, res) => {
+    try {
+        const reqParams = req.params;
+        // console.log(reqParams);
+        const uploads = await authorUploadModel.find({ username: reqParams.username }).sort({ createdAt: -1 });
+        const books = [];
+        // console.log(uploads);
+        for(let i=0;i<uploads.length;i++){
+            const book = await bookModel.findById(uploads[i].bookId);
+            books.push(book);
+        }
+        res.send({ code: 900, books: books });
+    }
+    catch (err) {
+        res.send({ code: 901, msg: "Request error!!!" });
         console.log(err);
     }
 }

@@ -197,7 +197,7 @@
   
   .search-filter-results-after-login .books-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Four items per row */
+    grid-template-columns: repeat(3, 1fr); /* Four items per row */
     gap: 1rem;
   }
     

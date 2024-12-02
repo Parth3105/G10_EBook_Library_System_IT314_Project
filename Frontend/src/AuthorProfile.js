@@ -7,6 +7,8 @@ import profileicon from "./images/profileicon.png";
 import "./AuthorProfile.css";
 import axios from 'axios';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function AuthorProfile() {
   const [activeicon, setActiveicon] = useState("profile");
   const [userData, setUserData] = useState({
@@ -22,7 +24,7 @@ function AuthorProfile() {
   useEffect(()=>{
     const storedUsername = localStorage.getItem('USERNAME');
 
-    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/myProfile/${storedUsername}`)
     .then(response => {
       if(response.data.code===100){
         const { username: username, email: email, userRole: userRole } = response.data.user;
@@ -68,7 +70,7 @@ function AuthorProfile() {
           <Link to="/author-upload">My Uploads</Link>
         </div>
         <div className="text-3">
-          <Link to="/reading-history">Reading History</Link>
+          <Link to="/author-reading">Reading History</Link>
         </div>
       </nav>
 

@@ -5,6 +5,8 @@ import fliplogo from "./images/logo.svg";
 import bgimg from "./images/bgimage1.png";
 import axios from "axios";
 
+const BACKEND_URL = "http://localhost:5000";
+
 function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [otp, setOTP] = useState("");
@@ -14,7 +16,7 @@ function ForgotPassword() {
   const handleSendResetLink = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:5000/forgotPassword", {
+      .post(`${BACKEND_URL}/forgotPassword`, {
         email: email,
       })
       .then((res) => {
@@ -40,7 +42,7 @@ function ForgotPassword() {
   const handleOtpSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:5000/resetPass/verifyOTP",{email: email, otp: otp})
+    axios.post(`${BACKEND_URL}/resetPass/verifyOTP`,{email: email, otp: otp})
       .then((res) => {
         if(res.data.code === 600){
           navigate("/reset-password", {state: {email: email}}); // Navigate to ResetPassword page upon OTP submission

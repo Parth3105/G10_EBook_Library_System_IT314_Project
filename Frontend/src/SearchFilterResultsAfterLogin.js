@@ -11,6 +11,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import './SearchFilterResultsAfterLogin.css'
 import axios from 'axios'
 
+const BACKEND_URL = "http://localhost:5000";
+
 export default function SearchFilterResultsAfterLogin() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,7 +25,7 @@ export default function SearchFilterResultsAfterLogin() {
 
   useEffect(() => {
     // Fetch user role
-    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/myProfile/${storedUsername}`)
       .then(response => {
         if (response.data.code === 100) {
           setUserRole(response.data.user.userRole);
@@ -34,7 +36,7 @@ export default function SearchFilterResultsAfterLogin() {
       });
 
     // Fetch all books
-    axios.get(`http://localhost:5000/getAllBooks`)
+    axios.get(`${BACKEND_URL}/getAllBooks`)
       .then(response => {
         setBooks(response.data.books || []);
       })
@@ -68,7 +70,7 @@ export default function SearchFilterResultsAfterLogin() {
     if (searchTerm) params.append('search', searchTerm);
     
     axios
-      .get(`http://localhost:5000/searchBook?${params.toString()}`)
+      .get(`${BACKEND_URL}/searchBook?${params.toString()}`)
       .then((response) => {
         setBooks(response.data.books || []);
       })

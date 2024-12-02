@@ -5,6 +5,8 @@ import "./ResetPassword.css";
 import fliplogo from './images/logo.svg';
 import bgimg from './images/bgimage1.png';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function ResetPassword() {
   const location=useLocation();
   const prevState=location.state||{};
@@ -15,7 +17,7 @@ function ResetPassword() {
   const handleSubmit= (e)=>{
     e.preventDefault();
 
-    axios.post("http://localhost:5000/resetPassword", {email: prevState.email, password: password, confirmPass: confirmPass})
+    axios.post(`${BACKEND_URL}/resetPassword`, {email: prevState.email, password: password, confirmPass: confirmPass})
       .then((res)=>{
         if(res.data.code === 700){
           navigate("/LoginPage");

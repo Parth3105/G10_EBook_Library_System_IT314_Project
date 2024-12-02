@@ -127,7 +127,7 @@ body {
   text-align: center;
 } */
 
-.author-upload-container .author-upload-title {
+.author-upload-container .reader-history-title {
   font-size: 30px;
   font-weight: bold;
   /* font-family: fantasy; */
@@ -142,7 +142,7 @@ body {
   
 }
 
-.author-upload-container .author-upload {
+.author-upload-container .reader-history {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -152,7 +152,7 @@ body {
   margin-right: 20px;
 }
 
-.author-upload-container .author-upload-item {
+.author-upload-container .reader-history-item {
   display: flex;
   align-items: center;
   background-color: #ffffff;
@@ -174,7 +174,7 @@ body {
   margin-top: 0px;
 }
 
-.author-upload-container .author-upload-details {
+.author-upload-container .reader-history-details {
   margin: 3px 0;
   font-size: 12px;
   font-weight: bold;
@@ -184,21 +184,21 @@ body {
   flex-direction: column; 
 }
 
-.author-upload-container .author-upload-book-title {
+.author-upload-container .reader-history-book-title {
   font-size: 25px;
     margin: 4px 0px;
     color: #333;
     margin-top: -22px;
 }
 
-.author-upload-container .author-upload-book-author {
+.author-upload-container .reader-history-book-author {
   font-weight: lighter;
     margin: 4px 2px;
     color: #666;
     font-size: 0.9rem; /* Slightly smaller font for author if desired */
 }
 
-.author-upload-container .author-upload-read-btn {
+.author-upload-container .reader-history-read-btn {
   background-color: #a13373;
     color: white;
     padding: 7px 30px;
@@ -210,7 +210,7 @@ body {
     transition: background-color 0.2s;
 }
 
-.author-upload-container .author-upload-remove-btn {
+.author-upload-container .reader-history-remove-btn {
   background: none;
   border: none;
   position: absolute;
@@ -220,13 +220,13 @@ body {
   padding: 0;
 }
 
-.author-upload-container .author-upload-remove-btn img {
+.author-upload-container .reader-history-remove-btn img {
   width: 30px;
   height: 30px;
   transition: transform 0.1s ease;
 }
 
-.author-upload-container .author-upload-empty-message {
+.author-upload-container .reader-history-empty-message {
   font-size: 1.5rem;
   color: #000000;
   text-align: center;

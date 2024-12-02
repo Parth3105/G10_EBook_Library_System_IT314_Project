@@ -6,6 +6,8 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function RegisterPage() {
   // Retrieve the passed role from the location state
   const location = useLocation();
@@ -31,7 +33,7 @@ function RegisterPage() {
     e.preventDefault();
 
     await axios
-      .post("http://localhost:5000/register", formData)
+      .post(`${BACKEND_URL}/register`, formData)
       .then((result) => {
         if (result.data.code === 400) {
           toast.error(result.data.msg);

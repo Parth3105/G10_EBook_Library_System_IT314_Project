@@ -4,6 +4,8 @@ const userModel = require("../Models/UserModel");
 const fs = require("fs");
 const { uploadFileToDrive, setViewOnlyPermission } = require('../Utils/googleDrive');
 const { oauth2Client, ensureValidAccessToken } = require('../config/googleOAuth');
+const authorUploadModel = require('../Models/AuthorUploadModel');
+
 module.exports.uploadBook = async (req, res) => {
     const { title, subtitle, author, coAuthors, genre, description, language, pages, amount } = req.body;
 
@@ -105,3 +107,16 @@ module.exports.getBookById = async (req, res) => {
         });
     }
 };
+
+module.exports.addAuthorUpload = async (req, res) => {
+    try {
+        const reqParams = req.body;
+        // console.log(reqParams);
+        const newAuthorUpload = new authorUploadModel({ username: reqParams.username, bookId: reqParams.bookId });
+        await newAuthorUpload.save();
+        return res.send({ code: 900, msg: 'Author upload added successfully', authorUpload: newAuthorUpload });
+    } catch (error) {
+        console.error("Error adding author upload:", error);
+        return res.send({ code: 901, msg: 'Error adding author upload', error: error });
+    }
+}

@@ -8,6 +8,8 @@ import profileicon from './images/profileicon.png';
 import removeIcon from './images/removeicon.png'
 import axios from 'axios';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function ReaderReadingHistory() {
   const [activeicon, setActiveicon] = useState("profile");
   const storedUsername = localStorage.getItem('USERNAME');
@@ -16,7 +18,7 @@ function ReaderReadingHistory() {
   const navigate=useNavigate();
 
   useEffect(()=>{
-    axios.get(`http://localhost:5000/readHistory/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/readHistory/${storedUsername}`)
     .then(response => {
       if(response.data.code===200){
         setBooks(response.data.history);
@@ -29,7 +31,7 @@ function ReaderReadingHistory() {
   };
 
   const handleRemove = (book) => {
-    axios.post(`http://localhost:5000/rmHistory`,book)
+    axios.post(`${BACKEND_URL}/rmHistory`,book)
     setBooks(books.filter(book => book !== book));
   };
 

@@ -7,6 +7,8 @@ import wishlisticon from './images/wishlisticon.png';
 import profileicon from './images/profileicon.png';
 import axios from 'axios';
 
+const BACKEND_URL = "http://localhost:5000";
+
 function ReaderProfile() {
   const [activeicon, setActiveicon] = useState("profile");
   const [userData, setUserData] = useState({
@@ -22,7 +24,7 @@ function ReaderProfile() {
   useEffect(()=>{
     const storedUsername = localStorage.getItem('USERNAME');
 
-    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/myProfile/${storedUsername}`)
     .then(response => {
       if(response.data.code===100){
         const { username: username, email: email, userRole: userRole } = response.data.user;

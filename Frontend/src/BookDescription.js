@@ -15,6 +15,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
+const BACKEND_URL = "http://localhost:5000";
+
 // Set worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
@@ -47,7 +49,7 @@ export default function BookDescription() {
 
   useEffect(() => {
     // Fetch user role
-    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/myProfile/${storedUsername}`)
       .then(response => {
         if (response.data.code === 100) {
           setUserRole(response.data.user.userRole);
@@ -85,7 +87,7 @@ export default function BookDescription() {
   const fetchBookDetails = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`http://localhost:5000/book/${id}`);
+      const response = await axios.get(`${BACKEND_URL}/book/${id}`);
 
       if (response.data && response.data.code === 200) {
         console.log('Book details:', response.data.book);
@@ -104,7 +106,7 @@ export default function BookDescription() {
   const checkWishlist = async () => {
     try {
       if (book && storedUsername) {
-        const response = await axios.get(`http://localhost:5000/checkWishlist?username=${storedUsername}&bookId=${book._id}`);
+        const response = await axios.get(`${BACKEND_URL}/checkWishlist?username=${storedUsername}&bookId=${book._id}`);
         if (response.data.exists) {
           setIsInWishlist(true);
           setWishlistMessage("Added to wishlist");
@@ -129,13 +131,13 @@ export default function BookDescription() {
       };
 
       if (!isInWishlist) {
-        const response = await axios.post('http://localhost:5000/addToWishlist', wishlistData);
+        const response = await axios.post(`${BACKEND_URL}/addToWishlist`, wishlistData);
         if (response.data.code === 300) {
           setWishlistMessage("Added to wishlist");
           setIsInWishlist(true);
         }
       } else {
-        const response = await axios.post('http://localhost:5000/rmFromWishlist', wishlistData);
+        const response = await axios.post(`${BACKEND_URL}/rmFromWishlist`, wishlistData);
         if (response.data.code === 501) {
           setWishlistMessage("Add to wishlist");
           setIsInWishlist(false);
@@ -161,7 +163,7 @@ export default function BookDescription() {
     setPdfError(null);
     setShowReader(true);
 
-    axios.post("http://localhost:5000/addHistory", {
+      axios.post(`${BACKEND_URL}/addHistory`, {
       username: storedUsername,
       bookTitle: book.title,
       author: book.author,
@@ -262,33 +264,33 @@ export default function BookDescription() {
         <>
           {/* Header Section */}
           <header className="book-description-head">
-      <div className="flip-the-page">
-            <img src={logo} alt="Logo" className="logo" />
-          </div>
-          <div className="nav-icons">
-            <Link to="/reader" onClick={() => handleHomeClick("home")}>
-              <img
-                src={homeicon}
-                alt="Home"
-                className={`homeicon ${activeicon === "home" ? "" : ""}`}
-              />
-            </Link>
-            <Link to="/Wishlist" onClick={() => handleIconClick("wishlist")}>
-              <img
-                src={wishlisticon}
-                alt="Wishlist"
-                className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
-              />
-            </Link>
-            <Link to="/reader-profile" onClick={() => handleProfileClick("profile")}>
-              <img
-                src={profileicon}
-                alt="Profile"
-                className={`profileicon ${activeicon === "profile" ? "" : ""}`}
-              />
-            </Link>
-          </div>
-      </header>
+            <div className="flip-the-page">
+              <img src={logo} alt="Logo" className="logo" />
+            </div>
+            <div className="nav-icons">
+              <Link to={userRole?.toUpperCase() === 'READER' ? '/reader' : '/author'} onClick={() => handleHomeClick("home")}>
+                <img
+                  src={homeicon}
+                  alt="Home"
+                  className={`homeicon ${activeicon === "home" ? "" : ""}`}
+                />
+              </Link>
+              <Link to="/Wishlist" onClick={() => handleIconClick("wishlist")}>
+                <img
+                  src={wishlisticon}
+                  alt="Wishlist"
+                  className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
+                />
+              </Link>
+              <Link to={userRole?.toUpperCase() === 'READER' ? '/reader-profile' : '/author-profile'} onClick={() => handleProfileClick("profile")}>
+                <img
+                  src={profileicon}
+                  alt="Profile"
+                  className={`profileicon ${activeicon === "profile" ? "" : ""}`}
+                />
+              </Link>
+            </div>
+          </header>
 
           {/* Main Section */}
           <main className="main-content">

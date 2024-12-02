@@ -11,6 +11,8 @@ import { useNavigate } from "react-router-dom";
 import './SearchFilterAfterLogin.css'
 import axios from 'axios'
 
+const BACKEND_URL = "http://localhost:5000";
+
 export default function SearchFilterAfterLogin() {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +26,7 @@ export default function SearchFilterAfterLogin() {
 
   useEffect(() => {
     // Fetch user role when component mounts
-    axios.get(`http://localhost:5000/myProfile/${storedUsername}`)
+    axios.get(`${BACKEND_URL}/myProfile/${storedUsername}`)
       .then(response => {
         if (response.data.code === 100) {
           setUserRole(response.data.user.userRole);

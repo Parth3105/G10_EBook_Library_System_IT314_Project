@@ -13,6 +13,8 @@ import { useNavigate } from "react-router-dom";
 import LoginPage from './LoginPage';
 import axios from 'axios';
 
+const BACKEND_URL = "http://localhost:5000";
+
 export default function SearchFilterResultsBeforeLogin() {
   const [searchTerm, setSearchTerm] = useState('');
   const [genre, setGenre] = useState('');
@@ -23,7 +25,7 @@ export default function SearchFilterResultsBeforeLogin() {
 
   useEffect(() => {
     // Fetch all books when component mounts
-    axios.get(`http://localhost:5000/getAllBooks`)
+    axios.get(`${BACKEND_URL}/getAllBooks`)
       .then(response => {
         if (response.data.code === 200) {
           setBooks(response.data.books || []);
@@ -45,7 +47,7 @@ export default function SearchFilterResultsBeforeLogin() {
     if (searchTerm) params.append('search', searchTerm);
     
     axios
-      .get(`http://localhost:5000/searchBook?${params.toString()}`)
+      .get(`${BACKEND_URL}/searchBook?${params.toString()}`)
       .then((response) => {
         setBooks(response.data.books || []);
       })

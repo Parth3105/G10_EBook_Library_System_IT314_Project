@@ -4,7 +4,10 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./AuthorBookUpload.css";
 
+const BACKEND_URL = "http://localhost:5000";
+
 const AuthorBookUpload = () => {
+  const storedUsername = localStorage.getItem("USERNAME");
   const [formData, setFormData] = useState({
     title: "",
     subtitle: "",
@@ -86,7 +89,7 @@ const AuthorBookUpload = () => {
       formDataToSend.append("coAuthors", JSON.stringify(formData.coAuthors));
 
       const response = await axios.post(
-        "http://localhost:5000/upload",
+        `${BACKEND_URL}/upload`,
         formDataToSend,
         {
           headers: {
@@ -117,6 +120,12 @@ const AuthorBookUpload = () => {
       } else {
         toast.error(response.data.msg);
       }
+
+      axios.post(`${BACKEND_URL}/addAuthorUpload`,{
+        username: storedUsername,
+        bookId: response.data.book._id
+      });
+
     } catch (error) {
       // Dismiss loading toast
       toast.dismiss(loadingToast);

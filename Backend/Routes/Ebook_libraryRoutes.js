@@ -26,6 +26,8 @@ router.get('/book/:id', bookController.getBookById);
 router.get('/searchBook', searchController.searchEBook);
 router.post('/upload', upload.fields([{ name: 'coverImage' }, { name: 'bookFile' }]), bookController.uploadBook);
 router.get('/checkWishlist', dashboardController.checkWishlist);
+router.get('/getAuthorUploads/:username', dashboardController.getAuthorUploads);
+router.post('/addAuthorUpload', bookController.addAuthorUpload);
 
 
 module.exports = router;
