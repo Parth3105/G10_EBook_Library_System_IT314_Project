@@ -20,10 +20,19 @@
   position: relative;  
   background-color: #f7f3e6;
 }
+.verification-right .logo {
+  width: auto;              /* Set the size of the logo */
+      height: 112px; 
+  margin-bottom: 9px;
+  margin-top: -60px;
+}
 
 .verification-right h1 {
-  font-size: 28px;
-  margin-bottom: 15px;
+  font-family: 'Nunito Sans';
+  color: #525252;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 32px;
 }
 
 .Verification-description p {

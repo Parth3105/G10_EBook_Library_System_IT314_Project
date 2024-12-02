@@ -86,40 +86,13 @@ function HomePageAuthor() {
             <header className="header">
                 <img src={Logo} alt="FlipThePage Logo" className="logo" />
                 <div className="search-container">
-                    <input 
-                        type="text" 
-                        placeholder="Search ebooks" 
-                        className="search-bar" 
-                        onClick={handleSearchClick}
-                        readOnly
-                    />
-                    <img 
-                        src={searchicon} 
-                        alt="Search Icon" 
-                        className="searchicon" 
-                        onClick={handleSearchClick}
-                    />
+                    <input onClick={handleSearchClick} type="text" placeholder="Search ebooks" className="search-bar" />
+                    <img src={searchicon} alt="Search Icon" className="searchicon" />
                 </div>
                 <div className="icon-links">
-                    <img 
-                        src={Home} 
-                        alt="Home" 
-                        className="header-icon active"
-                    />
-                    <img 
-                        src={Wishlist} 
-                        alt="Wishlist" 
-                        className="header-icon" 
-                        onClick={handleWishlistClick}
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <img 
-                        src={Profile} 
-                        alt="Profile" 
-                        className="header-icon" 
-                        onClick={handleProfileClick}
-                        style={{ cursor: 'pointer' }}
-                    />
+                    <img src={Home} alt="Icon1" className="header-icon-reader" onClick={() => navigate('/reader')} />
+                    <img src={Wishlist} alt="Icon2" className="header-icon-wishlist" onClick={() => navigate('/Wishlist')} />
+                    <img src={Profile} alt="Icon3" className="header-icon-profile" onClick={() => navigate('/author-profile')} />
                 </div>
             </header>
 
@@ -166,7 +139,7 @@ function HomePageAuthor() {
 
 
             <section className="deals">
-                <h2>Deals of the week</h2>
+            <h2>Featured Books</h2>
                 <div className="deal-cards">
                     {loading ? (
                         <div>Loading...</div>

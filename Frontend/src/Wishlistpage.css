@@ -41,6 +41,13 @@
   padding-bottom: 6px;
   padding-top: 7px;
 }
+
+.wishlist-container .nav-icons .homeicon.active,
+.wishlist-container .nav-icons .wishlisticon.active,
+.wishlist-container .nav-icons .profileicon.active {
+  border-bottom: 4px solid #940491;
+}
+
 .wishlist-container .nav-icons .wishlisticon  {
   width: 25px;
   height: auto;
@@ -49,7 +56,7 @@
   padding-bottom: 10px;
  /* Space for underline */
   padding-top: 28px;
-  /* border-bottom: 4px solid  #940491; */
+  border-bottom: 4px solid  #940491;
 }
 .wishlist-container .nav-icons .homeicon {
   width: 30px;
@@ -66,9 +73,9 @@
   height: auto;
   cursor: pointer;
   position: relative;
-  padding-bottom: 5px; /* Space for underline */
+  padding-bottom: 7px; /* Space for underline */
   padding-top: 28px;
-  border-bottom: 4px solid  #940491;
+  
 } 
 
 /* Wishlist title styling with underline */
@@ -87,6 +94,8 @@
   text-underline-offset: 10px;
   
 }
+
+
 
 /* Wishlist items styling */
 

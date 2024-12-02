@@ -231,7 +231,7 @@
 
 .homepage .deal-card img {
     width: 150px;
-    height: auto;
+    height: 210px;
     margin-bottom: 15px;
     border-radius: 5px;
 }
@@ -276,6 +276,9 @@
 
 .homepage .add-to-cart-btn:hover {
     background-color: #a4004c;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s ease; 
+    transform: scale(1.05);
 }
 
 

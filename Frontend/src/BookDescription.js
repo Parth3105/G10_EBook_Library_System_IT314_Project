@@ -4,7 +4,7 @@ import carticon from './images/carticon.png';
 import homeicon from './images/homeicon.png';
 import dropdownicon from './images/dropdownicon.png';
 import wishlisticon from './images/wishlisticon.png';
-import fliplogo from './images/logo.svg';
+import logo from './images/logo.svg';
 import searchIcon from './images/searchicon.png';
 import profileicon from './images/profileicon.png';
 import { Link, useParams, useNavigate } from 'react-router-dom';
@@ -25,6 +25,7 @@ export default function BookDescription() {
   const [loading, setLoading] = useState(true);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [wishlistMessage, setWishlistMessage] = useState("");
+  const [activeicon, setActiveicon] = useState("profile");
   const storedUsername = localStorage.getItem('USERNAME');
   const [userRole, setUserRole] = useState('');
 
@@ -215,6 +216,10 @@ export default function BookDescription() {
     }
   };
 
+  const handleIconClick = (icon) => {
+    setActiveicon(icon);
+  };
+
   if (loading) {
     return <div className="loading">Loading...</div>;
   }
@@ -256,28 +261,34 @@ export default function BookDescription() {
       {!showReader ? (
         <>
           {/* Header Section */}
-          <header className="author-header">
-            <div className="logo-icon">
-              <img src={fliplogo} alt="FlipThePage" className="logo" />
-            </div>
-            <div className="actions">
-              <img 
-                src={homeicon} 
-                alt="home" 
-                onClick={handleHomeClick}
-                style={{ cursor: 'pointer' }}
+          <header className="book-description-head">
+      <div className="flip-the-page">
+            <img src={logo} alt="Logo" className="logo" />
+          </div>
+          <div className="nav-icons">
+            <Link to="/reader" onClick={() => handleHomeClick("home")}>
+              <img
+                src={homeicon}
+                alt="Home"
+                className={`homeicon ${activeicon === "home" ? "" : ""}`}
               />
-              <Link to="/wishlist" className="wishlist">
-                <img src={wishlisticon} alt="wishlist" />
-              </Link>
-              <img 
-                src={profileicon} 
-                alt="profile-photo" 
-                onClick={handleProfileClick}
-                style={{ cursor: 'pointer' }}
+            </Link>
+            <Link to="/Wishlist" onClick={() => handleIconClick("wishlist")}>
+              <img
+                src={wishlisticon}
+                alt="Wishlist"
+                className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
               />
-            </div>
-          </header>
+            </Link>
+            <Link to="/reader-profile" onClick={() => handleProfileClick("profile")}>
+              <img
+                src={profileicon}
+                alt="Profile"
+                className={`profileicon ${activeicon === "profile" ? "" : ""}`}
+              />
+            </Link>
+          </div>
+      </header>
 
           {/* Main Section */}
           <main className="main-content">

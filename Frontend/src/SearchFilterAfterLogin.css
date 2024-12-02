@@ -14,43 +14,66 @@
   font-family: 'Nunito Sans';
 }
 
-.search-filter-after-login .author-header {
-  margin-top: 20px;
-  margin-left: 20px;
+.search-filter-after-login .after-login-head {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: none;
+  padding: 0px 20px;
+  border-bottom: 1px solid black;
+  margin-top: -48px;
 }
 
 .search-filter-after-login .logo {
-  width: 200px; 
-  height: auto;
+  height: auto; /* Adjust logo size as needed */
+  width: 200px;
+  position: absolute;
+    top: 15px;
+    left: 40px; /* Positioning logo to the top left */
 }
 
-.search-filter-after-login .actions {
+.search-filter-after-login .nav-icons {
   display: flex;
+  gap: 50px;
   align-items: center;
-  
+  margin-top: 30px;
+  margin-bottom: -10px;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 6px;
+  padding-top: 7px;
 }
 
-.search-filter-after-login .actions a {
-  margin-left: 70px;
-}
-
-.search-filter-after-login .home {
-  width: 50px; /* Adjust size as needed */
-  height: auto; /* Adjust size as needed */
-}
-
-.search-filter-after-login .whishlist {
-  width: 50px;
+.search-filter-after-login .nav-icons .wishlisticon  {
+  width: 25px;
   height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px;
+ /* Space for underline */
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
 }
 
-.search-filter-after-login .author-profile{
-  width : 50px;
+.search-filter-after-login .nav-icons .homeicon {
+  width: 30px;
   height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px; 
+  /* Space for underline */
+  padding-top: 28px;
+  /* border-bottom: 4px solid  #940491; */
+
+}
+
+.search-filter-after-login .nav-icons .profileicon {
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+  position: relative;
+  padding-bottom: 10px; /* Space for underline */
+  padding-top: 28px;
+  border-bottom: 4px solid  #940491;
 }
 
 .search-filter-after-login main {
