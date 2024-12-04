@@ -8,12 +8,13 @@ import searchIcon from './images/searchicon.png'
 import profileicon from './images/profileicon.png'
 import bookimage from './images/jaws.png'
 import './SearchFilterResultsBeforeLogin.css'
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import LoginPage from './LoginPage';
 import axios from 'axios';
 
-const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "https://flipthepage.onrender.com";
+const BACKEND_URL = "http://localhost:5000";
 
 export default function SearchFilterResultsBeforeLogin() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -23,8 +24,7 @@ export default function SearchFilterResultsBeforeLogin() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Fetch all books when component mounts
+  const fetchAllBooks = async () => {
     axios.get(`${BACKEND_URL}/getAllBooks`)
       .then(response => {
         if (response.data.code === 200) {
@@ -38,6 +38,12 @@ export default function SearchFilterResultsBeforeLogin() {
       .finally(() => {
         setLoading(false);
       });
+  }
+
+
+  useEffect(() => {
+    // Fetch all books when component mounts
+    fetchAllBooks();
   }, []);
 
   const handleApplyFilter = () => {
@@ -45,7 +51,7 @@ export default function SearchFilterResultsBeforeLogin() {
     if (genre) params.append('genre', genre);
     if (language) params.append('language', language);
     if (searchTerm) params.append('search', searchTerm);
-    
+
     axios
       .get(`${BACKEND_URL}/searchBook?${params.toString()}`)
       .then((response) => {
@@ -55,13 +61,15 @@ export default function SearchFilterResultsBeforeLogin() {
         console.error('Error fetching books:', error);
         setBooks([]);
       });
+    navigate("/search-before");
   };
 
-  const handleclearFilter = () => {
+  const handleClearFilter = () => {
     setSearchTerm('');
     setGenre('');
     setLanguage('');
-    navigate("/search-before");
+
+    fetchAllBooks();
   }
 
   return (
@@ -73,11 +81,11 @@ export default function SearchFilterResultsBeforeLogin() {
           </div>
           <nav>
             <div className="nav-group">
-            <Link to="/LoginPage" className="nav-icon">Login</Link> | 
-            <Link to="/Register" className="nav-icon">Register</Link>
-            <Link to="/home" className="home">
-            <img src={homeicon} alt="Home" className="nav-icon" />
-            </Link>
+              <Link to="/LoginPage" className="nav-icon">Login</Link> |
+              <Link to="/Register" className="nav-icon">Register</Link>
+              <Link to="/home" className="home">
+                <img src={homeicon} alt="Home" className="nav-icon" />
+              </Link>
             </div>
           </nav>
         </header>
@@ -100,6 +108,13 @@ export default function SearchFilterResultsBeforeLogin() {
                   <option value="non-fiction">Thriller</option>
                   <option value="sci-fi">Sci-Fi</option>
                   <option value="mystery">Mystery</option>
+                  <option value="biography">Biography</option>
+                  <option value="history">History</option>
+                  <option value="education">Education</option>
+                  <option value="comedy">Comedy</option>
+                  <option value="drama">Drama</option>
+                  <option value="action">Action</option>
+                  <option value="horror">Horror</option>
                 </select>
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
@@ -110,17 +125,17 @@ export default function SearchFilterResultsBeforeLogin() {
                   <option value="es">Spanish</option>
                   <option value="fr">French</option>
                   <option value="de">German</option>
+                  <option value="hi">Hindi</option>
+                  <option value="sa">Sanskrit</option>
                 </select>
                 <img src={dropdownicon} alt="" width={12} height={12} className="dropdown-icon" />
               </div>
             </div>
-            <div className="buttons">
             <button className="apply-filter" onClick={handleApplyFilter}>Apply Filter</button>
-            <button className="clear-filter" onClick={handleclearFilter}>Clear Filter</button>
-            </div>
+            <button className="clear-filter" onClick={handleClearFilter}>Clear Filter</button>
           </div>
 
-          
+
         </main>
       </div>
       <div className="book-results">
@@ -131,9 +146,9 @@ export default function SearchFilterResultsBeforeLogin() {
           ) : Array.isArray(books) && books.length > 0 ? (
             books.map((book, index) => (
               <div key={index} className="book-card">
-                <img 
-                  src={book.coverImage} 
-                  alt={book.title} 
+                <img
+                  src={book.coverImage}
+                  alt={book.title}
                   className="book-image"
                   onError={(e) => {
                     e.target.onerror = null;
@@ -144,7 +159,7 @@ export default function SearchFilterResultsBeforeLogin() {
                 <p className="author-text">{book.author}</p>
                 <p className="pricevalue">INR {book.amount}</p>
                 <p className="pricevalue">⭐ {book.rating || 5}/5</p>
-                <button 
+                <button
                   className="view-button"
                   onClick={() => navigate(`/book-before/${book._id}`)}
                 >

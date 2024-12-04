@@ -30,6 +30,7 @@ import Wishlist from './images/wishlisticon.png';
 import Profile from './images/profileicon.png';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 function HomePageAuthor() {
 
@@ -40,14 +41,14 @@ function HomePageAuthor() {
     useEffect(() => {
         fetchBooks();
     }, []);
-    
+
 
     const fetchBooks = async () => {
         try {
             setLoading(true);
             // console.log('Fetching books...'); // Debug log
 
-            const response = await axios.get(`${BACKEND_URL}/getAllBooks`);
+            const response = await axios.get(`${BACKEND_URL}/getRecentBooks`);
             // console.log('API Response:', response.data); // Debug log
 
             if (response.data && response.data.books) {
@@ -80,6 +81,13 @@ function HomePageAuthor() {
 
     const handleWishlistClick = () => {
         navigate('/Wishlist');
+    };
+
+    const scrollToDeals = () => {
+        document.querySelector('.deals').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
     };
 
     return (
@@ -117,7 +125,7 @@ function HomePageAuthor() {
             <section className="genres">
                 <div className="genres-header">
                     <h2>Popular Genres</h2>
-                    <a href="/genres" className="see-more-genres">Browse</a>
+                    <a href="/genres" className="see-more-genres" onClick={scrollToDeals}>Browse</a>
                 </div>
                 <div className="genres-list">
                     <div className="genre-item">
@@ -141,7 +149,7 @@ function HomePageAuthor() {
 
 
             <section className="deals">
-            <h2>Featured Books</h2>
+                <h2>Featured Books</h2>
                 <div className="deal-cards">
                     {loading ? (
                         <div>Loading...</div>

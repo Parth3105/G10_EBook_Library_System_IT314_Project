@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./EmailVerification.css";
 import fliplogo from "./images/logo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
@@ -6,19 +6,20 @@ import axios from "axios";
 //import bgimg from './images/bgimage1.png';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 function EmailVerification() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-        setTimeLeft((prevTime) => {
-            if (prevTime <= 1) {
-                clearInterval(timer);
-                setIsVisible(true); // Show resend link after countdown ends
-                return 0;
-            }
-            return prevTime - 1;
-        });
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          setIsVisible(true); // Show resend link after countdown ends
+          return 0;
+        }
+        return prevTime - 1;
+      });
     }, 1000);
 
     // Cleanup interval on component unmount
@@ -51,18 +52,18 @@ function EmailVerification() {
         otp: code,
       })
       .then((result) => {
-        if(result.data.code === 101){
+        if (result.data.code === 101) {
           alert(result.data.msg);
         }
-        else if(result.data.code === 102){
+        else if (result.data.code === 102) {
           alert(result.data.msg);
         }
-        else if(result.data.code === 200){
+        else if (result.data.code === 200) {
           alert(result.data.msg);
           // If validation passes, navigate to EmailVerification page
           navigate("/LoginPage");
         }
-        else if(result.data.code === 500){
+        else if (result.data.code === 500) {
           alert(result.data.msg);
         }
       })
@@ -86,7 +87,7 @@ function EmailVerification() {
           setIsVisible(true);
           return 0;
         }
-      return prevTime - 1;
+        return prevTime - 1;
       });
     }, 1000);
 
@@ -143,14 +144,14 @@ function EmailVerification() {
         <p className="resend-text">
           Didn’t receive the code?{" "}
           {isVisible ? (
-                    <span onClick={handleResend} className="resend-link">
-                        Resend code
-                    </span>
-                ) : (
-                    <span className="resend-countdown">
-                        Please wait {Math.floor(timeLeft / 60)}:{("0" + (timeLeft % 60)).slice(-2)} to resend.
-                    </span>
-                )}
+            <span onClick={handleResend} className="resend-link">
+              Resend code
+            </span>
+          ) : (
+            <span className="resend-countdown">
+              Please wait {Math.floor(timeLeft / 60)}:{("0" + (timeLeft % 60)).slice(-2)} to resend.
+            </span>
+          )}
         </p>
         {message && <p className="verification-message">{message}</p>}
       </div>

@@ -11,6 +11,8 @@ module.exports.searchEBook = async (req, res) => {
         let language = req.query.language || "All";
         let sort = req.query.sort || "createdAt";
 
+
+
         // Define available genres for filtering
         const genreOptions = [
             "Romance",
@@ -18,7 +20,14 @@ module.exports.searchEBook = async (req, res) => {
             "Mystery",
             "Adventure",
             "Thriller",
-            "Sci-fi"
+            "Sci-fi",
+            "Comedy",
+            "Drama",
+            "Action",
+            "Horror",
+            "Biography",
+            "History",
+            "Education"
         ];
 
         // Set up genre filtering
@@ -27,25 +36,29 @@ module.exports.searchEBook = async (req, res) => {
             : (genre = req.query.genre.split(","));
 
         // Make genre filtering case-insensitive
+        // console.log(genre);
         genre = genre.map((g) => new RegExp(`^${g}$`, "i"));
+
 
         // Set up sort order
         req.query.sort ? (sort = req.query.sort.split(",")) : (sort = [sort]);
-        const sortBy = sort[1] ? { [sort[0]]: sort[1] } : { [sort[0]]: "asc" };
+        const sortBy = sort[1] ? { [sort[0]]: sort[1] } : { [sort[0]]: "desc" };
 
         // Construct the filter query
         const filter = {
             title: { $regex: search, $options: "i" },
-            author: { $regex: author, $options: "i" },
+            // author: { $regex: author, $options: "i" },
             genre: { $in: genre }
         };
+
         if (language !== "All") filter.language = { $regex: `^${language}$`, $options: "i" };
 
         // Fetch books based on filters
         const books = await Book.find(filter)
             .sort(sortBy)
-            .skip(page * limit)
-            .limit(limit);
+
+
+
 
         // Get total document count for pagination
         const total = await Book.countDocuments(filter);
@@ -72,8 +85,8 @@ module.exports.getRecentBooks = async (req, res) => {
     try {
         const books = await Book.find({})
             .sort({ createdAt: -1 }) // Sort by `createdAt` field in descending order
-            .limit(4);              // Limit the result to the 4 most recent books
-        res.send(books);
+            .limit(5);              // Limit the result to the 4 most recent books
+        res.send({ books: books });
     } catch (error) {
         res.send("Error fetching recent books");
     }
