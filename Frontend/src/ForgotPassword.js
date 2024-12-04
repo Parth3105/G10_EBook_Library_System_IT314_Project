@@ -6,6 +6,7 @@ import bgimg from "./images/bgimage1.png";
 import axios from "axios";
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -28,7 +29,7 @@ function ForgotPassword() {
         }
         else if (res.data.code === 503) {
           alert(res.data.msg);
-        } 
+        }
         else {
           setShowOtpModal(true);
         }
@@ -42,12 +43,12 @@ function ForgotPassword() {
   const handleOtpSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(`${BACKEND_URL}/resetPass/verifyOTP`,{email: email, otp: otp})
+    axios.post(`${BACKEND_URL}/resetPass/verifyOTP`, { email: email, otp: otp })
       .then((res) => {
-        if(res.data.code === 600){
-          navigate("/reset-password", {state: {email: email}}); // Navigate to ResetPassword page upon OTP submission
+        if (res.data.code === 600) {
+          navigate("/reset-password", { state: { email: email } }); // Navigate to ResetPassword page upon OTP submission
         }
-        else{
+        else {
           alert(res.data.msg);
         }
       })
@@ -69,12 +70,12 @@ function ForgotPassword() {
         <p>Enter your email to receive a password reset OTP.</p>
         <form className="forgot-password-form" onSubmit={handleSendResetLink}>
           <input
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }} 
-          type="email" 
-          placeholder="Email" 
-          required />
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            type="email"
+            placeholder="Email"
+            required />
           <button type="submit" className="reset-btn">
             Send OTP
           </button>
@@ -91,14 +92,14 @@ function ForgotPassword() {
             <h3>Enter the OTP</h3>
             <p>Enter the 4-digit code</p>
             <form onSubmit={handleOtpSubmit}>
-              <input 
-              onChange={(e) => {
-                setOTP(e.target.value);
-              }}
-              type="text" 
-              maxLength="4" 
-              placeholder="••••" 
-              required />
+              <input
+                onChange={(e) => {
+                  setOTP(e.target.value);
+                }}
+                type="text"
+                maxLength="4"
+                placeholder="••••"
+                required />
               <button type="submit" className="enter-btn">
                 Enter
               </button>

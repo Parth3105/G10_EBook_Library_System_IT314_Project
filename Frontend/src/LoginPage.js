@@ -9,6 +9,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 function LoginPage() {
   const navigate = useNavigate();
@@ -87,7 +88,7 @@ function LoginPage() {
             type="password"
             placeholder="Password"
           />
-          
+
           <button onClick={handleSubmit} type="submit" className="register-btn">
             Log In
           </button>
@@ -95,7 +96,7 @@ function LoginPage() {
         <div className="additional-options">
           <Link to="/forgot-password">Forgot Password?</Link>
         </div>
-        
+
 
         {/* Replaced anchor tag with Link component */}
         <p className="register-link">

@@ -1,5 +1,5 @@
-import React, { useState,useEffect } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from "./images/logo.png";
 import homeicon from "./images/homeicon.png";
 import wishlisticon from "./images/wishlisticon.png";
@@ -9,21 +9,22 @@ import "./AuthorUpload.css";
 import axios from 'axios';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 function AuthorUpload() {
   const [activeIcon, setActiveicon] = useState("profile");
   const storedUsername = localStorage.getItem('USERNAME');
   const [books, setBooks] = useState([]);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get(`${BACKEND_URL}/getAuthorUploads/${storedUsername}`)
-    .then(response => {
-      if(response.data.code===900){
-        setBooks(response.data.books);
-      }
-    })
+      .then(response => {
+        if (response.data.code === 900) {
+          setBooks(response.data.books);
+        }
+      })
   })
 
   const handleIconClick = (icon) => {
@@ -76,28 +77,28 @@ function AuthorUpload() {
       </nav>
 
       <div className="author-upload-container">
-            <main>
-                <h1 className="reader-history-title"></h1>  
-                <div className="reader-history">
-                    {books.length > 0 ? (
-                        books.map((book) => (
-                            <div key={book._id} className="reader-history-item">
-                                <img src={book.coverImage} alt={book.bookTitle} className="book-cover" />
-                                <div className="reader-history-details">
-                                    <h2 className="reader-history-book-title">{book.title}</h2>
-                                    <p className="reader-history-book-author">{book.author}</p>
-                                    <button to={`/reading/${book._id}`} onClick={() => handleViewClick(book)} className="reader-history-read-btn">
-                                        View
-                                    </button>
-                                </div>
-                            </div>
-                        ))
-                    ) : (
-                        <p className="reader-history-empty-message">You have not uploaded any books yet.</p>
-                    )}
+        <main>
+          <h1 className="reader-history-title"></h1>
+          <div className="reader-history">
+            {books.length > 0 ? (
+              books.map((book) => (
+                <div key={book._id} className="reader-history-item">
+                  <img src={book.coverImage} alt={book.bookTitle} className="book-cover" />
+                  <div className="reader-history-details">
+                    <h2 className="reader-history-book-title">{book.title}</h2>
+                    <p className="reader-history-book-author">{book.author}</p>
+                    <button to={`/reading/${book._id}`} onClick={() => handleViewClick(book)} className="reader-history-read-btn">
+                      View
+                    </button>
+                  </div>
                 </div>
-            </main>
-        </div>
+              ))
+            ) : (
+              <p className="reader-history-empty-message">You have not uploaded any books yet.</p>
+            )}
+          </div>
+        </main>
+      </div>
     </div>
   );
 }

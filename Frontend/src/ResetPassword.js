@@ -1,29 +1,30 @@
 import React, { useState } from "react";
-import {useNavigate, useLocation} from "react-router-dom"; // Import useNavigate
+import { useNavigate, useLocation } from "react-router-dom"; // Import useNavigate
 import axios from "axios";
 import "./ResetPassword.css";
 import fliplogo from './images/logo.svg';
 import bgimg from './images/bgimage1.png';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 function ResetPassword() {
-  const location=useLocation();
-  const prevState=location.state||{};
-  const navigate=useNavigate();
+  const location = useLocation();
+  const prevState = location.state || {};
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
 
-  const handleSubmit= (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(`${BACKEND_URL}/resetPassword`, {email: prevState.email, password: password, confirmPass: confirmPass})
-      .then((res)=>{
-        if(res.data.code === 700){
+    axios.post(`${BACKEND_URL}/resetPassword`, { email: prevState.email, password: password, confirmPass: confirmPass })
+      .then((res) => {
+        if (res.data.code === 700) {
           navigate("/LoginPage");
           alert(res.data.msg);
         }
-        else{
+        else {
           alert(res.data.msg);
         }
       });
@@ -41,19 +42,19 @@ function ResetPassword() {
         <h2>Reset Password</h2>
         <form className="reset-form">
           <input
-          onChange = {(e)=>{
-            setPassword(e.target.value);
-          }} 
-          type="password" 
-          placeholder="New Password" 
-          required/>
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            placeholder="New Password"
+            required />
           <input
-          onChange = {(e)=>{
-            setConfirmPass(e.target.value);
-          }} 
-          type="password" 
-          placeholder="Confirm New Password" 
-          required/>
+            onChange={(e) => {
+              setConfirmPass(e.target.value);
+            }}
+            type="password"
+            placeholder="Confirm New Password"
+            required />
           <button type="submit" onClick={handleSubmit} className="reset-btn">Reset</button>
         </form>
       </div>

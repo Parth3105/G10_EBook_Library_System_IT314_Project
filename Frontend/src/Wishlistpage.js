@@ -9,6 +9,7 @@ import logo from './images/logo.png'
 import axios from 'axios';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 const Wishlist = () => {
   const navigate = useNavigate();

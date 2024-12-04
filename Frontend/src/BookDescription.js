@@ -16,6 +16,7 @@ import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 // Set worker
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
@@ -163,7 +164,7 @@ export default function BookDescription() {
     setPdfError(null);
     setShowReader(true);
 
-      axios.post(`${BACKEND_URL}/addHistory`, {
+    axios.post(`${BACKEND_URL}/addHistory`, {
       username: storedUsername,
       bookTitle: book.title,
       author: book.author,

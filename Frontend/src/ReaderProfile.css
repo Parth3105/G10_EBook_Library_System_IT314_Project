@@ -184,3 +184,29 @@ body {
   margin: 150px;
   text-align: center;
 }
+
+/* Add these styles to maintain consistency */
+.reader-profile-page .item3 {
+  margin: 20px;
+  margin-bottom: 20px;  /* Push logout to the right */
+  display: flex;
+  align-items: center;
+  padding-right: 20px;
+}
+
+.reader-profile-page .logout-btn {
+  background-color: #7f265b;  /* Matching your theme color */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;  /* Matching your input border-radius */
+  cursor: pointer;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 1em;
+  height: 40px;
+  transition: background-color 0.3s ease;
+}
+
+.reader-profile-page .logout-btn:hover {
+  background-color: #5c1c42;  /* Darker shade for hover */
+}

@@ -10,6 +10,7 @@ import logo from './images/logo.svg';
 import homeicon from './images/homeicon.png';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 export default function BookDescriptionBeforeLogin() {
   const { id } = useParams();
@@ -58,19 +59,19 @@ export default function BookDescriptionBeforeLogin() {
       {!showReader ? (
         <>
           <header className="book-description-head">
-      <div className="flip-the-page">
-            <img src={logo} alt="Logo" className="logo" />
-          </div>
-          <div className="nav-icons">
-            <Link to="/reader" onClick={() => handleHomeClick("home")}>
-              <img
-                src={homeicon}
-                alt="Home"
-                className={`homeicon ${activeicon === "home" ? "" : ""}`}
-              />
-            </Link>
-          </div>
-      </header>
+            <div className="flip-the-page">
+              <img src={logo} alt="Logo" className="logo" />
+            </div>
+            <div className="nav-icons">
+              <Link to="/home" onClick={() => handleHomeClick("home")}>
+                <img
+                  src={homeicon}
+                  alt="Home"
+                  className={`homeicon ${activeicon === "home" ? "" : ""}`}
+                />
+              </Link>
+            </div>
+          </header>
 
           <main className="main-content">
             <div className="book-details">
