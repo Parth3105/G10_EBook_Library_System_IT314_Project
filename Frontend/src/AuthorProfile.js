@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "./images/logo.png";
 import homeicon from "./images/homeicon.png";
 import wishlisticon from "./images/wishlisticon.png";
 import profileicon from "./images/profileicon.png";
 import "./AuthorProfile.css";
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const BACKEND_URL = "https://flipthepage.onrender.com";
 // const BACKEND_URL = "http://localhost:5000";
 
 function AuthorProfile() {
+  const navigate = useNavigate();
   const [activeicon, setActiveicon] = useState("profile");
   const [userData, setUserData] = useState({
     username: '',
