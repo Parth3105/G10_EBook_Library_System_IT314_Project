@@ -8,7 +8,7 @@ const SelectionPage = () => {
   const navigate = useNavigate();  // Initialize useNavigate hook
 
   const handleSelection = (role) => {
-    console.log(`You selected: ${role}`);
+    // console.log(`You selected: ${role}`);
     // Navigate to RegisterPage
     navigate('/Register', { state: { role } });  // Pass the selected role to RegisterPage
   };

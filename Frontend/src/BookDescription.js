@@ -91,7 +91,7 @@ export default function BookDescription() {
       const response = await axios.get(`${BACKEND_URL}/book/${id}`);
 
       if (response.data && response.data.code === 200) {
-        console.log('Book details:', response.data.book);
+        // console.log('Book details:', response.data.book);
         setBook(response.data.book);
       } else {
         toast.error('Book not found');
@@ -158,9 +158,9 @@ export default function BookDescription() {
 
   const handleReadClick = () => {
     setIsLoading(true);
-    if (book) {
-      console.log('PDF URL:', book.file);
-    }
+    // if (book) {
+      // console.log('PDF URL:', book.file);
+    // }
     setPdfError(null);
     setShowReader(true);
 

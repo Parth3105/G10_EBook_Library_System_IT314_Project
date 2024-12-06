@@ -55,7 +55,7 @@ function HomePageAuthor() {
                 // console.log('Setting books:', response.data.books);
                 setBooks(response.data.books);
             } else {
-                console.log('No books in response');
+                // console.log('No books in response');
                 setBooks([]);
             }
         } catch (error) {

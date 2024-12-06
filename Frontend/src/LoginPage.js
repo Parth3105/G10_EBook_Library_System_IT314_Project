@@ -18,14 +18,14 @@ function LoginPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault(); // Prevent page refresh
-    console.log(username, password);
+    // console.log(username, password);
     axios
       .post(`${BACKEND_URL}/login`, {
         username: username,
         password: password,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
 
         if (res.data.code === 400) {
           toast.error(res.data.msg);

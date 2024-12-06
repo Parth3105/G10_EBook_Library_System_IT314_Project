@@ -60,7 +60,7 @@ export default function SearchFilterAfterLogin() {
 
   const handleApplyFilter = () => {
     // Implement filter logic here
-    console.log('Applying filters:', { searchTerm, genre, name, author, language })
+    // console.log('Applying filters:', { searchTerm, genre, name, author, language })
     navigate("/search-results-after");
   }
 

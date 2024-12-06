@@ -17,7 +17,7 @@ const Wishlist = () => {
   const [books, setBooks] = useState([]);
   const [userRole, setUserRole] = useState('');
   const storedUsername = localStorage.getItem('USERNAME');
-  console.log(userRole);
+  // console.log(userRole);
 
   useEffect(() => {
     // Fetch user profile to get role

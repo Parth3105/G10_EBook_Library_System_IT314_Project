@@ -24,7 +24,8 @@ function AuthorProfile() {
 
   const handleLogout = () => {
     localStorage.clear();
-    window.location.href = '/';
+    toast.success('Logged out successfully');
+    navigate('/home');
   };
 
   useEffect(() => {
@@ -45,7 +46,7 @@ function AuthorProfile() {
           <img src={logo} alt="Logo" className="logo" />
         </div>
         <div className="nav-icons">
-          <Link to="/reader" onClick={() => handleIconClick("home")}>
+          <Link to="/author" onClick={() => handleIconClick("home")}>
             <img
               src={homeicon}
               alt="Home"
@@ -59,7 +60,7 @@ function AuthorProfile() {
               className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
             />
           </Link>
-          <Link to="/reader-profile" onClick={() => handleIconClick("profile")}>
+          <Link to="/author-profile" onClick={() => handleIconClick("profile")}>
             <img
               src={profileicon}
               alt="Profile"

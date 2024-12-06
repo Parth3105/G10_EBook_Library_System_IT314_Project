@@ -13,8 +13,8 @@ import { useNavigate } from "react-router-dom";
 import LoginPage from './LoginPage';
 import axios from 'axios';
 
-// const BACKEND_URL = "https://flipthepage.onrender.com";
-const BACKEND_URL = "http://localhost:5000";
+const BACKEND_URL = "https://flipthepage.onrender.com";
+// const BACKEND_URL = "http://localhost:5000";
 
 export default function SearchFilterResultsBeforeLogin() {
   const [searchTerm, setSearchTerm] = useState('');
