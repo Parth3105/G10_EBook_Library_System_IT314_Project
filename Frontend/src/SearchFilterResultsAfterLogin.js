@@ -116,7 +116,7 @@ export default function SearchFilterResultsAfterLogin() {
             <img src={logo} alt="Logo" className="logo" />
           </div>
           <div className="nav-icons">
-            <Link to="/reader" onClick={() => handleHomeClick("home")}>
+            <Link to={userRole?.toUpperCase() === 'READER' ? '/reader' : '/author'} onClick={() => handleHomeClick("home")}>
               <img
                 src={homeicon}
                 alt="Home"
@@ -130,7 +130,7 @@ export default function SearchFilterResultsAfterLogin() {
                 className={`wishlisticon ${activeicon === "wishlist" ? "" : ""}`}
               />
             </Link>
-            <Link to="/reader-profile" onClick={() => handleProfileClick("profile")}>
+            <Link to={userRole?.toUpperCase() === 'READER' ? '/reader-profile' : '/author-profile'} onClick={() => handleProfileClick("profile")}>
               <img
                 src={profileicon}
                 alt="Profile"
